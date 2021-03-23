@@ -1,0 +1,29 @@
+{
+  "name": "devellopez_un_algorithme_de_recherche_en_javascript",
+  "version": "1.0.0",
+  "description": "projet numéro 7 de la formation front-end openclassrooms",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^4.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "sass": "sass --watch scss:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Orkham/NicolasChatelais_7_23032021.git"
+  },
+  "keywords": [
+    "les_petits_plats",
+    "front-end",
+    "openclassrooms",
+    "projet_7"
+  ],
+  "author": "Chatelais Nicolas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Orkham/NicolasChatelais_7_23032021/issues"
+  },
+  "homepage": "https://github.com/Orkham/NicolasChatelais_7_23032021#readme"
+}
