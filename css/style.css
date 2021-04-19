@@ -5,6 +5,10 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+ @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -43,7 +47,7 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -235,7 +239,7 @@ select,
 optgroup,
 textarea {
   margin: 0;
-  font-family: inherit;
+  font-family: 'Lato', sans-serif;
   font-size: inherit;
   line-height: inherit;
 }
@@ -243,6 +247,10 @@ textarea {
 button,
 input {
   overflow: visible;
+}
+
+input{
+  background-color: #e7e7e7;
 }
 
 button,
@@ -359,6 +367,8 @@ h1, h2, h3, h4, h5, h6,
 
 h1, .h1 {
   font-size: 2.5rem;
+  color:#D04F4F;
+  font-family: 'DM Sans', sans-serif;
 }
 
 h2, .h2 {
@@ -3268,6 +3278,10 @@ input[type=button].btn-block {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
+}
+
+#searchButton {
+  color: pink;
 }
 
 .input-group {
@@ -7371,6 +7385,10 @@ button.bg-dark:focus {
   width: 75% !important;
 }
 
+.w-90 {
+  width: 90% !important;
+}
+
 .w-100 {
   width: 100% !important;
 }
@@ -7389,6 +7407,10 @@ button.bg-dark:focus {
 
 .h-75 {
   height: 75% !important;
+}
+
+.h-90 {
+  height: 90% !important;
 }
 
 .h-100 {
@@ -9930,3 +9952,94 @@ h3 {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+body{
+  font-family: lato;
+}
+#searchIcon{
+  position: absolute;
+  top: 20px;
+  right:15px;
+  font-size: 2rem;
+}
+#searchIcon:hover{
+  cursor: pointer;
+}
+#formGroupExampleInput{
+  background-color: #e7e7e7;
+  border-radius: 5px;
+  height: 4.3125rem;
+  font-family: lato;
+  color: #000000;
+  opacity: 0.5;
+}
+#formGroupExampleInput::placeholder{
+  font-size: 18px;
+}
+#inputIngredients{
+  background-color: #3282F7;
+  font-size: 18px;
+}
+#inputAppareil{
+  background-color: #68D9A4;
+  font-size: 18px;
+}
+#inputUstensiles{
+  background-color: #ED6454;
+  font-size: 18px;
+}
+::placeholder{
+  color:white;
+  opacity: 1;
+  font-size: 18px;
+}
+.inputSearch{
+  width: 170px;
+}
+.chevrons{
+  top: 2rem;
+  right:1rem;
+}
+.chevrons:hover{
+  cursor: pointer;
+}
+#chevron-downIngredients{
+  opacity: 1;
+}
+#chevron-upIngredients{
+  opacity:0;
+}
+#chevron-downAppareil{
+  opacity: 1;
+}
+#chevron-upAppareil{
+  opacity:0;
+}
+#chevron-downUstensiles{
+  opacity: 1;
+}
+#chevron-upUstensiles{
+  opacity:0;
+}
+.fa-times-circle:hover{
+  cursor: pointer;
+}
+.resultDisplay{
+  background-color: #3282F7;
+}
+.recipes div:nth-child(3n+1){
+  padding-right:2rem;
+  border:none;
+  box-shadow: none;
+}
+.recipes div:nth-child(3n+2){
+  padding-right:1rem;
+  padding-left:1rem;
+  border:none;
+  box-shadow: none;
+}
+.recipes div:nth-child(3n){
+  padding-left:2rem;
+  border:none;
+  box-shadow: none;
+}
