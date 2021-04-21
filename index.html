@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <link rel="stylesheet" href="css/style.css" />
     
@@ -28,7 +31,7 @@
     
     <div class="results">
         <div class="d-inline-block">
-            <p class="resultDisplay text-white rounded pt-1 pb-1 pl-3 pr-3">
+            <p class="resultDisplay text-white rounded pt-1 pb-2 pl-3 pr-3">
                 Coco
                 <i class="far fa-times-circle pl-2"></i>
             </p>
@@ -36,10 +39,20 @@
     </div>
 
     <form class="form-inline mb-4">
-        <div class="position-relative mr-3 inputSearch">
-            <input class="text-white mr-3 border-0 rounded pl-3 pr-3 pt-4 pb-4 font-weight-bold inputSearch" placeholder="Ingredients" id="inputIngredients">
+        <div class="position-relative mr-3 inputSearch width-xl" id="ingredientsSearchbarContainer">
+            <input class="text-white mr-3 rounded border-0 pl-3 pr-3 pt-4 pb-4 font-weight-bold inputSearch width-xl" placeholder="Ingredients" id="inputIngredients">
             <i class="fas fa-chevron-down text-white position-absolute chevrons" id="chevron-downIngredients"></i>
             <i class="fas fa-chevron-up text-white position-absolute chevrons" id="chevron-upIngredients"></i>
+            <div class="text-white mr-3 border-0 pl-3 pr-0 pt-4 pb-4 font-weight-bold inputSearch width-xl" id="ingredientsList">
+                <ul class="pl-0 container row pr-0">
+                    <li class="col-4">Lait de coco</li>
+                    <li class="col-4">Sucre</li>
+                    <li class="col-4">Jus de citron</li>
+                    <li class="col-4">Crème de coco</li>
+                    <li class="col-4">Glaçons</li>
+                    <li class="col-4">Thon Rouge</li>
+                </ul>
+            </div>
         </div>
 
         <div class="position-relative mr-3 inputSearch">
@@ -57,272 +70,238 @@
     </form>
 
 
-<!--
-        <div class="card">
-            <img src="" alt="">
-            <div class="card-body">
-                <div>
-                    <h2 class="card-title">Limonade de Coco</h2>
-                    <i class="far fa-clock"></i>
-                    <p>10 min</p>
-            </div>
-            <div>
-                <ul>
-                    <li>
-                        <p>Lait de coco:</p>
-                        <p>400ml</p>
-                    </li>
-                    <li>
-                        <p>Jus de citron:</p>
-                        <p>2</p>
-                    </li>
-                    <li>
-                        <p>Crème de coco:</p>
-                        <p>4 cuillères</p>
-                    </li>
-                    <li>
-                        <p>Sucre:</p>
-                        <p>20g</p>
-                    </li>
-                    <li>
-                        <p>Glaçons:</p>
-                        <p>2</p>
-                    </li>
-                </ul>
-                <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
-            </div>    
-        </div>
-
-    </div>
--->
 <div class="container">
 
     <div class="row row-cols-md-3 recipes">
 
-        <div class="card">
+        <div class="card mb-5">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-            <div class="card-body">
-                <div>
-                    <h2 class="card-title">Limonade de Coco</h2>
-                    <i class="far fa-clock"></i>
-                    <p>10 min</p>
+            <div class="card-body description pb-5">
+                <div class="recipesTitle d-flex justify-content-between pr-0 align-items-center mb-3">
+                    <h2 class="card-title  mb-0">Limonade de Coco</h2>
+                    <div class="timing d-flex align-items-center  mb-0">
+                        <i class="far fa-clock pr-1 d-flex align-items-center mb-0"></i>
+                        <p class="d-flex align-items-center mb-0 timing__duration">10 min</p>
+                    </div>
                 </div>
-                <div>
-                    <ul>
-                        <li>
-                            <p>Lait de coco:</p>
-                            <p>400ml</p>
+                <div class="d-flex p-0">
+                    <ul class="list-group pr-3 w-50">
+                        <li class="list-group-item ingredient d-flex p-0 ">
+                            <p class="mb-0 font-weight-bold">Lait de coco:</p>
+                            <p class="mb-0 pl-1">400ml</p>
                         </li>
-                        <li>
-                            <p>Jus de citron:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Jus de citron:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
-                        <li>
-                            <p>Crème de coco:</p>
-                            <p>4 cuillères</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Crème de coco:</p>
+                            <p class="mb-0 pl-1">4 cuillères</p>
                         </li>
-                        <li>
-                            <p>Sucre:</p>
-                            <p>20g</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Sucre:</p>
+                            <p class="mb-0 pl-1">20g</p>
                         </li>
-                        <li>
-                            <p>Glaçons:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Glaçons:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
                     </ul>
-                    <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
+                    <p class="instructions w-50">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
                 </div>
             </div>    
         </div>
     
-        <div class="card">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-            <div class="card-body">
-                <div>
-                    <h2 class="card-title">Limonade de Coco</h2>
-                    <i class="far fa-clock"></i>
-                    <p>10 min</p>
+        <div class="card mb-5">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+            <div class="card-body description pb-5">
+                <div class="recipesTitle d-flex justify-content-between pr-0 align-items-center mb-3">
+                    <h2 class="card-title  mb-0">Limonade de Coco</h2>
+                    <div class="timing d-flex align-items-center  mb-0">
+                        <i class="far fa-clock pr-1 d-flex align-items-center mb-0"></i>
+                        <p class="d-flex align-items-center mb-0 timing__duration">10 min</p>
+                    </div>
                 </div>
-                <div>
-                    <ul>
-                        <li>
-                            <p>Lait de coco:</p>
-                            <p>400ml</p>
+                <div class="d-flex p-0">
+                    <ul class="list-group pr-3 w-50">
+                        <li class="list-group-item ingredient d-flex p-0 ">
+                            <p class="mb-0 font-weight-bold">Lait de coco:</p>
+                            <p class="mb-0 pl-1">400ml</p>
                         </li>
-                        <li>
-                            <p>Jus de citron:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Jus de citron:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
-                        <li>
-                            <p>Crème de coco:</p>
-                            <p>4 cuillères</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Crème de coco:</p>
+                            <p class="mb-0 pl-1">4 cuillères</p>
                         </li>
-                        <li>
-                            <p>Sucre:</p>
-                            <p>20g</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Sucre:</p>
+                            <p class="mb-0 pl-1">20g</p>
                         </li>
-                        <li>
-                            <p>Glaçons:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Glaçons:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
                     </ul>
-                    <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
+                    <p class="instructions w-50">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
                 </div>
             </div>    
         </div>
-
-        <div class="card">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-            <div class="card-body">
-                <div>
-                    <h2 class="card-title">Limonade de Coco</h2>
-                    <i class="far fa-clock"></i>
-                    <p>10 min</p>
+        <div class="card mb-5">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+            <div class="card-body description pb-5">
+                <div class="recipesTitle d-flex justify-content-between pr-0 align-items-center mb-3">
+                    <h2 class="card-title  mb-0">Limonade de Coco</h2>
+                    <div class="timing d-flex align-items-center  mb-0">
+                        <i class="far fa-clock pr-1 d-flex align-items-center mb-0"></i>
+                        <p class="d-flex align-items-center mb-0 timing__duration">10 min</p>
+                    </div>
                 </div>
-                <div>
-                    <ul>
-                        <li>
-                            <p>Lait de coco:</p>
-                            <p>400ml</p>
+                <div class="d-flex p-0">
+                    <ul class="list-group pr-3 w-50">
+                        <li class="list-group-item ingredient d-flex p-0 ">
+                            <p class="mb-0 font-weight-bold">Lait de coco:</p>
+                            <p class="mb-0 pl-1">400ml</p>
                         </li>
-                        <li>
-                            <p>Jus de citron:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Jus de citron:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
-                        <li>
-                            <p>Crème de coco:</p>
-                            <p>4 cuillères</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Crème de coco:</p>
+                            <p class="mb-0 pl-1">4 cuillères</p>
                         </li>
-                        <li>
-                            <p>Sucre:</p>
-                            <p>20g</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Sucre:</p>
+                            <p class="mb-0 pl-1">20g</p>
                         </li>
-                        <li>
-                            <p>Glaçons:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Glaçons:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
                     </ul>
-                    <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
+                    <p class="instructions w-50">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
                 </div>
             </div>    
         </div>
-
-        <div class="card">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-            <div class="card-body">
-                <div>
-                    <h2 class="card-title">Limonade de Coco</h2>
-                    <i class="far fa-clock"></i>
-                    <p>10 min</p>
+        <div class="card mb-5">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+            <div class="card-body description pb-5">
+                <div class="recipesTitle d-flex justify-content-between pr-0 align-items-center mb-3">
+                    <h2 class="card-title  mb-0">Limonade de Coco</h2>
+                    <div class="timing d-flex align-items-center  mb-0">
+                        <i class="far fa-clock pr-1 d-flex align-items-center mb-0"></i>
+                        <p class="d-flex align-items-center mb-0 timing__duration">10 min</p>
+                    </div>
                 </div>
-                <div>
-                    <ul>
-                        <li>
-                            <p>Lait de coco:</p>
-                            <p>400ml</p>
+                <div class="d-flex p-0">
+                    <ul class="list-group pr-3 w-50">
+                        <li class="list-group-item ingredient d-flex p-0 ">
+                            <p class="mb-0 font-weight-bold">Lait de coco:</p>
+                            <p class="mb-0 pl-1">400ml</p>
                         </li>
-                        <li>
-                            <p>Jus de citron:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Jus de citron:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
-                        <li>
-                            <p>Crème de coco:</p>
-                            <p>4 cuillères</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Crème de coco:</p>
+                            <p class="mb-0 pl-1">4 cuillères</p>
                         </li>
-                        <li>
-                            <p>Sucre:</p>
-                            <p>20g</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Sucre:</p>
+                            <p class="mb-0 pl-1">20g</p>
                         </li>
-                        <li>
-                            <p>Glaçons:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Glaçons:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
                     </ul>
-                    <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
+                    <p class="instructions w-50">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
                 </div>
             </div>    
         </div>
-
-        <div class="card">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-            <div class="card-body">
-                <div>
-                    <h2 class="card-title">Limonade de Coco</h2>
-                    <i class="far fa-clock"></i>
-                    <p>10 min</p>
+        <div class="card mb-5">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+            <div class="card-body description pb-5">
+                <div class="recipesTitle d-flex justify-content-between pr-0 align-items-center mb-3">
+                    <h2 class="card-title  mb-0">Limonade de Coco</h2>
+                    <div class="timing d-flex align-items-center  mb-0">
+                        <i class="far fa-clock pr-1 d-flex align-items-center mb-0"></i>
+                        <p class="d-flex align-items-center mb-0 timing__duration">10 min</p>
+                    </div>
                 </div>
-                <div>
-                    <ul>
-                        <li>
-                            <p>Lait de coco:</p>
-                            <p>400ml</p>
+                <div class="d-flex p-0">
+                    <ul class="list-group pr-3 w-50">
+                        <li class="list-group-item ingredient d-flex p-0 ">
+                            <p class="mb-0 font-weight-bold">Lait de coco:</p>
+                            <p class="mb-0 pl-1">400ml</p>
                         </li>
-                        <li>
-                            <p>Jus de citron:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Jus de citron:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
-                        <li>
-                            <p>Crème de coco:</p>
-                            <p>4 cuillères</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Crème de coco:</p>
+                            <p class="mb-0 pl-1">4 cuillères</p>
                         </li>
-                        <li>
-                            <p>Sucre:</p>
-                            <p>20g</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Sucre:</p>
+                            <p class="mb-0 pl-1">20g</p>
                         </li>
-                        <li>
-                            <p>Glaçons:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Glaçons:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
                     </ul>
-                    <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
+                    <p class="instructions w-50">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
                 </div>
             </div>    
         </div>
-
-        <div class="card">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-
-            <div class="card-body">
-                <div>
-                    <h2 class="card-title">Limonade de Coco</h2>
-                    <i class="far fa-clock"></i>
-                    <p>10 min</p>
+        <div class="card mb-5">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+            <div class="card-body description pb-5">
+                <div class="recipesTitle d-flex justify-content-between pr-0 align-items-center mb-3">
+                    <h2 class="card-title  mb-0">Limonade de Coco</h2>
+                    <div class="timing d-flex align-items-center  mb-0">
+                        <i class="far fa-clock pr-1 d-flex align-items-center mb-0"></i>
+                        <p class="d-flex align-items-center mb-0 timing__duration">10 min</p>
+                    </div>
                 </div>
-                <div>
-                    <ul>
-                        <li>
-                            <p>Lait de coco:</p>
-                            <p>400ml</p>
+                <div class="d-flex p-0">
+                    <ul class="list-group pr-3 w-50">
+                        <li class="list-group-item ingredient d-flex p-0 ">
+                            <p class="mb-0 font-weight-bold">Lait de coco:</p>
+                            <p class="mb-0 pl-1">400ml</p>
                         </li>
-                        <li>
-                            <p>Jus de citron:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Jus de citron:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
-                        <li>
-                            <p>Crème de coco:</p>
-                            <p>4 cuillères</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Crème de coco:</p>
+                            <p class="mb-0 pl-1">4 cuillères</p>
                         </li>
-                        <li>
-                            <p>Sucre:</p>
-                            <p>20g</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Sucre:</p>
+                            <p class="mb-0 pl-1">20g</p>
                         </li>
-                        <li>
-                            <p>Glaçons:</p>
-                            <p>2</p>
+                        <li class="list-group-item ingredient d-flex p-0">
+                            <p class="mb-0 font-weight-bold">Glaçons:</p>
+                            <p class="mb-0 pl-1">2</p>
                         </li>
                     </ul>
-                    <p>Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
+                    <p class="instructions w-50">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée.</p>
                 </div>
             </div>    
+        </div>
         </div>
         
 </div>
 
+<script type="module" src=script/main.js></script>
 </body>
 
 </html>

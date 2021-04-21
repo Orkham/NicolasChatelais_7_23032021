@@ -571,7 +571,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1140px;
+    max-width: 1440px;
   }
 }
 .row {
@@ -2337,7 +2337,7 @@ textarea.form-control {
 .form-inline {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  
 }
 .form-inline .form-check {
   width: 100%;
@@ -9976,9 +9976,25 @@ body{
 #formGroupExampleInput::placeholder{
   font-size: 18px;
 }
-#inputIngredients{
+#inputIngredients, #ingredientsList{
   background-color: #3282F7;
   font-size: 18px;
+}
+#ingredientsList{
+  border-radius: 0 0 5px 5px;
+  margin-top: -3px;
+  /*display: none;*/
+}
+#ingredientsList ul{
+  list-style: none;
+  display: flex;
+
+}
+#ingredientsList ul li{
+  font-weight: 400;
+}
+#ingredientsList ul li:hover{
+  cursor:pointer;
 }
 #inputAppareil{
   background-color: #68D9A4;
@@ -10042,4 +10058,33 @@ body{
   padding-left:2rem;
   border:none;
   box-shadow: none;
+}
+.description{
+  background: #E7E7E7;
+}
+.card-title{
+  font-size: 18px;
+}
+.timing__duration{
+  font-weight: 700;
+}
+.fa-clock{
+  font-size:20px;
+}
+.recipesTitle{
+  font-size: 18px;
+}
+.ingredient{
+  background: #E7E7E7;
+  border:none;
+  font-size:12px;
+  line-height: 14.4px;
+}
+.instructions{
+  font-size:12px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 12px;
+}
+.width-xl{
+  width: 667px;
 }
