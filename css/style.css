@@ -10019,12 +10019,12 @@ body{
 .chevrons:hover{
   cursor: pointer;
 }
-#chevron-downIngredients{
+/*#chevron-downIngredients{
   opacity: 1;
 }
 #chevron-upIngredients{
   opacity:0;
-}
+}*/
 #chevron-downAppareil{
   opacity: 1;
 }

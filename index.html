@@ -29,29 +29,32 @@
         <i class="fas fa-search" id="searchIcon"></i>
     </div>
     
-    <div class="results">
+    <div class="results" id="tagsList">
         <div class="d-inline-block">
             <p class="resultDisplay text-white rounded pt-1 pb-2 pl-3 pr-3">
                 Coco
-                <i class="far fa-times-circle pl-2"></i>
+                <i class="far fa-times-circle pl-2 cancelCross"></i>
             </p>
         </div>
     </div>
 
     <form class="form-inline mb-4">
-        <div class="position-relative mr-3 inputSearch width-xl" id="ingredientsSearchbarContainer">
-            <input class="text-white mr-3 rounded border-0 pl-3 pr-3 pt-4 pb-4 font-weight-bold inputSearch width-xl" placeholder="Ingredients" id="inputIngredients">
+        <div class="position-relative mr-3 inputSearch" id="ingredientsSearchbarContainer">
+            <input class="text-white mr-3 rounded border-0 pl-3 pr-3 pt-4 pb-4 font-weight-bold inputSearch" placeholder="Ingredients" id="inputIngredients">
             <i class="fas fa-chevron-down text-white position-absolute chevrons" id="chevron-downIngredients"></i>
-            <i class="fas fa-chevron-up text-white position-absolute chevrons" id="chevron-upIngredients"></i>
-            <div class="text-white mr-3 border-0 pl-3 pr-0 pt-4 pb-4 font-weight-bold inputSearch width-xl" id="ingredientsList">
-                <ul class="pl-0 container row pr-0">
+            <i class="fas fa-chevron-up text-white position-absolute chevrons d-none" id="chevron-upIngredients"></i>
+            <div class="text-white mr-3 border-0 pl-3 pr-0 pt-4 pb-4 font-weight-bold inputSearch d-none" id="ingredientsList">
+                <ul class="pl-0 container row pr-0" id="ingredientsBox">
+                    <!--
                     <li class="col-4">Lait de coco</li>
                     <li class="col-4">Sucre</li>
                     <li class="col-4">Jus de citron</li>
                     <li class="col-4">Crème de coco</li>
                     <li class="col-4">Glaçons</li>
                     <li class="col-4">Thon Rouge</li>
+                    -->
                 </ul>
+                
             </div>
         </div>
 
@@ -72,7 +75,7 @@
 
 <div class="container">
 
-    <div class="row row-cols-md-3 recipes">
+    <div class="row row-cols-md-3 recipes" id="recipesBoxContainer">
 
         <div class="card mb-5">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
