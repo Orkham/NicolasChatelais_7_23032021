@@ -4332,6 +4332,10 @@ input[type=button].btn-block {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
+  max-height: 23rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
 }
 .card > hr {
   margin-right: 0;
@@ -9980,23 +9984,22 @@ body{
   background-color: #3282F7;
   font-size: 18px;
 }
-#ingredientsList{
+#ingredientsList, #appareilsList{
   border-radius: 0 0 5px 5px;
   margin-top: -3px;
-  /*display: none;*/
 }
-#ingredientsList ul{
+#ingredientsList ul, #appareilsList ul{
   list-style: none;
   display: flex;
 
 }
-#ingredientsList ul li{
+#ingredientsList ul li, #appareilsList ul li{
   font-weight: 400;
 }
-#ingredientsList ul li:hover{
+#ingredientsList ul li:hover, #appareilsList ul li:hover{
   cursor:pointer;
 }
-#inputAppareil{
+#inputAppareil, #appareilsList{
   background-color: #68D9A4;
   font-size: 18px;
 }
@@ -10004,6 +10007,7 @@ body{
   background-color: #ED6454;
   font-size: 18px;
 }
+
 ::placeholder{
   color:white;
   opacity: 1;
@@ -10018,24 +10022,6 @@ body{
 }
 .chevrons:hover{
   cursor: pointer;
-}
-/*#chevron-downIngredients{
-  opacity: 1;
-}
-#chevron-upIngredients{
-  opacity:0;
-}*/
-#chevron-downAppareil{
-  opacity: 1;
-}
-#chevron-upAppareil{
-  opacity:0;
-}
-#chevron-downUstensiles{
-  opacity: 1;
-}
-#chevron-upUstensiles{
-  opacity:0;
 }
 .fa-times-circle:hover{
   cursor: pointer;
@@ -10084,6 +10070,10 @@ body{
   font-size:12px;
   font-family: 'Roboto', sans-serif;
   line-height: 12px;
+  -webkit-line-clamp: 8;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .width-xl{
   width: 667px;
