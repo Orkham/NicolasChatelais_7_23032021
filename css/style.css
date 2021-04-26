@@ -9984,26 +9984,26 @@ body{
   background-color: #3282F7;
   font-size: 18px;
 }
-#ingredientsList, #appareilsList{
+#ingredientsList, #appareilsList, #ustensilesList{
   border-radius: 0 0 5px 5px;
   margin-top: -3px;
 }
-#ingredientsList ul, #appareilsList ul{
+#ingredientsList ul, #appareilsList ul, #ustensilesList ul{
   list-style: none;
   display: flex;
 
 }
-#ingredientsList ul li, #appareilsList ul li{
+#ingredientsList ul li, #appareilsList ul li, #ustensilesList ul li{
   font-weight: 400;
 }
-#ingredientsList ul li:hover, #appareilsList ul li:hover{
+#ingredientsList ul li:hover, #appareilsList ul li:hover, #ustensilesList ul li:hover{
   cursor:pointer;
 }
 #inputAppareil, #appareilsList{
   background-color: #68D9A4;
   font-size: 18px;
 }
-#inputUstensiles{
+#inputUstensiles, #ustensilesList{
   background-color: #ED6454;
   font-size: 18px;
 }

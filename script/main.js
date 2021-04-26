@@ -1,4 +1,15 @@
 import {recipes} from './recipes.js'
+import {DisplayRecipes} from './DisplayRecipes.js'
+
+//console.log(recipes)
+
+/***Tableau de titre des recettes***/
+let recipesTitleArray = [];
+for(let i = 0 ; i < recipes.length ; i++){
+    
+    recipesTitleArray.push(recipes[i].name)
+}
+
 
 /*** Parcourir les recettes et extraire les ingrédients ***/
 
@@ -40,7 +51,7 @@ for(let i = 0 ; i < recipes.length ; i++){
     }
     
 }
-console.log(appareilsListToDisplay)
+
 /*** Affichage des appareils ***/
 let appareilsBox = document.getElementById('appareilsBox')
 function displayAppareils(){
@@ -54,8 +65,39 @@ function displayAppareils(){
 }
 displayAppareils();
 
-/***Ecouteurs dans la liste des ingrédients ***/
+/*** Parcourir les recettes et extraire les ustensiles***/
+
+let ustensilesListToDisplay = [];
+
+for(let i = 0 ; i < recipes.length ; i++){
+    
+    for(let j = 0 ; j < recipes[i].ustensils.length ; j++){
+        
+        if(!ustensilesListToDisplay.includes(recipes[i].ustensils[j])){
+            ustensilesListToDisplay.push(recipes[i].ustensils[j])
+        }
+        
+    }
+    
+}
+
+/*** Affichage des ustensiles ***/
+let ustensilesBox = document.getElementById('ustensilesBox')
+function displayUstensile(){
+    for(let i = 0 ; i < ustensilesListToDisplay.length ; i ++){
+        let ustensileToDisplay = document.createElement("li");
+        ustensileToDisplay.appendChild(document.createTextNode(ustensilesListToDisplay[i]));
+        ustensilesBox.appendChild(ustensileToDisplay);
+        ustensileToDisplay.className = "col-4";
+    }
+    
+}
+displayUstensile();
+
+
 const tagsListBox = document.getElementById('tagsList')
+
+/***Ecouteurs dans la liste des ingrédients***/
 for(let i = 0 ; i < ingredientsBox.childElementCount ; i++){
     //console.log(ingredientsBox.children[i])
     ingredientsBox.children[i].addEventListener('click', function addTagInTagsList(e){
@@ -66,12 +108,51 @@ for(let i = 0 ; i < ingredientsBox.childElementCount ; i++){
         let ingredientToDisplay = document.createElement("p");
         ingredientToDisplay.appendChild(document.createTextNode(e.target.innerHTML));
         newDiv.appendChild(ingredientToDisplay);
-        ingredientToDisplay.className = "resultDisplay text-white rounded pt-1 pb-2 pl-3 pr-3";
+        ingredientToDisplay.className = "resultDisplay text-white rounded pt-1 pb-2 pl-3 pr-3 mr-1";
         let cross = createCancelCross();
         ingredientToDisplay.appendChild(cross);
         cross.addEventListener('click', (e)=>e.target.parentElement.remove())
     })
 }
+/***Ecouteurs dans la liste des appareils***/
+for(let i = 0 ; i < appareilsBox.childElementCount ; i++){
+    //console.log(appareilsBox.children[i])
+    appareilsBox.children[i].addEventListener('click', function addTagInTagsList(e){
+        console.log(e.target.innerHTML);
+        let newDiv = document.createElement("div");
+        newDiv.className = "d-inline-block";
+        tagsListBox.appendChild(newDiv);
+        let appareiltToDisplay = document.createElement("p");
+        appareiltToDisplay.appendChild(document.createTextNode(e.target.innerHTML));
+        newDiv.appendChild(appareiltToDisplay);
+        appareiltToDisplay.className = "resultDisplay text-white rounded pt-1 pb-2 pl-3 pr-3 mr-1";
+        let cross = createCancelCross();
+        appareiltToDisplay.appendChild(cross);
+        cross.addEventListener('click', (e)=>e.target.parentElement.remove())
+    })
+}
+/***Ecouteurs dans la liste des ustensiles***/
+for(let i = 0 ; i < ustensilesBox.childElementCount ; i++){
+    //console.log(ustensilesBox.children[i])
+    ustensilesBox.children[i].addEventListener('click', function addTagInTagsList(e){
+        console.log(e.target.innerHTML);
+        let newDiv = document.createElement("div");
+        newDiv.className = "d-inline-block";
+        tagsListBox.appendChild(newDiv);
+        let ustensileToDisplay = document.createElement("p");
+        ustensileToDisplay.appendChild(document.createTextNode(e.target.innerHTML));
+        newDiv.appendChild(ustensileToDisplay);
+        ustensileToDisplay.className = "resultDisplay text-white rounded pt-1 pb-2 pl-3 pr-3 mr-1";
+        let cross = createCancelCross();
+        ustensileToDisplay.appendChild(cross);
+        cross.addEventListener('click', (e)=>e.target.parentElement.remove())
+    })
+}
+
+
+
+
+
 /*****Cancel Cross *****/
 let crossArray = document.getElementsByClassName('cancelCross');
 
@@ -103,7 +184,21 @@ function displaySearchByInputResults(){
     let searchInputLength = searchInput.value.length;
 
     if(isInputLongEnough(searchInputLength)){
-        console.log(searchInput.value)
+        
+        let searchKeyWord = searchInput.value.toLowerCase();
+        //console.log(searchKeyWord);
+        let isInArray = recipesTitleArray.includes(searchKeyWord);
+        //console.log(isInArray);
+        
+        for(let i = 0 ; i < recipesTitleArray.length ; i++){
+
+            if((recipesTitleArray[i].toLowerCase()).includes(searchKeyWord)){
+                console.log(recipesTitleArray[i]);
+                console.log(recipes[i].name);
+                
+            }   
+
+        }
     }
     
 }
@@ -183,7 +278,22 @@ function displayAppareilsList(){
     chevrondownAppareils.classList.toggle('d-none');
     chevronupAppareils.classList.toggle('d-none');
 }
+/*Ustensiles*/
+let ustensilesList = document.getElementById('ustensilesList');
+let ustensilesSearchbarContainer = document.getElementById('ustensilesSearchbarContainer');
+let chevrondownUstensiles = document.getElementById('chevron-downUstensiles');
+let chevronupUstensiles = document.getElementById('chevron-upUstensiles');
 
+searchByUstensiles.addEventListener('click', displayUstensilesList);
+
+function displayUstensilesList(){
+    ustensilesList.classList.toggle('d-none');
+    ustensilesList.classList.toggle('width-xl');
+    searchByUstensiles.classList.toggle('width-xl');
+    ustensilesSearchbarContainer.classList.toggle('width-xl');
+    chevrondownUstensiles.classList.toggle('d-none');
+    chevronupUstensiles.classList.toggle('d-none');
+}
 
 
 
@@ -193,9 +303,13 @@ function displayAppareilsList(){
 
 let recipesBoxContainer = document.getElementById('recipesBoxContainer')
 
-function createRecipeDisplay(){
+//function createRecipeDisplay(){
     //console.log(recipes)
     for(let i = 0 ; i < 6 ; i++){
+        let recipeToDisplay = new DisplayRecipes
+        recipeToDisplay.createRecipeDisplay(recipes[i])
+    }
+/*        
         let newCard = document.createElement("div");
         newCard.className = "card mb-5";
         newCard.innerHTML = '<svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>';
@@ -240,7 +354,7 @@ function createRecipeDisplay(){
         
 
         /***Boucle pour les ingrédients ***/
-        
+/*        
             let newIngredient = document.createElement("p");
             newIngredient.className = "mb-0 font-weight-bold"
             newIngredient.appendChild(document.createTextNode(recipes[i].ingredients[j].ingredient))
@@ -272,19 +386,5 @@ function createRecipeDisplay(){
     }
 }
 createRecipeDisplay()
+*/
 
-function displayUnit(unit){
-    if(unit === "grammes"){
-        return 'g'
-    }else if(unit){
-        return unit
-    }else{
-        return ""
-    }
-}
-
-function isTextTooLong(){
-    if(text.length > 200){
-
-    }
-}
