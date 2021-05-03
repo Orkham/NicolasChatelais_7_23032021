@@ -1,12 +1,18 @@
 import {recipes} from './recipes.js'
-import {DisplayRecipes} from './DisplayRecipes.js'
+import {Recipe} from './Recipe.js'
+import {Ingredients} from './Ingredients.js'
+import {Appliance} from './Appliance.js'
+import {Ustensils} from './Ustensils.js'
 
-//console.log(recipes)
+/***DECLARATIONS***/
+const ingredientsBox = document.getElementById('ingredientsBox');
+const appareilsBox = document.getElementById('appareilsBox');
+const ustensilesBox = document.getElementById('ustensilesBox');
+export const tagsListBox = document.getElementById('tagsList');
 
 /***Tableau de titre des recettes***/
 let recipesTitleArray = [];
 for(let i = 0 ; i < recipes.length ; i++){
-    
     recipesTitleArray.push(recipes[i].name)
 }
 
@@ -16,90 +22,58 @@ for(let i = 0 ; i < recipes.length ; i++){
 let ingredientsListToDisplay = [];
 
 for(let i = 0 ; i < recipes.length ; i++){
-    
     for(let j = 0 ; j < recipes[i].ingredients.length ; j++){
-        
-        if(!ingredientsListToDisplay.includes(recipes[i].ingredients[j].ingredient)){
-            ingredientsListToDisplay.push(recipes[i].ingredients[j].ingredient)
-        }
-        
+        let ingredient = new Ingredients;
+        ingredient.ingredientToDisplay(recipes[i].ingredients[j].ingredient, ingredientsListToDisplay)
     }
-    
 }
 
 /*** Affichage des ingrédients ***/
-let ingredientsBox = document.getElementById('ingredientsBox')
-function displayIngredient(){
-    for(let i = 0 ; i < 30/*ingredientsListToDisplay.length*/ ; i ++){
-        let ingredientToDisplay = document.createElement("li");
-        ingredientToDisplay.appendChild(document.createTextNode(ingredientsListToDisplay[i]));
-        ingredientsBox.appendChild(ingredientToDisplay);
-        ingredientToDisplay.className = "col-4";
-    }
-    
+
+for(let i = 0 ; i < 30 ; i++){
+    Ingredients.displayIngredient(ingredientsListToDisplay[i])
 }
-displayIngredient();
 
 /*** Parcourir les recettes et extraire les appareils ***/
 
 let appareilsListToDisplay = [];
 
 for(let i = 0 ; i < recipes.length ; i++){
-    
-    if(!appareilsListToDisplay.includes(recipes[i].appliance)){
-        appareilsListToDisplay.push(recipes[i].appliance)
-    }
-    
+    let appareil = new Appliance;
+    appareil.applianceToDisplay(recipes[i].appliance, appareilsListToDisplay)
 }
 
 /*** Affichage des appareils ***/
-let appareilsBox = document.getElementById('appareilsBox')
-function displayAppareils(){
-    for(let i = 0 ; i < appareilsListToDisplay.length ; i ++){
-        let appareilToDisplay = document.createElement("li");
-        appareilToDisplay.appendChild(document.createTextNode(appareilsListToDisplay[i]));
-        appareilsBox.appendChild(appareilToDisplay);
-        appareilToDisplay.className = "col-4";
-    }
-    
+
+for(let appliance of appareilsListToDisplay){
+    Appliance.displayAppliance(appliance)
 }
-displayAppareils();
 
 /*** Parcourir les recettes et extraire les ustensiles***/
 
 let ustensilesListToDisplay = [];
 
 for(let i = 0 ; i < recipes.length ; i++){
-    
     for(let j = 0 ; j < recipes[i].ustensils.length ; j++){
-        
-        if(!ustensilesListToDisplay.includes(recipes[i].ustensils[j])){
-            ustensilesListToDisplay.push(recipes[i].ustensils[j])
-        }
-        
+        let ustensil = new Ustensils;
+        ustensil.ustensilToDisplay(recipes[i].ustensils[j], ustensilesListToDisplay)
     }
-    
 }
 
 /*** Affichage des ustensiles ***/
-let ustensilesBox = document.getElementById('ustensilesBox')
-function displayUstensile(){
-    for(let i = 0 ; i < ustensilesListToDisplay.length ; i ++){
-        let ustensileToDisplay = document.createElement("li");
-        ustensileToDisplay.appendChild(document.createTextNode(ustensilesListToDisplay[i]));
-        ustensilesBox.appendChild(ustensileToDisplay);
-        ustensileToDisplay.className = "col-4";
-    }
-    
+for(let ustensil of ustensilesListToDisplay){
+    Ustensils.displayUstensil(ustensil)
 }
-displayUstensile();
 
 
-const tagsListBox = document.getElementById('tagsList')
+
+
 
 /***Ecouteurs dans la liste des ingrédients***/
+Ingredients.ingredientsListener(ingredientsBox)
+/*
 for(let i = 0 ; i < ingredientsBox.childElementCount ; i++){
-    //console.log(ingredientsBox.children[i])
+    
     ingredientsBox.children[i].addEventListener('click', function addTagInTagsList(e){
         console.log(e.target.innerHTML);
         let newDiv = document.createElement("div");
@@ -114,6 +88,7 @@ for(let i = 0 ; i < ingredientsBox.childElementCount ; i++){
         cross.addEventListener('click', (e)=>e.target.parentElement.remove())
     })
 }
+*/
 /***Ecouteurs dans la liste des appareils***/
 for(let i = 0 ; i < appareilsBox.childElementCount ; i++){
     //console.log(appareilsBox.children[i])
@@ -154,18 +129,21 @@ for(let i = 0 ; i < ustensilesBox.childElementCount ; i++){
 
 
 /*****Cancel Cross *****/
+/*
 let crossArray = document.getElementsByClassName('cancelCross');
 
 for(let cross of crossArray){
     cross.addEventListener('click', (e)=>e.target.parentElement.remove())
 }
-
+*/
+/*
 function createCancelCross(){
     let cross = document.createElement("i");
     cross.className = "far fa-times-circle pl-2 cancelCross";
+    cross.addEventListener('click', (e)=>e.target.parentElement.remove())
     return cross;
 }
-
+*/
 /***Fonctionnalités d'affichage***/
 let searchButton = document.getElementById('searchIcon');
 let searchInput = document.getElementById('formGroupExampleInput');
@@ -187,18 +165,32 @@ function displaySearchByInputResults(){
         
         let searchKeyWord = searchInput.value.toLowerCase();
         //console.log(searchKeyWord);
-        let isInArray = recipesTitleArray.includes(searchKeyWord);
+        //let isInArray = recipesTitleArray.includes(searchKeyWord);
         //console.log(isInArray);
-        
+        let recipesToDisplay = [];
+
         for(let i = 0 ; i < recipesTitleArray.length ; i++){
 
             if((recipesTitleArray[i].toLowerCase()).includes(searchKeyWord)){
-                console.log(recipesTitleArray[i]);
-                console.log(recipes[i].name);
+                
+                recipesToDisplay.push((recipesTitleArray[i]))
                 
             }   
 
         }
+        console.log(recipesToDisplay);
+        
+        let recipesToDisplay2 = [];
+        recipesTitleArray.filter(function(recipe){
+            
+            if(recipe.toLowerCase().includes(searchKeyWord.toLowerCase())){
+                console.log(recipe)
+                recipesToDisplay2.push(recipe)
+            }
+        });
+             
+        console.log(recipesToDisplay2);
+          
     }
     
 }
@@ -299,92 +291,25 @@ function displayUstensilesList(){
 
 
 
-/***Affichage des recettes***/
+/***Affichage initial des recettes***/
 
 let recipesBoxContainer = document.getElementById('recipesBoxContainer')
 
-//function createRecipeDisplay(){
-    //console.log(recipes)
-    for(let i = 0 ; i < 6 ; i++){
-        let recipeToDisplay = new DisplayRecipes
-        recipeToDisplay.createRecipeDisplay(recipes[i])
-    }
-/*        
-        let newCard = document.createElement("div");
-        newCard.className = "card mb-5";
-        newCard.innerHTML = '<svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>';
-
-        let newCardBody = document.createElement("div");
-        newCardBody.className = "card-body description pb-5"
-        newCard.appendChild(newCardBody)
-
-        let newRecipeTitle = document.createElement("div");
-        newRecipeTitle.className = "recipesTitle d-flex justify-content-between pr-0 align-items-center mb-3"
-        newCardBody.appendChild(newRecipeTitle);
-
-        let newCardTitle = document.createElement("h2");
-        newCardTitle.className = "card-title  mb-0";
-        newCardTitle.appendChild(document.createTextNode(recipes[i].name))
-        newRecipeTitle.appendChild(newCardTitle);
-
-        let newTimingDiv = document.createElement("div");
-        newTimingDiv.className = "timing d-flex align-items-center  mb-0";
-        newRecipeTitle.appendChild(newTimingDiv);
-
-        let newClockIcon = document.createElement("i");
-        newClockIcon.className = "far fa-clock pr-1 d-flex align-items-center mb-0"
-        newTimingDiv.appendChild(newClockIcon)
-        let newTimingDuration = document.createElement("p");
-        newTimingDuration.className = "d-flex align-items-center mb-0 timing__duration";
-        newTimingDuration.appendChild(document.createTextNode(recipes[i].time + " min"))
-        newTimingDiv.appendChild(newTimingDuration);
-
-        let flexDiv = document.createElement("div");
-        flexDiv.className = "d-flex p-0";
-        newCardBody.appendChild(flexDiv)
-
-        let newUl = document.createElement("ul");
-        newUl.className = "list-group pr-3 w-50";
-        flexDiv.appendChild(newUl);
-
-        for(let j = 0 ; j < recipes[i].ingredients.length ; j++){
-            let newLi = document.createElement("li");
-            newLi.className = "list-group-item ingredient d-flex p-0";
-            newUl.appendChild(newLi);
-        
-
-        /***Boucle pour les ingrédients ***/
-/*        
-            let newIngredient = document.createElement("p");
-            newIngredient.className = "mb-0 font-weight-bold"
-            newIngredient.appendChild(document.createTextNode(recipes[i].ingredients[j].ingredient))
-            newLi.appendChild(newIngredient);
-
-            let newQuantity = document.createElement("p");
-            newQuantity.className = "mb-0 pl-1";
-            
-            if(recipes[i].ingredients[j].quantity){
-                newQuantity.appendChild(document.createTextNode(" : " + recipes[i].ingredients[j].quantity + " " + displayUnit(recipes[i].ingredients[j].unit)))
-            }
-            
-            newLi.appendChild(newQuantity);
-        }
-
-        let newInstructions = document.createElement("p");
-        newInstructions.className = "instructions w-50"
-        
-        let textDescription = recipes[i].description.substring(0,2000)
-        newInstructions.appendChild(document.createTextNode(textDescription))
-        
-        flexDiv.appendChild(newInstructions);
-        
-        //console.log(newInstructions.textContent.substring(0,100))
+for(let i = 0 ; i < 6 ; i++){
+    let recipeToDisplay = new Recipe(recipes[i])
+    recipeToDisplay.createRecipeDisplay()
+}
 
 
 
-        recipesBoxContainer.appendChild(newCard)
+
+
+function cleanDisplayIngredientsList(listToClean){
+    /*rajouter tableau vide de la liste*/
+    while(listToClean.children.length > 0){
+        listToClean.removeChild(listToClean.children[0])
     }
 }
-createRecipeDisplay()
-*/
+//cleanDisplayIngredientsList(ingredientsBox);
 
+//Ingredients.displayIngredient("coucou"); 
