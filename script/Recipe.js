@@ -47,7 +47,7 @@ export class Recipe {
             newUl.className = "list-group pr-3 w-50";
             flexDiv.appendChild(newUl);
 
-            for(let j = 0 ; j < recipe.ingredients.length ; j++){
+            for(let j = 0 ; j < this.ingredients.length ; j++){
                 let newLi = document.createElement("li");
                 newLi.className = "list-group-item ingredient d-flex p-0";
                 newUl.appendChild(newLi);
@@ -82,9 +82,16 @@ export class Recipe {
 
             recipesBoxContainer.appendChild(newCard)
         }
-        
+
         this.getIngredients = function(){
             return this.ingredients;
+        }
+    }
+    static getRecipeByName(name, list){
+        for(let recipe of list){
+            if(recipe.name.includes(name)){
+                return new Recipe(recipe)
+            }
         }
     }
 
