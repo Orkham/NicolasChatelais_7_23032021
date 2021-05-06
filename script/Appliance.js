@@ -30,7 +30,7 @@ export class Appliance {
                 
                 let cross = CancelCross.createCancelCross();
                 applianceToDisplay.appendChild(cross);
-                cross.addEventListener('click', (e)=>e.target.parentElement.remove())
+                cross.addEventListener('click', (e)=>e.target.parentElement.parentElement.remove())
                 
             })
         }

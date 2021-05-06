@@ -3,6 +3,7 @@ import { Recipe } from './Recipe.js'
 import { Ingredients } from './Ingredients.js';
 import { Appliance } from './Appliance.js';
 import { Ustensils } from './Ustensils.js';
+import { IngredientsSelectDisplay, AppliancesSelectDisplay, UstensilsSelectDisplay } from './SelectsDisplay.js'
 
 
 /***DECLARATIONS***/
@@ -64,7 +65,7 @@ function displaySearchByInputResults(){
         }
         console.log(recipesToDisplay);
         clearListDisplay(recipesBoxContainer)
-        
+
         for(let i = 0 ; i < recipesToDisplay.length ; i++){
             let recipe = new Recipe(recipesToDisplay[i])
             recipe.createRecipeDisplay();
@@ -155,9 +156,13 @@ function displaySearchByUstensilesResults(){
 
 searchInput.addEventListener('input', displaySearchByInputResults);
 searchByIngredients.addEventListener('input', displaySearchByIngredientsResults);
-searchByAppareil.addEventListener('input', displaySearchByAppareilResults);
-searchByUstensiles.addEventListener('input', displaySearchByUstensilesResults);
+searchByIngredients.addEventListener('click', IngredientsSelectDisplay.displayCatchphrase);
 
+searchByAppareil.addEventListener('input', displaySearchByAppareilResults);
+searchByAppareil.addEventListener('click', AppliancesSelectDisplay.displayCatchphrase)
+
+searchByUstensiles.addEventListener('input', displaySearchByUstensilesResults);
+searchByUstensiles.addEventListener('click', UstensilsSelectDisplay.displayCatchphrase)
 
 /***Affichage initial des recettes***/
 window.addEventListener('DOMContentLoaded', Recipe.recipesDisplay(recipes, 6))
@@ -170,4 +175,13 @@ function clearListDisplay(listToClean){
         (listToClean.childNodes[1]).remove()
     }
 
+}
+
+let test = document.getElementById('test');
+test.addEventListener('click', searchByTagslist)
+
+let tagsList = document.getElementById('tagsList');
+function searchByTagslist(){
+    let tagsListArray = []
+    console.log(tagsList)
 }

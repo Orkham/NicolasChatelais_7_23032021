@@ -9,3 +9,9 @@ export function displayUnit(unit){
         return ""
     }
 }
+
+export function firstLetterUppercase(text){
+    let lowerText = text.toLowerCase()
+    let cleanText = lowerText.charAt(0).toUpperCase() + lowerText.substring(1)
+    return cleanText
+}

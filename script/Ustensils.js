@@ -1,5 +1,6 @@
 import {tagsListBox} from './main.js'
 import {CancelCross} from './CancelCross.js'
+import {firstLetterUppercase} from './utils.js'
 
 export class Ustensils {
     constructor(){
@@ -11,7 +12,7 @@ export class Ustensils {
     }
     static displayUstensil(ustensil){
         let ustensilToDisplay = document.createElement("li");
-        ustensilToDisplay.appendChild(document.createTextNode(ustensil));
+        ustensilToDisplay.appendChild(document.createTextNode(firstLetterUppercase(ustensil)));
         ustensilesBox.appendChild(ustensilToDisplay);
         ustensilToDisplay.className = "col-4";
     }
@@ -24,13 +25,14 @@ export class Ustensils {
                 newDiv.className = "d-inline-block";
                 tagsListBox.appendChild(newDiv);
                 let ustensilToDisplay = document.createElement("p");
-                ustensilToDisplay.appendChild(document.createTextNode(e.target.innerHTML));
+                ustensilToDisplay.appendChild(document.createTextNode(firstLetterUppercase(e.target.innerHTML)));
+                
                 newDiv.appendChild(ustensilToDisplay);
                 ustensilToDisplay.className = "resultDisplay text-white rounded pt-1 pb-2 pl-3 pr-3 mr-1";
                 
                 let cross = CancelCross.createCancelCross();
                 ustensilToDisplay.appendChild(cross);
-                cross.addEventListener('click', (e)=>e.target.parentElement.remove())
+                cross.addEventListener('click', (e)=>e.target.parentElement.parentElement.remove())
                 
             })
         }

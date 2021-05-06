@@ -1,6 +1,7 @@
 import {recipes} from './recipes.js'
 import {Ustensils} from './Ustensils.js'
 import {UstensilsSelectDisplay} from './SelectsDisplay.js'
+import {firstLetterUppercase} from './utils.js'
 
 /*** Parcourir les recettes et extraire les ustensiles***/
 

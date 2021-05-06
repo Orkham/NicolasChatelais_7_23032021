@@ -1,6 +1,6 @@
-const searchByIngredients = document.getElementById('inputIngredients');
-const searchByAppareil = document.getElementById('inputAppareil');
-const searchByUstensiles = document.getElementById('inputUstensiles');
+let searchByIngredients = document.getElementById('inputIngredients');
+let searchByAppareil = document.getElementById('inputAppareil');
+let searchByUstensiles = document.getElementById('inputUstensiles');
 
 export class IngredientsSelectDisplay {
     
@@ -10,8 +10,19 @@ export class IngredientsSelectDisplay {
         searchByIngredients.classList.toggle('width-xl');
         document.getElementById('ingredientsSearchbarContainer').classList.toggle('width-xl');
         document.getElementById('chevron-downIngredients').classList.toggle('d-none');
-        document.getElementById('chevron-upIngredients').classList.toggle('d-none');    
+        document.getElementById('chevron-upIngredients').classList.toggle('d-none');
+        
     }
+
+    static displayCatchphrase() {
+        //console.log(searchByIngredients.placeholder)
+        if((searchByIngredients.classList.contains("width-xl"))){
+            searchByIngredients.placeholder = 'Ingrédients'
+        }else{
+            searchByIngredients.placeholder = 'Rechcercher un ingrédient'
+        }
+    }
+    
 }
 
 export class AppliancesSelectDisplay {
@@ -24,6 +35,14 @@ export class AppliancesSelectDisplay {
         document.getElementById('chevron-downAppareil').classList.toggle('d-none');
         document.getElementById('chevron-upAppareil').classList.toggle('d-none');    
     }
+
+    static displayCatchphrase() {
+        if((searchByAppareil.classList.contains("width-xl"))){
+            searchByAppareil.placeholder = 'Appareil'
+        }else{
+            searchByAppareil.placeholder = 'Rechcercher un appareil'
+        }
+    }
 }
 
 export class UstensilsSelectDisplay {
@@ -35,5 +54,13 @@ export class UstensilsSelectDisplay {
         document.getElementById('ustensilesSearchbarContainer').classList.toggle('width-xl');
         document.getElementById('chevron-downUstensiles').classList.toggle('d-none');
         document.getElementById('chevron-upUstensiles').classList.toggle('d-none');    
+    }
+
+    static displayCatchphrase(){
+        if((searchByUstensiles.classList.contains('width-xl'))){
+            searchByUstensiles.placeholder = 'Ustensiles'
+        }else{
+            searchByUstensiles.placeholder = 'Rechercher un ustensile'
+        }
     }
 }

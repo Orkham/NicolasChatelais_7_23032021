@@ -9984,6 +9984,11 @@ body{
   background-color: #3282F7;
   font-size: 18px;
 }
+#inputIngredients:focus::placeholder,
+#inputAppareil:focus::placeholder,
+#inputUstensiles:focus::placeholder{
+  opacity: 0.5;
+}
 #ingredientsList, #appareilsList, #ustensilesList{
   border-radius: 0 0 5px 5px;
   margin-top: -3px;

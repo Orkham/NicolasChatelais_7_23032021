@@ -32,8 +32,9 @@ export class Ingredients {
                 
                 let cross = CancelCross.createCancelCross();
                 ingredientToDisplay.appendChild(cross);
-                cross.addEventListener('click', (e)=>e.target.parentElement.remove())
-                
+                cross.addEventListener('click', (e)=>{
+                    e.target.parentElement.parentElement.remove()
+                })
             })
         }
     }
