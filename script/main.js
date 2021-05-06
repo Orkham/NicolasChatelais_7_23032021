@@ -6,14 +6,8 @@ import {Recipe} from './Recipe.js'
 const ingredientsBox = document.getElementById('ingredientsBox');
 const appareilsBox = document.getElementById('appareilsBox');
 const ustensilesBox = document.getElementById('ustensilesBox');
+let recipesBoxContainer = document.getElementById('recipesBoxContainer');
 export const tagsListBox = document.getElementById('tagsList');
-
-/***Tableau des titres des recettes***/
-let recipesTitleArray = [];
-for(let i = 0 ; i < recipes.length ; i++){
-    recipesTitleArray.push(recipes[i].name)
-}
-/*** Tableau des listes des ingrédients des recettes ***/
 
 
 /***Fonctionnalités d'affichage***/
@@ -32,56 +26,39 @@ function isInputLongEnough(input){
 
 function displaySearchByInputResults(){
     let searchInputLength = searchInput.value.length;
-
+    
     if(isInputLongEnough(searchInputLength)){
         
         let searchKeyWord = searchInput.value.toLowerCase();
-        let isInArray = recipesTitleArray.includes(searchKeyWord);
+        //let isInArray = recipesTitleArray.includes(searchKeyWord);
         let recipesToDisplay = [];
-        for(let i = 0 ; i < recipesTitleArray.length ; i++){
-            if((recipesTitleArray[i].toLowerCase()).includes(searchKeyWord)){
-                recipesToDisplay.push((recipesTitleArray[i]))
+        for(let i = 0 ; i < recipes.length ; i++){
+            if((recipes[i].name.toLowerCase()).includes(searchKeyWord)){
+                recipesToDisplay.push((recipes[i]))
             } 
         }
         for(let i = 0 ; i < recipes.length ; i++){
             for(let j = 0 ; j < recipes[i].ingredients.length ; j++){
                 if (recipes[i].ingredients[j].ingredient.includes(searchKeyWord)){
-                    recipesToDisplay.push(recipes[i].name)
+                    recipesToDisplay.push(recipes[i])
                 }
             }
         }
         for(let i = 0 ; i < recipes.length ; i++){
             if(recipes[i].description.includes(searchKeyWord)){
-                recipesToDisplay.push(recipes[i].name)
+                recipesToDisplay.push(recipes[i])
             }
         }
         console.log(recipesToDisplay);
-        let recipesArrayToDisplay = []
+        cleanDisplayIngredientsList(recipesBoxContainer)
         for(let i = 0 ; i < recipesToDisplay.length ; i++){
-            recipesArrayToDisplay.push(Recipe.getRecipeByName(recipesToDisplay[i], recipes));
-            
-        }
-        console.log(recipesArrayToDisplay)
-        for(let i = 0 ; i < recipesArrayToDisplay.length ; i++){
-            let recipe = new Recipe(recipesArrayToDisplay[i])
+            let recipe = new Recipe(recipesToDisplay[i])
             recipe.createRecipeDisplay();
         }
-        /*
-        let recipesToDisplay2 = [];
-        recipesTitleArray.filter(function(recipe){
-            
-            if(recipe.toLowerCase().includes(searchKeyWord.toLowerCase())){
-                console.log(recipe)
-                recipesToDisplay2.push(recipe)
-            }
-        });
-             
-        console.log(recipesToDisplay2);
-          */
+
     }
     
 }
-//console.log(Recipe.getRecipeByName('Coco', recipes))
 
 function displaySearchByIngredientsResults(){
     
@@ -129,8 +106,6 @@ searchByUstensiles.addEventListener('input', displaySearchByUstensilesResults);
 
 /***Affichage initial des recettes***/
 
-let recipesBoxContainer = document.getElementById('recipesBoxContainer')
-
 for(let i = 0 ; i < 6 ; i++){
     let recipeToDisplay = new Recipe(recipes[i])
     recipeToDisplay.createRecipeDisplay()
@@ -138,11 +113,14 @@ for(let i = 0 ; i < 6 ; i++){
 
 
 function cleanDisplayIngredientsList(listToClean){
-    /*rajouter tableau vide de la liste*/
-    while(listToClean.children.length > 0){
-        listToClean.removeChild(listToClean.children[0])
+    
+    console.log(listToClean)
+    
+    while(listToClean.childNodes.length !== 1){
+        (listToClean.childNodes[1]).remove()
     }
-}
-//cleanDisplayIngredientsList(ingredientsBox);
 
-//Ingredients.displayIngredient("coucou"); 
+}
+
+let testButton = document.getElementById('test');
+testButton.addEventListener('click', ()=>{cleanDisplayIngredientsList(ingredientsBox)})

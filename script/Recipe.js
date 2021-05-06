@@ -1,3 +1,4 @@
+import { recipes } from './recipes.js';
 import {displayUnit} from './utils.js'
 
 export class Recipe {
@@ -87,13 +88,5 @@ export class Recipe {
             return this.ingredients;
         }
     }
-    static getRecipeByName(name, list){
-        for(let recipe of list){
-            if(recipe.name.includes(name)){
-                return new Recipe(recipe)
-            }
-        }
-    }
-
     
 }
