@@ -1,5 +1,7 @@
 import {tagsListBox} from './main.js'
 import {CancelCross} from './CancelCross.js'
+import {tagsListArray} from './main.js'
+import {Recipe} from './Recipe.js'
 
 export class Ingredients {
     constructor(){
@@ -21,36 +23,31 @@ export class Ingredients {
         for(let i = 0 ; i < ingredientsBox.childElementCount ; i++){
     
             ingredientsBox.children[i].addEventListener('click', function addTagInTagsList(e){
-                console.log(e.target.innerHTML);
-                let newDiv = document.createElement("div");
-                newDiv.className = "d-inline-block";
-                tagsListBox.appendChild(newDiv);
-                let ingredientToDisplay = document.createElement("p");
-                ingredientToDisplay.appendChild(document.createTextNode(e.target.innerHTML));
-                newDiv.appendChild(ingredientToDisplay);
-                ingredientToDisplay.className = "resultDisplay text-white rounded pt-1 pb-2 pl-3 pr-3 mr-1";
                 
-                let cross = CancelCross.createCancelCross();
-                ingredientToDisplay.appendChild(cross);
-                cross.addEventListener('click', (e)=>{
-                    e.target.parentElement.parentElement.remove()
-                })
+                if(!(tagsListArray.includes(e.target.innerHTML))){
+                    let newDiv = document.createElement("div");
+                    newDiv.className = "d-inline-block";
+                    tagsListBox.appendChild(newDiv);
+                    let ingredientToDisplay = document.createElement("p");
+                    ingredientToDisplay.appendChild(document.createTextNode(e.target.innerHTML));
+                    newDiv.appendChild(ingredientToDisplay);
+                    ingredientToDisplay.className = "resultDisplay text-white rounded pt-1 pb-2 pl-3 pr-3 mr-1";
+                    
+                    tagsListArray.push(e.target.innerHTML)
+                    
+                    let cross = CancelCross.createCancelCross();
+                    ingredientToDisplay.appendChild(cross);
+                    cross.addEventListener('click', (e)=>{
+                        e.target.parentElement.parentElement.remove()
+                        let indexToDelete = tagsListArray.indexOf(e.target.previousSibling.data)
+                        tagsListArray.splice(indexToDelete, 1)
+                        console.log(tagsListArray)
+                    })
+
+            }
             })
         }
     }
 }
 
 
-
-
-
-
-
-/*
-for(let i = 0 ; i < recipes.length ; i++){
-    let recipe = new Recipe(recipes[i]);
-    let ingredient = new Ingredients;
-    console.log(recipe.getIngredients())
-    ingredient.ingredientToDisplay(recipe.getIngredients()[0].ingredient,ingredientsListToDisplay)
-}
-*/

@@ -14,10 +14,11 @@ for(let i = 0 ; i < recipes.length ; i++){
 }
 
 /*** Affichage initial des ingrédients ***/
-
-for(let i = 0 ; i < 30 ; i++){
+for(let i = 0 ; i < ingredientsListToDisplay.length ; i++){
     Ingredients.displayIngredient(ingredientsListToDisplay[i])
 }
+
+
 
 /*** Ecouteurs dans la liste des ingrédients ***/
 Ingredients.ingredientsListener(ingredientsBox);
