@@ -12,14 +12,16 @@ for(let i = 0 ; i < recipes.length ; i++){
 }
 
 /*** Affichage initial des appareils ***/
-
-for(let appliance of appareilsListToDisplay){
-    Appliance.displayAppliance(appliance)
+export function initialAppliancesDisplay(){
+    for(let appliance of appareilsListToDisplay){
+        Appliance.displayAppliance(appliance)
+    }
+    Appliance.appliancesListener(appareilsBox);
 }
 
 
 /*** Ecouteurs dans la liste des appareils ***/
-Appliance.appliancesListener(appareilsBox);
+
 
 /*****Selects*****/
 /*Appareil*/

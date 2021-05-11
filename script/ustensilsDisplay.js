@@ -15,12 +15,14 @@ for(let i = 0 ; i < recipes.length ; i++){
 }
 
 /*** Affichage initial des ustensiles ***/
-for(let ustensil of ustensilesListToDisplay){
-    Ustensils.displayUstensil(ustensil)
+export function initialUstensilsDisplay() {
+    for(let ustensil of ustensilesListToDisplay){
+        Ustensils.displayUstensil(ustensil)
+    }
+    Ustensils.ustensilsListener(ustensilesBox);
 }
-
 /*** Ecouteurs dans la liste des ustensiles ***/
-Ustensils.ustensilsListener(ustensilesBox);
+
 
 /*****Selects*****/
 

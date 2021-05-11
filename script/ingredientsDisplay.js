@@ -14,14 +14,12 @@ for(let i = 0 ; i < recipes.length ; i++){
 }
 
 /*** Affichage initial des ingrédients ***/
-for(let i = 0 ; i < ingredientsListToDisplay.length ; i++){
-    Ingredients.displayIngredient(ingredientsListToDisplay[i])
+export function initialIngredientsDisplay(){
+    for(let i = 0 ; i < ingredientsListToDisplay.length ; i++){
+        Ingredients.displayIngredient(ingredientsListToDisplay[i])
+    }
+    Ingredients.ingredientsListener(ingredientsBox);
 }
-
-
-
-/*** Ecouteurs dans la liste des ingrédients ***/
-Ingredients.ingredientsListener(ingredientsBox);
 
 /*****Selects*****/
 /*Ingredients*/

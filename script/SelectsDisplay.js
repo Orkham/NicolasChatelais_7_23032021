@@ -15,11 +15,11 @@ export class IngredientsSelectDisplay {
     }
 
     static displayCatchphrase() {
-        //console.log(searchByIngredients.placeholder)
+        
         if((searchByIngredients.classList.contains("width-xl"))){
-            searchByIngredients.placeholder = 'Ingrédients'
-        }else{
             searchByIngredients.placeholder = 'Rechcercher un ingrédient'
+        }else{
+            searchByIngredients.placeholder = 'Ingrédients'
         }
     }
     
@@ -38,9 +38,9 @@ export class AppliancesSelectDisplay {
 
     static displayCatchphrase() {
         if((searchByAppareil.classList.contains("width-xl"))){
-            searchByAppareil.placeholder = 'Appareil'
-        }else{
             searchByAppareil.placeholder = 'Rechcercher un appareil'
+        }else{
+            searchByAppareil.placeholder = 'Appareil'
         }
     }
 }
@@ -58,9 +58,9 @@ export class UstensilsSelectDisplay {
 
     static displayCatchphrase(){
         if((searchByUstensiles.classList.contains('width-xl'))){
-            searchByUstensiles.placeholder = 'Ustensiles'
-        }else{
             searchByUstensiles.placeholder = 'Rechercher un ustensile'
+        }else{
+            searchByUstensiles.placeholder = 'Ustensiles'
         }
     }
 }

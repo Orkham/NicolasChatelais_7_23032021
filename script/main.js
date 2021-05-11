@@ -4,7 +4,11 @@ import { Ingredients } from './Ingredients.js';
 import { Appliance } from './Appliance.js';
 import { Ustensils } from './Ustensils.js';
 import { IngredientsSelectDisplay, AppliancesSelectDisplay, UstensilsSelectDisplay } from './SelectsDisplay.js'
-
+import { clearListDisplay } from './utils.js'
+import  { listsUpdate } from './listsUpdate.js'
+import { initialIngredientsDisplay } from './ingredientsDisplay.js'
+import { initialAppliancesDisplay } from './appliancesDisplay.js'
+import { initialUstensilsDisplay } from './ustensilsDisplay.js'
 
 /***DECLARATIONS***/
 const ingredientsBox = document.getElementById('ingredientsBox');
@@ -32,23 +36,25 @@ function isInputLongEnough(input){
 let ingredientsToDisplay = [];
 let appliancesToDisplay = [];
 let ustensilsToDisplay = [];
+export let recipesToDisplay = [];
 
 function displaySearchByInputResults(){
     let searchInputLength = searchInput.value.length;
+
     if (searchInputLength == 0){
-        //console.log('reset des recettes')
+        clearListDisplay(recipesBoxContainer)
         Recipe.recipesDisplay(recipes, 6)
-        initialIngredientDisplay()
     }
+
     if(isInputLongEnough(searchInputLength)){
         
         let searchKeyWord = searchInput.value.toLowerCase();
-
-        let recipesToDisplay = [];
+        
         ingredientsToDisplay = [];
         appliancesToDisplay = [];
         ustensilsToDisplay = [];
-
+        recipesToDisplay = [];
+        
         for(let i = 0 ; i < recipes.length ; i++){
             if((recipes[i].name.toLowerCase()).includes(searchKeyWord)){
                 if(!(recipesToDisplay.includes(recipes[i]))){
@@ -72,7 +78,7 @@ function displaySearchByInputResults(){
                     }
             }
         }
-        //console.log(recipesToDisplay);
+        
         clearListDisplay(recipesBoxContainer)
 
         for(let i = 0 ; i < recipesToDisplay.length ; i++){
@@ -98,32 +104,10 @@ function displaySearchByInputResults(){
             }
         }
 
-        
-        
-
-        /* Mise à jour de la liste des ingrédients*/
-        clearListDisplay(ingredientsBox);
-        for(let i = 0 ; i < ingredientsToDisplay.length ; i++){
-            Ingredients.displayIngredient(ingredientsToDisplay[i])
-        }
-        Ingredients.ingredientsListener(ingredientsBox)
-
-        /* Mise à jour de la liste des appareils*/
-        clearListDisplay(appareilsBox);
-        for(let i = 0 ; i < appliancesToDisplay.length ; i++){
-            Appliance.displayAppliance(appliancesToDisplay[i])
-        }
-        Appliance.appliancesListener(appareilsBox);
-
-
-        /* Mise à jour de la liste des ustensiles*/
-        clearListDisplay(ustensilesBox);
-        for(let i = 0 ; i < ustensilsToDisplay.length ; i++){
-            Ustensils.displayUstensil(ustensilsToDisplay[i])
-        }
-        Ustensils.ustensilsListener(ustensilesBox);
+        listsUpdate(ingredientsToDisplay,appliancesToDisplay,ustensilsToDisplay)
     }
 }
+
 
 function displaySearchByIngredientsResults(){
     
@@ -189,28 +173,21 @@ searchByAppareil.addEventListener('click', AppliancesSelectDisplay.displayCatchp
 searchByUstensiles.addEventListener('input', displaySearchByUstensilesResults);
 searchByUstensiles.addEventListener('click', UstensilsSelectDisplay.displayCatchphrase)
 
-//tagsListBox.addEventListener('load', console.log(tagsListBox))
-
 /***Affichage initial des recettes***/
-window.addEventListener('DOMContentLoaded', Recipe.recipesDisplay(recipes, 6))
-
-
-
-function clearListDisplay(listToClean){
-    
-    while(listToClean.childNodes.length !== 1){
-        (listToClean.childNodes[1]).remove()
-    }
-
-}
+window.addEventListener('DOMContentLoaded', ()=>{
+    Recipe.recipesDisplay(recipes, 6);
+    initialIngredientsDisplay();
+    initialAppliancesDisplay();
+    initialUstensilsDisplay();
+})
 
 /*
 let test = document.getElementById('test');
-test.addEventListener('click', searchByTagslist)
+test.addEventListener('click', displayTagsList)
 
-let tagsList = document.getElementById('tagsList');
-function searchByTagslist(){
-    let tagsListArray = []
-    console.log(tagsList)
+
+function displayTagsList(){
+    console.log(tagsListArray)
+    console.log(recipesToDisplay)
 }
 */
