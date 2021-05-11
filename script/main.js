@@ -4,11 +4,13 @@ import { Ingredients } from './Ingredients.js';
 import { Appliance } from './Appliance.js';
 import { Ustensils } from './Ustensils.js';
 import { IngredientsSelectDisplay, AppliancesSelectDisplay, UstensilsSelectDisplay } from './SelectsDisplay.js'
-import { clearListDisplay } from './utils.js'
-import  { listsUpdate } from './listsUpdate.js'
+import { clearListDisplay, cleanWord } from './utils.js'
+import { listsUpdate } from './listsUpdate.js'
 import { initialIngredientsDisplay } from './ingredientsDisplay.js'
 import { initialAppliancesDisplay } from './appliancesDisplay.js'
 import { initialUstensilsDisplay } from './ustensilsDisplay.js'
+import { collectResults } from './resultsCollectFunction.js'
+import { recipesDisplay } from './recipesDisplayFunction.js'
 
 /***DECLARATIONS***/
 const ingredientsBox = document.getElementById('ingredientsBox');
@@ -36,6 +38,7 @@ function isInputLongEnough(input){
 let ingredientsToDisplay = [];
 let appliancesToDisplay = [];
 let ustensilsToDisplay = [];
+
 export let recipesToDisplay = [];
 
 function displaySearchByInputResults(){
@@ -44,66 +47,24 @@ function displaySearchByInputResults(){
     if (searchInputLength == 0){
         clearListDisplay(recipesBoxContainer)
         Recipe.recipesDisplay(recipes, 6)
+        initialize()
     }
 
     if(isInputLongEnough(searchInputLength)){
         
-        let searchKeyWord = searchInput.value.toLowerCase();
+        let searchKeyWord = cleanWord(searchInput.value.toLowerCase().trim());
         
         ingredientsToDisplay = [];
         appliancesToDisplay = [];
         ustensilsToDisplay = [];
+        
+
         recipesToDisplay = [];
+        collectResults(recipesToDisplay, recipes, searchKeyWord)
         
-        for(let i = 0 ; i < recipes.length ; i++){
-            if((recipes[i].name.toLowerCase()).includes(searchKeyWord)){
-                if(!(recipesToDisplay.includes(recipes[i]))){
-                    recipesToDisplay.push(recipes[i])
-                }
-            } 
-        }
-        for(let i = 0 ; i < recipes.length ; i++){
-            for(let j = 0 ; j < recipes[i].ingredients.length ; j++){
-                if ((recipes[i].ingredients[j].ingredient.toLowerCase()).includes(searchKeyWord)){
-                    if(!(recipesToDisplay.includes(recipes[i]))){
-                        recipesToDisplay.push(recipes[i])
-                    }
-                }
-            }
-        }
-        for(let i = 0 ; i < recipes.length ; i++){
-            if((recipes[i].description.toLowerCase()).includes(searchKeyWord)){
-                if(!(recipesToDisplay.includes(recipes[i]))){
-                        recipesToDisplay.push(recipes[i])
-                    }
-            }
-        }
-        
-        clearListDisplay(recipesBoxContainer)
-
-        for(let i = 0 ; i < recipesToDisplay.length ; i++){
-            let recipe = new Recipe(recipesToDisplay[i])
-            recipe.createRecipeDisplay();
-            
-            for(let ingredient of recipe.ingredients){
-                if(!(ingredientsToDisplay.includes(ingredient.ingredient))){
-                    ingredientsToDisplay.push(ingredient.ingredient)
-                }
-            };
-
-            for(let ustensil of recipe.ustensils){
-                if(!(ustensilsToDisplay.includes(ustensil))){
-                    ustensilsToDisplay.push(ustensil)
-                }
-            }
-        }
-        
-        for(let recipe of recipesToDisplay){
-            if(!(appliancesToDisplay.includes(recipe.appliance))){
-                appliancesToDisplay.push(recipe.appliance)
-            }
-        }
-
+        recipesDisplay(recipesBoxContainer, recipesToDisplay,ingredientsToDisplay,appliancesToDisplay,ustensilsToDisplay)
+    
+        console.log(ingredientsToDisplay)
         listsUpdate(ingredientsToDisplay,appliancesToDisplay,ustensilsToDisplay)
     }
 }
@@ -174,12 +135,13 @@ searchByUstensiles.addEventListener('input', displaySearchByUstensilesResults);
 searchByUstensiles.addEventListener('click', UstensilsSelectDisplay.displayCatchphrase)
 
 /***Affichage initial des recettes***/
-window.addEventListener('DOMContentLoaded', ()=>{
+function initialize(){
     Recipe.recipesDisplay(recipes, 6);
     initialIngredientsDisplay();
     initialAppliancesDisplay();
     initialUstensilsDisplay();
-})
+}
+window.addEventListener('DOMContentLoaded', initialize)
 
 /*
 let test = document.getElementById('test');

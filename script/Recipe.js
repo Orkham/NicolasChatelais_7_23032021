@@ -88,6 +88,7 @@ export class Recipe {
             return this.ingredients;
         }
     }
+    
     static recipesDisplay(recipesArray, numberToDisplay){
         for(let i = 0 ; i < numberToDisplay ; i++){
             let recipeToDisplay = new Recipe(recipesArray[i])

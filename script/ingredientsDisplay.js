@@ -1,6 +1,7 @@
 import {Ingredients} from './Ingredients.js'
 import {recipes} from './recipes.js'
 import {IngredientsSelectDisplay} from './SelectsDisplay.js'
+import { clearListDisplay } from './utils.js'
 
 /*** Parcourir les recettes et extraire les ingrédients ***/
 
@@ -15,6 +16,8 @@ for(let i = 0 ; i < recipes.length ; i++){
 
 /*** Affichage initial des ingrédients ***/
 export function initialIngredientsDisplay(){
+    clearListDisplay(document.getElementById('ingredientsBox'))
+
     for(let i = 0 ; i < ingredientsListToDisplay.length ; i++){
         Ingredients.displayIngredient(ingredientsListToDisplay[i])
     }

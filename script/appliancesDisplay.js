@@ -1,6 +1,7 @@
 import {Appliance} from './Appliance.js';
 import {recipes} from './recipes.js';
 import {AppliancesSelectDisplay} from './SelectsDisplay.js';
+import { clearListDisplay } from './utils.js'
 
 /*** Parcourir les recettes et extraire les appareils ***/
 
@@ -13,6 +14,7 @@ for(let i = 0 ; i < recipes.length ; i++){
 
 /*** Affichage initial des appareils ***/
 export function initialAppliancesDisplay(){
+    clearListDisplay(document.getElementById('appareilsBox'))
     for(let appliance of appareilsListToDisplay){
         Appliance.displayAppliance(appliance)
     }

@@ -2,6 +2,7 @@ import {recipes} from './recipes.js'
 import {Ustensils} from './Ustensils.js'
 import {UstensilsSelectDisplay} from './SelectsDisplay.js'
 import {firstLetterUppercase} from './utils.js'
+import { clearListDisplay } from './utils.js'
 
 /*** Parcourir les recettes et extraire les ustensiles***/
 
@@ -16,6 +17,7 @@ for(let i = 0 ; i < recipes.length ; i++){
 
 /*** Affichage initial des ustensiles ***/
 export function initialUstensilsDisplay() {
+    clearListDisplay(document.getElementById('ustensilesBox'))
     for(let ustensil of ustensilesListToDisplay){
         Ustensils.displayUstensil(ustensil)
     }
