@@ -16,7 +16,7 @@ function displayRecipesWithNameResults(recipesToDisplay, recipesArray, search){
     }
 }
 
-function displayRecipesWithIngredientResults(recipesToDisplay, recipesArray, search){
+export function displayRecipesWithIngredientResults(recipesToDisplay, recipesArray, search){
     for(let i = 0 ; i < recipesArray.length ; i++){
         for(let j = 0 ; j < recipesArray[i].ingredients.length ; j++){
             if ((cleanWord(recipesArray[i].ingredients[j].ingredient.toLowerCase().trim())).includes(search)){

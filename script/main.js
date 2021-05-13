@@ -6,7 +6,7 @@ import { Ustensils } from './Ustensils.js';
 import { IngredientsSelectDisplay, AppliancesSelectDisplay, UstensilsSelectDisplay } from './SelectsDisplay.js'
 import { clearListDisplay, cleanWord } from './utils.js'
 import { listsUpdate } from './listsUpdate.js'
-import { initialIngredientsDisplay } from './ingredientsDisplay.js'
+import { ingredientsDisplay } from './ingredientsDisplay.js'
 import { initialAppliancesDisplay } from './appliancesDisplay.js'
 import { initialUstensilsDisplay } from './ustensilsDisplay.js'
 import { collectResults } from './resultsCollectFunction.js'
@@ -16,7 +16,7 @@ import { recipesDisplay } from './recipesDisplayFunction.js'
 const ingredientsBox = document.getElementById('ingredientsBox');
 const appareilsBox = document.getElementById('appareilsBox');
 const ustensilesBox = document.getElementById('ustensilesBox');
-let recipesBoxContainer = document.getElementById('recipesBoxContainer');
+export const recipesBoxContainer = document.getElementById('recipesBoxContainer');
 export const tagsListBox = document.getElementById('tagsList');
 export let tagsListArray = []
 
@@ -46,25 +46,22 @@ function displaySearchByInputResults(){
 
     if (searchInputLength == 0){
         clearListDisplay(recipesBoxContainer)
-        Recipe.recipesDisplay(recipes, 6)
         initialize()
-    }
-
-    if(isInputLongEnough(searchInputLength)){
+    }else if(isInputLongEnough(searchInputLength)){
         
         let searchKeyWord = cleanWord(searchInput.value.toLowerCase().trim());
         
-        ingredientsToDisplay = [];
+        //ingredientsToDisplay = [];
         appliancesToDisplay = [];
         ustensilsToDisplay = [];
         
-
         recipesToDisplay = [];
         collectResults(recipesToDisplay, recipes, searchKeyWord)
-        
+        Recipe.displayRecipes(recipesToDisplay, recipesToDisplay.length)
+        ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipesToDisplay)
+        /*
         recipesDisplay(recipesBoxContainer, recipesToDisplay,ingredientsToDisplay,appliancesToDisplay,ustensilsToDisplay)
-    
-        console.log(ingredientsToDisplay)
+    */
         listsUpdate(ingredientsToDisplay,appliancesToDisplay,ustensilsToDisplay)
     }
 }
@@ -77,24 +74,22 @@ function displaySearchByIngredientsResults(){
     let searchByIngredientsValue = searchByIngredients.value;
 
     if(searchByIngredientsLength > 0){
-        console.log(ingredientsToDisplay)
-        let newList = [];
+        
+        let filteredList = [];
+
         for(let i = 0 ; i < ingredientsToDisplay.length ; i++){
-            if((ingredientsToDisplay[i]).toLowerCase().includes(searchByIngredientsValue.toLowerCase())){
+            if((cleanWord(ingredientsToDisplay[i]).toLowerCase().trim()).includes(cleanWord(searchByIngredientsValue.toLowerCase().trim()))){
                 clearListDisplay(ingredientsBox);
-                newList.push(ingredientsToDisplay[i])
+                filteredList.push(ingredientsToDisplay[i])
             }
             
         }
-        for(let j = 0 ; j < newList.length ; j++){
-            Ingredients.displayIngredient(newList[j])
+        for(let j = 0 ; j < filteredList.length ; j++){
+            Ingredients.displayIngredient(filteredList[j])
         }
         Ingredients.ingredientsListener(ingredientsBox)
     }else if(searchByIngredientsLength === 0){
-        for(let i = 0 ; i < ingredientsToDisplay.length ; i++){
-            Ingredients.displayIngredient(ingredientsToDisplay[i])
-        }
-        Ingredients.ingredientsListener(ingredientsBox)
+        //initialIngredientsDisplay();
     }
     
 }
@@ -136,8 +131,8 @@ searchByUstensiles.addEventListener('click', UstensilsSelectDisplay.displayCatch
 
 /***Affichage initial des recettes***/
 function initialize(){
-    Recipe.recipesDisplay(recipes, 6);
-    initialIngredientsDisplay();
+    Recipe.displayRecipes(recipes, 6);
+    ingredientsDisplay(recipes);
     initialAppliancesDisplay();
     initialUstensilsDisplay();
 }

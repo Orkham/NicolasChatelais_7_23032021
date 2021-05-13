@@ -1,5 +1,6 @@
 import { recipes } from './recipes.js';
 import {displayUnit} from './utils.js'
+import { clearListDisplay } from './utils.js'
 
 export class Recipe {
     constructor(recipe){
@@ -89,10 +90,13 @@ export class Recipe {
         }
     }
     
-    static recipesDisplay(recipesArray, numberToDisplay){
+    static displayRecipes(recipesArray, numberToDisplay){
+        clearListDisplay(recipesBoxContainer)
         for(let i = 0 ; i < numberToDisplay ; i++){
             let recipeToDisplay = new Recipe(recipesArray[i])
             recipeToDisplay.createRecipeDisplay()
         }
     }
+
+    
 }

@@ -3,20 +3,12 @@ import {recipes} from './recipes.js'
 import {IngredientsSelectDisplay} from './SelectsDisplay.js'
 import { clearListDisplay } from './utils.js'
 
-/*** Parcourir les recettes et extraire les ingrédients ***/
-
-let ingredientsListToDisplay = [];
-
-for(let i = 0 ; i < recipes.length ; i++){
-    for(let j = 0 ; j < recipes[i].ingredients.length ; j++){
-        let ingredient = new Ingredients;
-        ingredient.ingredientToDisplay(recipes[i].ingredients[j].ingredient, ingredientsListToDisplay)
-    }
-}
 
 /*** Affichage initial des ingrédients ***/
-export function initialIngredientsDisplay(){
+export function ingredientsDisplay(recipesList){
     clearListDisplay(document.getElementById('ingredientsBox'))
+
+    let ingredientsListToDisplay = Ingredients.getIngredientsFromRecipes(recipesList)
 
     for(let i = 0 ; i < ingredientsListToDisplay.length ; i++){
         Ingredients.displayIngredient(ingredientsListToDisplay[i])
