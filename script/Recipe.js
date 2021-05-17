@@ -1,5 +1,5 @@
 import { recipes } from './recipes.js';
-import {displayUnit} from './utils.js'
+import { displayUnit } from './utils.js'
 import { clearListDisplay } from './utils.js'
 
 export class Recipe {
@@ -14,6 +14,7 @@ export class Recipe {
         this.createRecipeDisplay = function(){
             let newCard = document.createElement("div");
             newCard.className = "card mb-5";
+            newCard.dataset.name = this.name;
             newCard.innerHTML = '<svg class="bd-placeholder-img card-img-top" width="100%" height="178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#C7BEBE"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>';
 
             let newCardBody = document.createElement("div");
@@ -95,6 +96,14 @@ export class Recipe {
         for(let i = 0 ; i < numberToDisplay ; i++){
             let recipeToDisplay = new Recipe(recipesArray[i])
             recipeToDisplay.createRecipeDisplay()
+        }
+    }
+
+    static getRecipesByDataName(name){
+        for(let recipe of recipes){
+            if(name == recipe.name){
+                return recipe
+            }
         }
     }
 

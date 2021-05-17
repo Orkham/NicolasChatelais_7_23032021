@@ -6,7 +6,8 @@ export function collectResults(recipesToDisplay, recipesArray, search){
     displayRecipesWithDescriptionResults(recipesToDisplay, recipesArray, search)
 }
 
-function displayRecipesWithNameResults(recipesToDisplay, recipesArray, search){
+
+export function displayRecipesWithNameResults(recipesToDisplay, recipesArray, search){
     for(let i = 0 ; i < recipesArray.length ; i++){
         if(cleanWord(recipesArray[i].name.toLowerCase().trim()).includes(search)){
             if(!(recipesToDisplay.includes(recipesArray[i]))){

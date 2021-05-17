@@ -1,10 +1,11 @@
-import { recipesToDisplay, tagsListBox, tagsListArray, recipesBoxContainer } from './main.js'
+import { recipesToDisplay, tagsListBox, tagsListArray, recipesBoxContainer,displaySearchByInputResults } from './main.js'
 import {CancelCross} from './CancelCross.js'
 import { recipesDisplay } from './recipesDisplayFunction.js'
-import { displayRecipesWithIngredientResults } from './resultsCollectFunction.js'
+import { displayRecipesWithNameResults } from './resultsCollectFunction.js'
 import { recipes } from './recipes.js';
 import { Recipe } from './Recipe.js';
 import { ingredientsDisplay } from './ingredientsDisplay.js'
+
 
 export class Ingredients {
     constructor(){
@@ -24,6 +25,7 @@ export class Ingredients {
     }
 
     static ingredientsListener(ingredientsBox){
+        
         for(let i = 0 ; i < ingredientsBox.childElementCount ; i++){
     
             ingredientsBox.children[i].addEventListener('click', function addTagInTagsList(e){
@@ -40,7 +42,8 @@ export class Ingredients {
                     tagsListArray.push(e.target.innerHTML)
                     //console.log(tagsListArray)
                     //console.log(recipesToDisplay)
-                    Ingredients.getRecipesFromIngredientsTag()
+                    
+                    Ingredients.getRecipesFromIngredientsTag(tagsListArray)
                     
                     let cross = CancelCross.createCancelCross();
                     ingredientToDisplay.appendChild(cross);
@@ -48,8 +51,9 @@ export class Ingredients {
                         e.target.parentElement.parentElement.remove()
                         let indexToDelete = tagsListArray.indexOf(e.target.previousSibling.data)
                         tagsListArray.splice(indexToDelete, 1)
-                        console.log(tagsListArray)
-                        
+                        //console.log(tagsListArray)
+                        displaySearchByInputResults()
+                        Ingredients.getRecipesFromIngredientsTag(tagsListArray)
                     })
 
                 }
@@ -68,33 +72,66 @@ export class Ingredients {
         return ingredientsListToDisplay;
     }
 
-    static getRecipesFromIngredientsTag(){
-        console.log(recipesToDisplay)
-        let ingredientsListOfDisplayingRecipes = Ingredients.getIngredientsFromRecipes(recipesToDisplay)
-        console.log(ingredientsListOfDisplayingRecipes)
-        //console.log(tagsListArray)
-        let newRecipesToDisplayList = []
-        
-        for(let i = 0 ; i < recipesToDisplay.length ; i++){
+    static getRecipesFromIngredientsTag(tagsListArray){
+        if(tagsListArray.length > 0){
+            let newRecipesToDisplayList = []
+            
+        /*Récupérer les recettes sur lesquelles triées*/
 
-            for(let j = 0 ; j < recipesToDisplay[i].ingredients.length ; j++){
-                
-                for(let tag of tagsListArray){
-                    
-                    if(recipesToDisplay[i].ingredients[j].ingredient == tag){
-                        
-                        if(!newRecipesToDisplayList.includes(recipesToDisplay[i])){
-                            newRecipesToDisplayList.push(recipesToDisplay[i])
-                        }
+            /*Récupérer les noms dans les data du html*/
+
+            let displayedRecipesNames = Ingredients.getRecipesNamesFromHtmlDisplay()
+            
+            /*Transformer les noms en objets recette*/
+            
+            let displayedRecipes = Ingredients.transformNamesToRecipes(displayedRecipesNames)
+            
+            //console.log(displayedRecipes)
+            
+            /*Boucler sur les ingrédients des recettes*/
+            for(let i = 0 ; i < displayedRecipes.length ; i++){
+                for(let j = 0 ; j < displayedRecipes[i].ingredients.length ; j++){
+                    /*Filtrer par dernier tag ajouté à la liste*/
+                    if(tagsListArray[tagsListArray.length-1] == displayedRecipes[i].ingredients[j].ingredient){
+                        Ingredients.pushRecipeInArray(newRecipesToDisplayList,displayedRecipes[i])   
                     }
+
                 }
             }
-        }
-        console.log(newRecipesToDisplayList)
-        
-        Recipe.displayRecipes(newRecipesToDisplayList, newRecipesToDisplayList.length)
-        ingredientsDisplay(newRecipesToDisplayList)
 
+            Recipe.displayRecipes(newRecipesToDisplayList, newRecipesToDisplayList.length)
+            ingredientsDisplay(newRecipesToDisplayList)
+
+            console.log('recoucou')
+        }
+    }
+
+    static pushRecipeInArray(newRecipesToDisplayList, recipe){
+        if(!newRecipesToDisplayList.includes(recipe)){
+            newRecipesToDisplayList.push(recipe)
+        }
+    }
+
+    static filterRecipesListByTags(recipesArray){
+        let newList = []
+
+        return newList
+    }
+
+    static getRecipesNamesFromHtmlDisplay(){
+        let displayedRecipesNames = []
+        for(let i = 0 ; i < recipesBoxContainer.childElementCount ; i++){
+            displayedRecipesNames.push((recipesBoxContainer.children[i].dataset.name))
+        }
+        return displayedRecipesNames
+    }
+
+    static transformNamesToRecipes(displayedRecipesNames){
+        let recipesArray = []
+        for(let displayedRecipeName of displayedRecipesNames){
+            recipesArray.push(Recipe.getRecipesByDataName(displayedRecipeName))
+        }
+        return recipesArray
     }
 }
 

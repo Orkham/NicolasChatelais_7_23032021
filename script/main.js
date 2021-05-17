@@ -35,13 +35,13 @@ function isInputLongEnough(input){
     }
 }
 
-let ingredientsToDisplay = [];
+let ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipes);
 let appliancesToDisplay = [];
 let ustensilsToDisplay = [];
 
 export let recipesToDisplay = [];
 
-function displaySearchByInputResults(){
+export function displaySearchByInputResults(){
     let searchInputLength = searchInput.value.length;
 
     if (searchInputLength == 0){
@@ -59,16 +59,15 @@ function displaySearchByInputResults(){
         collectResults(recipesToDisplay, recipes, searchKeyWord)
         Recipe.displayRecipes(recipesToDisplay, recipesToDisplay.length)
         ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipesToDisplay)
-        /*
-        recipesDisplay(recipesBoxContainer, recipesToDisplay,ingredientsToDisplay,appliancesToDisplay,ustensilsToDisplay)
-    */
+       
         listsUpdate(ingredientsToDisplay,appliancesToDisplay,ustensilsToDisplay)
+        console.log('coucou')
     }
 }
 
 
 function displaySearchByIngredientsResults(){
-    
+    console.log(ingredientsToDisplay)
     let searchByIngredientsLength = searchByIngredients.value.length;
     
     let searchByIngredientsValue = searchByIngredients.value;
@@ -78,18 +77,19 @@ function displaySearchByIngredientsResults(){
         let filteredList = [];
 
         for(let i = 0 ; i < ingredientsToDisplay.length ; i++){
+
             if((cleanWord(ingredientsToDisplay[i]).toLowerCase().trim()).includes(cleanWord(searchByIngredientsValue.toLowerCase().trim()))){
                 clearListDisplay(ingredientsBox);
                 filteredList.push(ingredientsToDisplay[i])
             }
-            
+            console.log(filteredList)
         }
         for(let j = 0 ; j < filteredList.length ; j++){
             Ingredients.displayIngredient(filteredList[j])
         }
         Ingredients.ingredientsListener(ingredientsBox)
     }else if(searchByIngredientsLength === 0){
-        //initialIngredientsDisplay();
+        ingredientsDisplay(recipes);
     }
     
 }
@@ -135,6 +135,7 @@ function initialize(){
     ingredientsDisplay(recipes);
     initialAppliancesDisplay();
     initialUstensilsDisplay();
+    
 }
 window.addEventListener('DOMContentLoaded', initialize)
 
