@@ -36,17 +36,19 @@ function isInputLongEnough(input){
 }
 
 let ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipes);
-let appliancesToDisplay = [];
-let ustensilsToDisplay = [];
+let appliancesToDisplay = Appliance.getAppliancesFromRecipes(recipes); /**/
+let ustensilsToDisplay = Ustensils.getUstensilsFromRecipes(recipes); /**/
 
 export let recipesToDisplay = [];
 
 export function displaySearchByInputResults(){
+
     let searchInputLength = searchInput.value.length;
 
     if (searchInputLength == 0){
         clearListDisplay(recipesBoxContainer)
         initialize()
+
     }else if(isInputLongEnough(searchInputLength)){
         
         let searchKeyWord = cleanWord(searchInput.value.toLowerCase().trim());
@@ -59,20 +61,22 @@ export function displaySearchByInputResults(){
         collectResults(recipesToDisplay, recipes, searchKeyWord)
         Recipe.displayRecipes(recipesToDisplay, recipesToDisplay.length)
         ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipesToDisplay)
-       
+
+        appliancesToDisplay = Appliance.getAppliancesFromRecipes(recipesToDisplay) //
+        ustensilsToDisplay =  Ustensils.getUstensilsFromRecipes(recipesToDisplay);//
+
         listsUpdate(ingredientsToDisplay,appliancesToDisplay,ustensilsToDisplay)
-        console.log('coucou')
     }
 }
 
 
 function displaySearchByIngredientsResults(){
-    console.log(ingredientsToDisplay)
+    
     let searchByIngredientsLength = searchByIngredients.value.length;
     
     let searchByIngredientsValue = searchByIngredients.value;
 
-    if(searchByIngredientsLength > 0){
+    if(searchByIngredientsLength > 0 && searchInput.value.length > 0){
         
         let filteredList = [];
 
@@ -82,14 +86,31 @@ function displaySearchByIngredientsResults(){
                 clearListDisplay(ingredientsBox);
                 filteredList.push(ingredientsToDisplay[i])
             }
-            console.log(filteredList)
+            
         }
         for(let j = 0 ; j < filteredList.length ; j++){
             Ingredients.displayIngredient(filteredList[j])
         }
+        
         Ingredients.ingredientsListener(ingredientsBox)
     }else if(searchByIngredientsLength === 0){
         ingredientsDisplay(recipes);
+    }else if(searchByIngredientsLength > 0 && searchInput.value.length == 0){
+        let filteredList = [];
+        let initialIngredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipes);
+        for(let i = 0 ; i < initialIngredientsToDisplay.length ; i++){
+
+            if((cleanWord(initialIngredientsToDisplay[i]).toLowerCase().trim()).includes(cleanWord(searchByIngredientsValue.toLowerCase().trim()))){
+                clearListDisplay(ingredientsBox);
+                filteredList.push(initialIngredientsToDisplay[i])
+            }
+            
+        }
+        for(let j = 0 ; j < filteredList.length ; j++){
+            Ingredients.displayIngredient(filteredList[j])
+        }
+        
+        Ingredients.ingredientsListener(ingredientsBox)
     }
     
 }
@@ -100,7 +121,7 @@ function displaySearchByAppareilResults(){
     
     let searchByAppareilValue = searchByAppareil.value;
     
-    
+    /* Implémenter même méthode que pour les ingrédients */
     if(isInputLongEnough(searchByAppareilLength)){
         console.log(searchByAppareilValue)
     }
@@ -112,7 +133,7 @@ function displaySearchByUstensilesResults(){
     let searchByUstensilesLength = searchByUstensiles.value.length;
     
     let searchByUstensilesValue = searchByUstensiles.value;
-
+    /* Implémenter même méthode que pour les ingrédients */
     if(isInputLongEnough(searchByUstensilesLength)){
         console.log(searchByUstensilesValue)
     }
@@ -122,19 +143,22 @@ function displaySearchByUstensilesResults(){
 searchInput.addEventListener('input', displaySearchByInputResults);
 searchByIngredients.addEventListener('input', displaySearchByIngredientsResults);
 searchByIngredients.addEventListener('click', IngredientsSelectDisplay.displayCatchphrase);
+searchByIngredients.onblur = IngredientsSelectDisplay.focusLost
 
 searchByAppareil.addEventListener('input', displaySearchByAppareilResults);
 searchByAppareil.addEventListener('click', AppliancesSelectDisplay.displayCatchphrase)
+searchByAppareil.onblur = AppliancesSelectDisplay.focusLost //
 
 searchByUstensiles.addEventListener('input', displaySearchByUstensilesResults);
 searchByUstensiles.addEventListener('click', UstensilsSelectDisplay.displayCatchphrase)
+searchByUstensiles = UstensilsSelectDisplay.focusLost //
 
 /***Affichage initial des recettes***/
 function initialize(){
     Recipe.displayRecipes(recipes, 6);
     ingredientsDisplay(recipes);
-    initialAppliancesDisplay();
-    initialUstensilsDisplay();
+    initialAppliancesDisplay();/*changer en appliancesDisplay(recipes)*/
+    initialUstensilsDisplay();/*changer en ustensilsDisplay(recipes)*/
     
 }
 window.addEventListener('DOMContentLoaded', initialize)

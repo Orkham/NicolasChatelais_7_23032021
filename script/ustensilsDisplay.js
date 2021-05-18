@@ -23,7 +23,7 @@ export function initialUstensilsDisplay() {
     }
     Ustensils.ustensilsListener(ustensilesBox);
 }
-/*** Ecouteurs dans la liste des ustensiles ***/
+
 
 
 /*****Selects*****/

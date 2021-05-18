@@ -6,6 +6,8 @@ import { recipes } from './recipes.js';
 import { Recipe } from './Recipe.js';
 import { ingredientsDisplay } from './ingredientsDisplay.js'
 
+let searchInput = document.getElementById('formGroupExampleInput');
+
 
 export class Ingredients {
     constructor(){
@@ -62,6 +64,7 @@ export class Ingredients {
     }
 
     static getIngredientsFromRecipes(recipesList){
+        
         let ingredientsListToDisplay = [];
         for(let i = 0 ; i < recipesList.length ; i++){
             for(let j = 0 ; j < recipesList[i].ingredients.length ; j++){
@@ -73,7 +76,9 @@ export class Ingredients {
     }
 
     static getRecipesFromIngredientsTag(tagsListArray){
-        if(tagsListArray.length > 0){
+        let searchInputLength = searchInput.value.length
+
+        if(tagsListArray.length > 0 && searchInputLength > 0){
             let newRecipesToDisplayList = []
             
         /*Récupérer les recettes sur lesquelles triées*/
@@ -81,12 +86,12 @@ export class Ingredients {
             /*Récupérer les noms dans les data du html*/
 
             let displayedRecipesNames = Ingredients.getRecipesNamesFromHtmlDisplay()
-            
+            console.log(displayedRecipesNames)
             /*Transformer les noms en objets recette*/
             
             let displayedRecipes = Ingredients.transformNamesToRecipes(displayedRecipesNames)
             
-            //console.log(displayedRecipes)
+            console.log(displayedRecipes)
             
             /*Boucler sur les ingrédients des recettes*/
             for(let i = 0 ; i < displayedRecipes.length ; i++){
@@ -102,7 +107,35 @@ export class Ingredients {
             Recipe.displayRecipes(newRecipesToDisplayList, newRecipesToDisplayList.length)
             ingredientsDisplay(newRecipesToDisplayList)
 
-            console.log('recoucou')
+            
+        }else if(searchInputLength == 0 && tagsListArray.length > 0){
+            let newRecipesToDisplayList = []
+            
+            /***récupérer les noms html voir plus haut nom didiou !!! ***/
+            /*Récupérer les noms dans les data du html*/
+
+            let displayedRecipesNames = Ingredients.getRecipesNamesFromHtmlDisplay()
+            console.log(displayedRecipesNames)
+            /*Transformer les noms en objets recette*/
+            
+            let displayedRecipes = Ingredients.transformNamesToRecipes(displayedRecipesNames)
+            
+            console.log(displayedRecipes)
+
+            for(let i = 0 ; i < recipes.length ; i++){
+                for(let j = 0 ; j < recipes[i].ingredients.length ; j++){
+                    /*Filtrer par dernier tag ajouté à la liste*/
+                    if(tagsListArray[tagsListArray.length-1] == recipes[i].ingredients[j].ingredient){
+                        Ingredients.pushRecipeInArray(newRecipesToDisplayList,recipes[i])   
+                    }
+
+                }
+            }
+            //console.log(newRecipesToDisplayList)
+            Recipe.displayRecipes(newRecipesToDisplayList, newRecipesToDisplayList.length)
+            ingredientsDisplay(newRecipesToDisplayList)
+        }else if(searchInputLength == 0 && tagsListArray.length == 0){
+            console.log('raz')
         }
     }
 

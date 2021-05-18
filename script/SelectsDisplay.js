@@ -1,3 +1,5 @@
+//import { Ingredients } from "./Ingredients";
+
 let searchByIngredients = document.getElementById('inputIngredients');
 let searchByAppareil = document.getElementById('inputAppareil');
 let searchByUstensiles = document.getElementById('inputUstensiles');
@@ -21,6 +23,16 @@ export class IngredientsSelectDisplay {
         }else{
             searchByIngredients.placeholder = 'Ingrédients'
         }
+    }
+
+    static focusLost(){
+        document.getElementById('ingredientsSearchbarContainer').classList.remove('width-xl');
+        document.getElementById('inputIngredients').classList.remove('width-xl');
+        document.getElementById('ingredientsList').classList.remove('width-xl');
+        document.getElementById('ingredientsList').classList.add('d-none');
+        document.getElementById('chevron-downIngredients').classList.remove('d-none');
+        document.getElementById('chevron-upIngredients').classList.add('d-none');
+        IngredientsSelectDisplay.displayCatchphrase()
     }
     
 }
@@ -63,4 +75,6 @@ export class UstensilsSelectDisplay {
             searchByUstensiles.placeholder = 'Ustensiles'
         }
     }
+
+
 }
