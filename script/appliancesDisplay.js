@@ -3,26 +3,17 @@ import {recipes} from './recipes.js';
 import {AppliancesSelectDisplay} from './SelectsDisplay.js';
 import { clearListDisplay } from './utils.js'
 
-/*** Parcourir les recettes et extraire les appareils ***/
-
-let appareilsListToDisplay = [];
-
-for(let i = 0 ; i < recipes.length ; i++){
-    let appareil = new Appliance;
-    appareil.applianceToDisplay(recipes[i].appliance, appareilsListToDisplay)
-}
-
-/*** Affichage initial des appareils ***/
-export function initialAppliancesDisplay(){
+/*** Affichage des appareils ***/
+export function appliancesDisplay(recipesList){
     clearListDisplay(document.getElementById('appareilsBox'))
-    for(let appliance of appareilsListToDisplay){
-        Appliance.displayAppliance(appliance)
+
+    let appliancesListToDisplay = Appliance.getAppliancesFromRecipes(recipesList)
+
+    for(let i = 0 ; i < appliancesListToDisplay.length ; i++){
+        Appliance.displayAppliance(appliancesListToDisplay[i])
     }
-    Appliance.appliancesListener(appareilsBox);
+    Appliance.appliancesListener(appareilsBox)
 }
-
-
-/*** Ecouteurs dans la liste des appareils ***/
 
 
 /*****Selects*****/

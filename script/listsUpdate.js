@@ -5,7 +5,7 @@ import { Ustensils } from './Ustensils.js';
 
 export function listsUpdate(ingredientsToDisplay,appliancesToDisplay,ustensilsToDisplay){
     ingredientsListUpdate(ingredientsToDisplay)
-    ustensilsListUpdate(ustensilsToDisplay)
+    //ustensilsListUpdate(ustensilsToDisplay)
     appliancesListUpdate(appliancesToDisplay)
 }
 
@@ -25,7 +25,7 @@ function appliancesListUpdate(appliancesToDisplay){
     }
     Appliance.appliancesListener(appareilsBox);
 }
-
+/*
 function ustensilsListUpdate(ustensilsToDisplay){
     clearListDisplay(ustensilesBox);
     for(let i = 0 ; i < ustensilsToDisplay.length ; i++){
@@ -33,3 +33,4 @@ function ustensilsListUpdate(ustensilsToDisplay){
     }
     Ustensils.ustensilsListener(ustensilesBox);
 }
+*/

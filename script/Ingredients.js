@@ -5,6 +5,8 @@ import { displayRecipesWithNameResults } from './resultsCollectFunction.js'
 import { recipes } from './recipes.js';
 import { Recipe } from './Recipe.js';
 import { ingredientsDisplay } from './ingredientsDisplay.js'
+import { getRecipesFromTags }  from './filterByTags.js'
+import { Tag } from './Tag.js'
 
 let searchInput = document.getElementById('formGroupExampleInput');
 
@@ -24,41 +26,31 @@ export class Ingredients {
         ingredientToDisplay.appendChild(document.createTextNode(ingredient));
         ingredientsBox.appendChild(ingredientToDisplay);
         ingredientToDisplay.className = "col-4";
+        ingredientToDisplay.dataset.type = "ingredient"
     }
 
     static ingredientsListener(ingredientsBox){
         
+        let listOfIngredientsName = []
+        for(let tag of tagsListArray){
+            listOfIngredientsName.push(tag.name)
+        }
+        
         for(let i = 0 ; i < ingredientsBox.childElementCount ; i++){
-    
-            ingredientsBox.children[i].addEventListener('click', function addTagInTagsList(e){
+            
+            ingredientsBox.children[i].addEventListener('click',  (e)=>{
                 
-                if(!(tagsListArray.includes(e.target.innerHTML))){
-                    let newDiv = document.createElement("div");
-                    newDiv.className = "d-inline-block";
-                    tagsListBox.appendChild(newDiv);
-                    let ingredientToDisplay = document.createElement("p");
-                    ingredientToDisplay.appendChild(document.createTextNode(e.target.innerHTML));
-                    newDiv.appendChild(ingredientToDisplay);
-                    ingredientToDisplay.className = "resultDisplay text-white rounded pt-1 pb-2 pl-3 pr-3 mr-1";
+                let newTag = new Tag(e)
+                
+                if(!(listOfIngredientsName.includes(newTag.name))){    
                     
-                    tagsListArray.push(e.target.innerHTML)
-                    //console.log(tagsListArray)
-                    //console.log(recipesToDisplay)
+                    newTag.displayTag()
+                    tagsListArray.push(newTag)
                     
-                    Ingredients.getRecipesFromIngredientsTag(tagsListArray)
-                    
-                    let cross = CancelCross.createCancelCross();
-                    ingredientToDisplay.appendChild(cross);
-                    cross.addEventListener('click', (e)=>{
-                        e.target.parentElement.parentElement.remove()
-                        let indexToDelete = tagsListArray.indexOf(e.target.previousSibling.data)
-                        tagsListArray.splice(indexToDelete, 1)
-                        //console.log(tagsListArray)
-                        displaySearchByInputResults()
-                        Ingredients.getRecipesFromIngredientsTag(tagsListArray)
-                    })
+                    Recipe.displayRecipes(getRecipesFromTags(tagsListArray))
 
                 }
+                
             })
         }
     }
@@ -75,8 +67,12 @@ export class Ingredients {
         return ingredientsListToDisplay;
     }
 
+    
+
     static getRecipesFromIngredientsTag(tagsListArray){
         let searchInputLength = searchInput.value.length
+
+        
 
         if(tagsListArray.length > 0 && searchInputLength > 0){
             let newRecipesToDisplayList = []
@@ -86,12 +82,12 @@ export class Ingredients {
             /*Récupérer les noms dans les data du html*/
 
             let displayedRecipesNames = Ingredients.getRecipesNamesFromHtmlDisplay()
-            console.log(displayedRecipesNames)
+            //console.log(displayedRecipesNames)
             /*Transformer les noms en objets recette*/
             
             let displayedRecipes = Ingredients.transformNamesToRecipes(displayedRecipesNames)
             
-            console.log(displayedRecipes)
+            //console.log(displayedRecipes)
             
             /*Boucler sur les ingrédients des recettes*/
             for(let i = 0 ; i < displayedRecipes.length ; i++){
@@ -111,16 +107,13 @@ export class Ingredients {
         }else if(searchInputLength == 0 && tagsListArray.length > 0){
             let newRecipesToDisplayList = []
             
-            /***récupérer les noms html voir plus haut nom didiou !!! ***/
             /*Récupérer les noms dans les data du html*/
 
             let displayedRecipesNames = Ingredients.getRecipesNamesFromHtmlDisplay()
-            console.log(displayedRecipesNames)
+            
             /*Transformer les noms en objets recette*/
             
             let displayedRecipes = Ingredients.transformNamesToRecipes(displayedRecipesNames)
-            
-            console.log(displayedRecipes)
 
             for(let i = 0 ; i < recipes.length ; i++){
                 for(let j = 0 ; j < recipes[i].ingredients.length ; j++){
@@ -131,7 +124,7 @@ export class Ingredients {
 
                 }
             }
-            //console.log(newRecipesToDisplayList)
+            
             Recipe.displayRecipes(newRecipesToDisplayList, newRecipesToDisplayList.length)
             ingredientsDisplay(newRecipesToDisplayList)
         }else if(searchInputLength == 0 && tagsListArray.length == 0){
@@ -143,12 +136,6 @@ export class Ingredients {
         if(!newRecipesToDisplayList.includes(recipe)){
             newRecipesToDisplayList.push(recipe)
         }
-    }
-
-    static filterRecipesListByTags(recipesArray){
-        let newList = []
-
-        return newList
     }
 
     static getRecipesNamesFromHtmlDisplay(){

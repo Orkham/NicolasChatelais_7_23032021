@@ -15,12 +15,15 @@ export class Ustensils {
         ustensilToDisplay.appendChild(document.createTextNode(firstLetterUppercase(ustensil)));
         ustensilesBox.appendChild(ustensilToDisplay);
         ustensilToDisplay.className = "col-4";
+        ustensilToDisplay.dataset.type = "ustensil"
     }
     static ustensilsListener(ustensilesBox){
+
         for(let i = 0 ; i < ustensilesBox.childElementCount ; i++){
     
-            ustensilesBox.children[i].addEventListener('click', function addTagInTagsList(e){
-                //console.log(e.target.innerHTML);
+            ustensilesBox.children[i].addEventListener('click', (e)=>{
+                
+                
                 let newDiv = document.createElement("div");
                 newDiv.className = "d-inline-block";
                 tagsListBox.appendChild(newDiv);
