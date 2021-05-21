@@ -3,10 +3,10 @@ import { Ingredients } from './Ingredients.js';
 import { Appliance } from './Appliance.js';
 import { Ustensils } from './Ustensils.js';
 
-export function listsUpdate(ingredientsToDisplay,appliancesToDisplay,ustensilsToDisplay){
+export function listsUpdate(ingredientsToDisplay/*,appliancesToDisplay,ustensilsToDisplay*/){
     ingredientsListUpdate(ingredientsToDisplay)
     //ustensilsListUpdate(ustensilsToDisplay)
-    appliancesListUpdate(appliancesToDisplay)
+    //appliancesListUpdate(appliancesToDisplay)
 }
 
 function ingredientsListUpdate(ingredientsToDisplay){

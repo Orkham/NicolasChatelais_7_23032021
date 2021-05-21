@@ -5,7 +5,7 @@ import { displayRecipesWithNameResults } from './resultsCollectFunction.js'
 import { recipes } from './recipes.js';
 import { Recipe } from './Recipe.js';
 import { ingredientsDisplay } from './ingredientsDisplay.js'
-
+import { clearListDisplay, cleanWord } from './utils.js'
 
 
 export function getRecipesFromTags(tagsListArray){
@@ -14,37 +14,59 @@ export function getRecipesFromTags(tagsListArray){
     let searchInputLength = searchInput.value.length
     let recipesFromSearch = displaySearchByInputResults()
 
-    console.log(recipesFromSearch)
-    if(searchInputLength > 0 && tagsListArray.length > 0){
+    if(/*searchInputLength > 0 &&*/ tagsListArray.length > 0){
         
         let newRecipesToDisplayList = []
-        
-        for(let i = 0 ; i < recipesFromSearch.length ; i++){
-            for(let j = 0 ; j < recipesFromSearch[i].ingredients.length ; j++){
-                for(let tag of tagsListArray){
-                    switch(tag.type){
-                        case 'ingredient':
-                            
-                            if(recipesFromSearch[i].ingredients[j].ingredient == tag.name){
-                                console.log('coucou')
-                                pushRecipeInArray(newRecipesToDisplayList, recipesFromSearch[i])
-                            }
-                    }
-                }
-            }
-            
+        if(searchInputLength === 0){
+            recipesFromSearch = recipes
         }
-        console.log(newRecipesToDisplayList)
+        
+        for(let i = 0 ; i < tagsListArray.length ; i++){
+            
+            if(i == 0){
+                switch(tagsListArray[i].type){
+                    case 'ingredient':
+                        for(let recipe of recipesFromSearch){
+                            filterByIngredientTag(tagsListArray[i], recipe, newRecipesToDisplayList)
+                        }
+                        break;
+                    case 'appliance':
+                        console.log('coucou appareil')
+                        break
+                    case 'ustensil':
+                        console.log('coucou ustensile')
+                }
+                    
+            }else if(i > 0){
+                let temp = []
+                for(let recipe of newRecipesToDisplayList){
+                    filterByIngredientTag(tagsListArray[i], recipe, temp)
+                }
+                newRecipesToDisplayList = temp
+            }
+        }
+      
+        
         return newRecipesToDisplayList
+
     }else if((searchInputLength > 0 && tagsListArray.length == 0) || 
             (searchInputLength == 0 && tagsListArray.length == 0)){
+        recipesFromSearch = recipes        
         return recipesFromSearch
     }
-
+    
 }
 
 function pushRecipeInArray(newRecipesToDisplayList, recipe){
     if(!newRecipesToDisplayList.includes(recipe)){
         newRecipesToDisplayList.push(recipe)
     }
+}
+
+function filterByIngredientTag(tag, recipe, newRecipesToDisplayList){
+    let ingredientsList = Recipe.getIngredientsFromRecipe(recipe)
+    if(ingredientsList.includes(tag.name)){
+        newRecipesToDisplayList.push(recipe)
+    }
+    return newRecipesToDisplayList
 }

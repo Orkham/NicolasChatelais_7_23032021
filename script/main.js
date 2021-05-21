@@ -50,7 +50,6 @@ export function displaySearchByInputResults(){
     if (searchInputLength == 0){
         clearListDisplay(recipesBoxContainer)
         initialize()
-
     }else if(isInputLongEnough(searchInputLength)){
         
         let searchKeyWord = cleanWord(searchInput.value.toLowerCase().trim());
@@ -158,11 +157,10 @@ searchByUstensiles.addEventListener('click', UstensilsSelectDisplay.displayCatch
 
 /***Affichage initial des recettes***/
 function initialize(){
-    Recipe.displayRecipes(recipes, 6);
+    let recipesToDisplay = Recipe.displayRecipes(recipes, 6);
     ingredientsDisplay(recipes);
     appliancesDisplay(recipes);
     initialUstensilsDisplay();/*changer en ustensilsDisplay(recipes)*/
-    
 }
 window.addEventListener('DOMContentLoaded', initialize)
 

@@ -84,11 +84,18 @@ export class Recipe {
             
 
             recipesBoxContainer.appendChild(newCard)
+
+            
         }
 
         this.getIngredients = function(){
-            return this.ingredients;
+            let  recipeIngredientsList = []
+            for(let ingredientsList of this.ingredients){
+                recipeIngredientsList.push(ingredientsList.ingredient)
+            }
+            return recipeIngredientsList;
         }
+
     }
     
     static displayRecipes(recipesArray){
@@ -112,5 +119,12 @@ export class Recipe {
         }
     }
 
-    
+    static getIngredientsFromRecipe(recipe){
+        let  recipeIngredientsList = []
+        
+        for(let ingredient of recipe.ingredients){
+            recipeIngredientsList.push(ingredient.ingredient)
+        }
+        return recipeIngredientsList;
+    }
 }
