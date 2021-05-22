@@ -57,16 +57,23 @@ export function getRecipesFromTags(tagsListArray){
     
 }
 
-function pushRecipeInArray(newRecipesToDisplayList, recipe){
-    if(!newRecipesToDisplayList.includes(recipe)){
-        newRecipesToDisplayList.push(recipe)
-    }
-}
 
 function filterByIngredientTag(tag, recipe, newRecipesToDisplayList){
-    let ingredientsList = Recipe.getIngredientsFromRecipe(recipe)
-    if(ingredientsList.includes(tag.name)){
-        newRecipesToDisplayList.push(recipe)
+    console.log(tag.type)
+    switch(tag.type){
+        case 'ingredient':
+            let ingredientsList = Recipe.getIngredientsFromRecipe(recipe)
+            if(ingredientsList.includes(tag.name)){
+                newRecipesToDisplayList.push(recipe)
+            }
+            return newRecipesToDisplayList
+        case 'appliance':
+            console.log('filtre par appareil')
+            break;
+        case 'ustensil':
+            console.log('filtre par ustensile')
+            break;
     }
-    return newRecipesToDisplayList
+    
 }
+

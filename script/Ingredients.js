@@ -1,4 +1,5 @@
 import { recipesToDisplay, tagsListBox, tagsListArray, recipesBoxContainer,displaySearchByInputResults } from './main.js'
+import { pushRecipeInArray } from './utils.js'
 import {CancelCross} from './CancelCross.js'
 import { recipesDisplay } from './recipesDisplayFunction.js'
 import { displayRecipesWithNameResults } from './resultsCollectFunction.js'
@@ -50,7 +51,7 @@ export class Ingredients {
                     let recipesListToDisplay = getRecipesFromTags(tagsListArray)
                     Recipe.displayRecipes(recipesListToDisplay)
                     let ingredientsList = Ingredients.getIngredientsFromRecipes(recipesListToDisplay)
-                    //console.log(ingredientsList)
+                    
                     listsUpdate(ingredientsList)
                 }
                 
@@ -71,76 +72,7 @@ export class Ingredients {
     }
 
     
-
-    static getRecipesFromIngredientsTag(tagsListArray){
-        let searchInputLength = searchInput.value.length
-
-        
-
-        if(tagsListArray.length > 0 && searchInputLength > 0){
-            let newRecipesToDisplayList = []
-            
-        /*Récupérer les recettes sur lesquelles triées*/
-
-            /*Récupérer les noms dans les data du html*/
-
-            let displayedRecipesNames = Ingredients.getRecipesNamesFromHtmlDisplay()
-            //console.log(displayedRecipesNames)
-            /*Transformer les noms en objets recette*/
-            
-            let displayedRecipes = Ingredients.transformNamesToRecipes(displayedRecipesNames)
-            
-            //console.log(displayedRecipes)
-            
-            /*Boucler sur les ingrédients des recettes*/
-            for(let i = 0 ; i < displayedRecipes.length ; i++){
-                for(let j = 0 ; j < displayedRecipes[i].ingredients.length ; j++){
-                    /*Filtrer par dernier tag ajouté à la liste*/
-                    if(tagsListArray[tagsListArray.length-1] == displayedRecipes[i].ingredients[j].ingredient){
-                        Ingredients.pushRecipeInArray(newRecipesToDisplayList,displayedRecipes[i])   
-                    }
-
-                }
-            }
-
-            Recipe.displayRecipes(newRecipesToDisplayList, newRecipesToDisplayList.length)
-            ingredientsDisplay(newRecipesToDisplayList)
-
-            
-        }else if(searchInputLength == 0 && tagsListArray.length > 0){
-            let newRecipesToDisplayList = []
-            
-            /*Récupérer les noms dans les data du html*/
-
-            let displayedRecipesNames = Ingredients.getRecipesNamesFromHtmlDisplay()
-            
-            /*Transformer les noms en objets recette*/
-            
-            let displayedRecipes = Ingredients.transformNamesToRecipes(displayedRecipesNames)
-
-            for(let i = 0 ; i < recipes.length ; i++){
-                for(let j = 0 ; j < recipes[i].ingredients.length ; j++){
-                    /*Filtrer par dernier tag ajouté à la liste*/
-                    if(tagsListArray[tagsListArray.length-1] == recipes[i].ingredients[j].ingredient){
-                        Ingredients.pushRecipeInArray(newRecipesToDisplayList,recipes[i])   
-                    }
-
-                }
-            }
-            
-            Recipe.displayRecipes(newRecipesToDisplayList, newRecipesToDisplayList.length)
-            ingredientsDisplay(newRecipesToDisplayList)
-        }else if(searchInputLength == 0 && tagsListArray.length == 0){
-            console.log('raz')
-        }
-    }
-
-    static pushRecipeInArray(newRecipesToDisplayList, recipe){
-        if(!newRecipesToDisplayList.includes(recipe)){
-            newRecipesToDisplayList.push(recipe)
-        }
-    }
-
+/*
     static getRecipesNamesFromHtmlDisplay(){
         let displayedRecipesNames = []
         for(let i = 0 ; i < recipesBoxContainer.childElementCount ; i++){
@@ -148,7 +80,8 @@ export class Ingredients {
         }
         return displayedRecipesNames
     }
-
+*/
+/*
     static transformNamesToRecipes(displayedRecipesNames){
         let recipesArray = []
         for(let displayedRecipeName of displayedRecipesNames){
@@ -156,6 +89,7 @@ export class Ingredients {
         }
         return recipesArray
     }
+*/
 }
 
 

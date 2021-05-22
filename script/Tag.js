@@ -3,6 +3,8 @@ import {CancelCross} from './CancelCross.js'
 import { recipes } from './recipes.js';
 import { Recipe } from './Recipe.js';
 import { getRecipesFromTags }  from './filterByTags.js'
+import { listsUpdate } from './listsUpdate.js'
+import { Ingredients } from './Ingredients.js'
 
 export class Tag {
     constructor(e){
@@ -28,9 +30,10 @@ export class Tag {
             
             tagsListArray.splice(indexToDelete, 1)
             
-            displaySearchByInputResults()
-            
+            let recipesToDisplay = displaySearchByInputResults()
+            console.log(recipesToDisplay)
             Recipe.displayRecipes(getRecipesFromTags(tagsListArray))
+            listsUpdate(Ingredients.getIngredientsFromRecipes(recipesToDisplay))
         })
     }
     

@@ -38,4 +38,10 @@ export function cleanWord(str) {
     }
   
     return str;
-  }
+}
+
+export function pushRecipeInArray(newRecipesToDisplayList, recipe){
+    if(!newRecipesToDisplayList.includes(recipe)){
+        newRecipesToDisplayList.push(recipe)
+    }
+}

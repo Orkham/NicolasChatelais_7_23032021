@@ -4,7 +4,7 @@ import { Ingredients } from './Ingredients.js';
 import { Appliance } from './Appliance.js';
 import { Ustensils } from './Ustensils.js';
 import { IngredientsSelectDisplay, AppliancesSelectDisplay, UstensilsSelectDisplay } from './SelectsDisplay.js'
-import { clearListDisplay, cleanWord } from './utils.js'
+import { clearListDisplay, cleanWord, pushRecipeInArray } from './utils.js'
 import { listsUpdate } from './listsUpdate.js'
 import { ingredientsDisplay } from './ingredientsDisplay.js'
 import { appliancesDisplay } from './appliancesDisplay.js'
@@ -50,6 +50,7 @@ export function displaySearchByInputResults(){
     if (searchInputLength == 0){
         clearListDisplay(recipesBoxContainer)
         initialize()
+        return recipes
     }else if(isInputLongEnough(searchInputLength)){
         
         let searchKeyWord = cleanWord(searchInput.value.toLowerCase().trim());
@@ -67,6 +68,7 @@ export function displaySearchByInputResults(){
         //ustensilsToDisplay =  Ustensils.getUstensilsFromRecipes(recipesToDisplay);//
 
         listsUpdate(ingredientsToDisplay,appliancesToDisplay/*,ustensilsToDisplay*/)
+        console.log(recipesToDisplay)
         return recipesToDisplay;
     }
 }
@@ -157,6 +159,7 @@ searchByUstensiles.addEventListener('click', UstensilsSelectDisplay.displayCatch
 
 /***Affichage initial des recettes***/
 function initialize(){
+    searchInput.value = ""
     let recipesToDisplay = Recipe.displayRecipes(recipes, 6);
     ingredientsDisplay(recipes);
     appliancesDisplay(recipes);
