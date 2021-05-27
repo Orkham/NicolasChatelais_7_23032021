@@ -19,7 +19,7 @@ export class IngredientsSelectDisplay {
     static displayCatchphrase() {
         
         if((searchByIngredients.classList.contains("width-xl"))){
-            searchByIngredients.placeholder = 'Rechcercher un ingrédient'
+            searchByIngredients.placeholder = 'Rechercher un ingrédient'
         }else{
             searchByIngredients.placeholder = 'Ingrédients'
         }
@@ -50,7 +50,7 @@ export class AppliancesSelectDisplay {
 
     static displayCatchphrase() {
         if((searchByAppareil.classList.contains("width-xl"))){
-            searchByAppareil.placeholder = 'Rechcercher un appareil'
+            searchByAppareil.placeholder = 'Rechercher un appareil'
         }else{
             searchByAppareil.placeholder = 'Appareil'
         }

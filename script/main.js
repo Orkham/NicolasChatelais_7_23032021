@@ -73,12 +73,13 @@ export function displaySearchByInputResults(){
 function displaySearchByIngredientsResults(){
     
     let searchByIngredientsLength = searchByIngredients.value.length;
-    
     let searchByIngredientsValue = searchByIngredients.value;
+    //listsUpdate(ingredientsToDisplay,appliancesToDisplay)
 
     if(searchByIngredientsLength > 0 && searchInput.value.length > 0){
         
         let filteredList = [];
+        //ingredientsToDisplay = Ingredients.getIngredientsFromRecipes()
 
         for(let i = 0 ; i < ingredientsToDisplay.length ; i++){
 
@@ -93,8 +94,12 @@ function displaySearchByIngredientsResults(){
         }
         
         Ingredients.ingredientsListener(ingredientsBox)
+        
+
     }else if(searchByIngredientsLength === 0){
+        console.log(recipesToDisplay)
         ingredientsDisplay(recipes);
+
     }else if(searchByIngredientsLength > 0 && searchInput.value.length == 0){
         let filteredList = [];
         let initialIngredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipes);
@@ -112,6 +117,7 @@ function displaySearchByIngredientsResults(){
         
         Ingredients.ingredientsListener(ingredientsBox)
     }
+    
     
 }
 
@@ -153,6 +159,9 @@ searchByUstensiles.addEventListener('input', displaySearchByUstensilesResults);
 searchByUstensiles.addEventListener('click', UstensilsSelectDisplay.displayCatchphrase)
 //searchByUstensiles = UstensilsSelectDisplay.focusLost //
 
+//recipesBoxContainer.addEventListener('load', console.log('coucou'))
+
+
 /***Affichage initial des recettes***/
 function initialize(){
     searchInput.value = ""
@@ -162,14 +171,3 @@ function initialize(){
     initialUstensilsDisplay();/*changer en ustensilsDisplay(recipes)*/
 }
 window.addEventListener('DOMContentLoaded', initialize)
-
-/*
-let test = document.getElementById('test');
-test.addEventListener('click', displayTagsList)
-
-
-function displayTagsList(){
-    console.log(tagsListArray)
-    console.log(recipesToDisplay)
-}
-*/

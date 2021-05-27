@@ -31,8 +31,8 @@ export class Tag {
             
             tagsListArray.splice(indexToDelete, 1)
             
-            let recipesToDisplay = displaySearchByInputResults()
-            console.log(recipesToDisplay)
+            let recipesToDisplay = tagsListArray.length > 0 ? getRecipesFromTags(tagsListArray) : displaySearchByInputResults()
+            //console.log(recipesToDisplay)
             Recipe.displayRecipes(getRecipesFromTags(tagsListArray))
             listsUpdate(Ingredients.getIngredientsFromRecipes(recipesToDisplay),
             Appliance.getAppliancesFromRecipes(recipesToDisplay))

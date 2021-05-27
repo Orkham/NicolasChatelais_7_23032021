@@ -20,6 +20,7 @@ export function getRecipesFromTags(tagsListArray){
         for(let i = 0 ; i < tagsListArray.length ; i++){
             
             if(i == 0){
+                //console.log('init')
                 switch(tagsListArray[i].type){
                     case 'ingredient':
                         for(let recipe of recipesFromSearch){
@@ -36,11 +37,16 @@ export function getRecipesFromTags(tagsListArray){
                 }
                     
             }else if(i > 0){
-                
+                temp = []
+                console.log(newRecipesToDisplayList)
                 for(let recipe of newRecipesToDisplayList){
+                    //console.log(recipe)
                     filterByTag(tagsListArray[i], recipe, temp)
                 }
+                //console.log(temp)
+                //console.log(newRecipesToDisplayList)
                 newRecipesToDisplayList = temp
+                console.log(newRecipesToDisplayList)
             }
         }
       
@@ -62,6 +68,7 @@ function filterByTag(tag, recipe, newRecipesToDisplayList){
     switch(tag.type){
         case 'ingredient':
             let ingredientsList = Recipe.getIngredientsFromRecipe(recipe)
+            //console.log('test')
             if(ingredientsList.includes(tag.name)){
                 newRecipesToDisplayList.push(recipe)
             }

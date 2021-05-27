@@ -20,7 +20,6 @@ function ingredientsListUpdate(ingredientsToDisplay){
 
 function appliancesListUpdate(appliancesToDisplay){
     clearListDisplay(appareilsBox);
-    
     for(let i = 0 ; i < appliancesToDisplay.length ; i++){
         Appliance.displayAppliance(appliancesToDisplay[i])
     }

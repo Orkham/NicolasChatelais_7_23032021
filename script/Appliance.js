@@ -41,10 +41,9 @@ export class Appliance {
                     tagsListArray.push(newTag)
                     let recipesListToDisplay = getRecipesFromTags(tagsListArray)
                     Recipe.displayRecipes(recipesListToDisplay)
-                    
                     let appliancesList = Appliance.getAppliancesFromRecipes(recipesListToDisplay)
-
                     listsUpdate(Ingredients.getIngredientsFromRecipes(recipesListToDisplay),appliancesList)
+                    document.getElementById('inputAppareil').value = ""
                 }
             })
         }

@@ -49,9 +49,8 @@ export class Ingredients {
                     let ingredientsList = Ingredients.getIngredientsFromRecipes(recipesListToDisplay)
                     let aplliancesList = Appliance.getAppliancesFromRecipes(recipesListToDisplay)
                     listsUpdate(ingredientsList,aplliancesList)
-                    let target = document.getElementById('inputIngredients')
-                    console.log(target)
                     document.getElementById('inputIngredients').value = ""
+                    
                 }
                 
             })
@@ -59,7 +58,7 @@ export class Ingredients {
     }
 
     static getIngredientsFromRecipes(recipesList){
-        
+        //console.log(recipesList)
         let ingredientsListToDisplay = [];
         for(let i = 0 ; i < recipesList.length ; i++){
             for(let j = 0 ; j < recipesList[i].ingredients.length ; j++){
