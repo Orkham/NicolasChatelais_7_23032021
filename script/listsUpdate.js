@@ -3,10 +3,10 @@ import { Ingredients } from './Ingredients.js';
 import { Appliance } from './Appliance.js';
 import { Ustensils } from './Ustensils.js';
 
-export function listsUpdate(ingredientsToDisplay/*,appliancesToDisplay,ustensilsToDisplay*/){
+export function listsUpdate(ingredientsToDisplay,appliancesToDisplay/*,ustensilsToDisplay*/){
     ingredientsListUpdate(ingredientsToDisplay)
+    appliancesListUpdate(appliancesToDisplay)
     //ustensilsListUpdate(ustensilsToDisplay)
-    //appliancesListUpdate(appliancesToDisplay)
 }
 
 function ingredientsListUpdate(ingredientsToDisplay){
@@ -20,6 +20,7 @@ function ingredientsListUpdate(ingredientsToDisplay){
 
 function appliancesListUpdate(appliancesToDisplay){
     clearListDisplay(appareilsBox);
+    
     for(let i = 0 ; i < appliancesToDisplay.length ; i++){
         Appliance.displayAppliance(appliancesToDisplay[i])
     }

@@ -1,14 +1,10 @@
-import { recipesToDisplay, tagsListBox, tagsListArray, recipesBoxContainer,displaySearchByInputResults } from './main.js'
-import { pushRecipeInArray } from './utils.js'
-import {CancelCross} from './CancelCross.js'
-import { recipesDisplay } from './recipesDisplayFunction.js'
-import { displayRecipesWithNameResults } from './resultsCollectFunction.js'
-import { recipes } from './recipes.js';
+import { tagsListArray } from './main.js'
 import { Recipe } from './Recipe.js';
-import { ingredientsDisplay } from './ingredientsDisplay.js'
 import { getRecipesFromTags }  from './filterByTags.js'
 import { Tag } from './Tag.js'
 import { listsUpdate } from './listsUpdate.js';
+import { Appliance } from './Appliance.js'
+import { clearListDisplay } from './utils.js'
 
 let searchInput = document.getElementById('formGroupExampleInput');
 
@@ -51,8 +47,11 @@ export class Ingredients {
                     let recipesListToDisplay = getRecipesFromTags(tagsListArray)
                     Recipe.displayRecipes(recipesListToDisplay)
                     let ingredientsList = Ingredients.getIngredientsFromRecipes(recipesListToDisplay)
-                    
-                    listsUpdate(ingredientsList)
+                    let aplliancesList = Appliance.getAppliancesFromRecipes(recipesListToDisplay)
+                    listsUpdate(ingredientsList,aplliancesList)
+                    let target = document.getElementById('inputIngredients')
+                    console.log(target)
+                    document.getElementById('inputIngredients').value = ""
                 }
                 
             })
@@ -71,25 +70,6 @@ export class Ingredients {
         return ingredientsListToDisplay;
     }
 
-    
-/*
-    static getRecipesNamesFromHtmlDisplay(){
-        let displayedRecipesNames = []
-        for(let i = 0 ; i < recipesBoxContainer.childElementCount ; i++){
-            displayedRecipesNames.push((recipesBoxContainer.children[i].dataset.name))
-        }
-        return displayedRecipesNames
-    }
-*/
-/*
-    static transformNamesToRecipes(displayedRecipesNames){
-        let recipesArray = []
-        for(let displayedRecipeName of displayedRecipesNames){
-            recipesArray.push(Recipe.getRecipesByDataName(displayedRecipeName))
-        }
-        return recipesArray
-    }
-*/
 }
 
 

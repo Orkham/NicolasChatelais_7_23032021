@@ -1,11 +1,6 @@
 import { recipesToDisplay, tagsListBox, tagsListArray, recipesBoxContainer,displaySearchByInputResults } from './main.js'
-import { CancelCross } from './CancelCross.js'
-import { recipesDisplay } from './recipesDisplayFunction.js'
-import { displayRecipesWithNameResults } from './resultsCollectFunction.js'
 import { recipes } from './recipes.js';
 import { Recipe } from './Recipe.js';
-import { ingredientsDisplay } from './ingredientsDisplay.js'
-import { clearListDisplay, cleanWord } from './utils.js'
 
 
 export function getRecipesFromTags(tagsListArray){
@@ -14,9 +9,10 @@ export function getRecipesFromTags(tagsListArray){
     let searchInputLength = searchInput.value.length
     let recipesFromSearch = displaySearchByInputResults()
 
-    if(/*searchInputLength > 0 &&*/ tagsListArray.length > 0){
+    if(tagsListArray.length > 0){
         
         let newRecipesToDisplayList = []
+        let temp = []
         if(searchInputLength === 0){
             recipesFromSearch = recipes
         }
@@ -27,20 +23,22 @@ export function getRecipesFromTags(tagsListArray){
                 switch(tagsListArray[i].type){
                     case 'ingredient':
                         for(let recipe of recipesFromSearch){
-                            filterByIngredientTag(tagsListArray[i], recipe, newRecipesToDisplayList)
+                            filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
                         }
                         break;
                     case 'appliance':
-                        console.log('coucou appareil')
+                        for(let recipe of recipesFromSearch){
+                            filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
+                        }
                         break
                     case 'ustensil':
                         console.log('coucou ustensile')
                 }
                     
             }else if(i > 0){
-                let temp = []
+                
                 for(let recipe of newRecipesToDisplayList){
-                    filterByIngredientTag(tagsListArray[i], recipe, temp)
+                    filterByTag(tagsListArray[i], recipe, temp)
                 }
                 newRecipesToDisplayList = temp
             }
@@ -49,8 +47,9 @@ export function getRecipesFromTags(tagsListArray){
         
         return newRecipesToDisplayList
 
-    }else if((searchInputLength > 0 && tagsListArray.length == 0) || 
-            (searchInputLength == 0 && tagsListArray.length == 0)){
+    }else if(searchInputLength > 0 && tagsListArray.length == 0){
+        return recipesFromSearch
+    }else if (searchInputLength == 0 && tagsListArray.length == 0){
         recipesFromSearch = recipes        
         return recipesFromSearch
     }
@@ -58,8 +57,8 @@ export function getRecipesFromTags(tagsListArray){
 }
 
 
-function filterByIngredientTag(tag, recipe, newRecipesToDisplayList){
-    console.log(tag.type)
+function filterByTag(tag, recipe, newRecipesToDisplayList){
+    //console.log(tag.type)
     switch(tag.type){
         case 'ingredient':
             let ingredientsList = Recipe.getIngredientsFromRecipe(recipe)
@@ -68,7 +67,11 @@ function filterByIngredientTag(tag, recipe, newRecipesToDisplayList){
             }
             return newRecipesToDisplayList
         case 'appliance':
-            console.log('filtre par appareil')
+            //console.log('filtre par appareil')
+            let appliance = Recipe.getApplianceFromRecipe(recipe)
+            if(appliance == tag.name){
+                newRecipesToDisplayList.push(recipe)
+            }
             break;
         case 'ustensil':
             console.log('filtre par ustensile')

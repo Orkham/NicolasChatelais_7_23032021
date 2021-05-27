@@ -1,5 +1,4 @@
 import {Ingredients} from './Ingredients.js'
-import {recipes} from './recipes.js'
 import {IngredientsSelectDisplay} from './SelectsDisplay.js'
 import { clearListDisplay } from './utils.js'
 

@@ -5,6 +5,7 @@ import { Recipe } from './Recipe.js';
 import { getRecipesFromTags }  from './filterByTags.js'
 import { listsUpdate } from './listsUpdate.js'
 import { Ingredients } from './Ingredients.js'
+import { Appliance } from './Appliance.js'
 
 export class Tag {
     constructor(e){
@@ -33,7 +34,8 @@ export class Tag {
             let recipesToDisplay = displaySearchByInputResults()
             console.log(recipesToDisplay)
             Recipe.displayRecipes(getRecipesFromTags(tagsListArray))
-            listsUpdate(Ingredients.getIngredientsFromRecipes(recipesToDisplay))
+            listsUpdate(Ingredients.getIngredientsFromRecipes(recipesToDisplay),
+            Appliance.getAppliancesFromRecipes(recipesToDisplay))
         })
     }
     

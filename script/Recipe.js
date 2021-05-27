@@ -127,4 +127,8 @@ export class Recipe {
         }
         return recipeIngredientsList;
     }
+
+    static getApplianceFromRecipe(recipe){
+        return recipe.appliance
+    }
 }

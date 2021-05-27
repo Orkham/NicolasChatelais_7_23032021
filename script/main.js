@@ -55,10 +55,6 @@ export function displaySearchByInputResults(){
         
         let searchKeyWord = cleanWord(searchInput.value.toLowerCase().trim());
         
-        //ingredientsToDisplay = [];
-        //appliancesToDisplay = [];
-        //ustensilsToDisplay = [];
-        
         recipesToDisplay = [];
         collectResults(recipesToDisplay, recipes, searchKeyWord)
         Recipe.displayRecipes(recipesToDisplay, recipesToDisplay.length)
@@ -68,7 +64,7 @@ export function displaySearchByInputResults(){
         //ustensilsToDisplay =  Ustensils.getUstensilsFromRecipes(recipesToDisplay);//
 
         listsUpdate(ingredientsToDisplay,appliancesToDisplay/*,ustensilsToDisplay*/)
-        console.log(recipesToDisplay)
+        //console.log(appliancesToDisplay)
         return recipesToDisplay;
     }
 }
