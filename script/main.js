@@ -64,7 +64,7 @@ export function displaySearchByInputResults(){
         //ustensilsToDisplay =  Ustensils.getUstensilsFromRecipes(recipesToDisplay);//
 
         listsUpdate(ingredientsToDisplay,appliancesToDisplay/*,ustensilsToDisplay*/)
-        //console.log(appliancesToDisplay)
+        
         return recipesToDisplay;
     }
 }
@@ -74,12 +74,10 @@ function displaySearchByIngredientsResults(){
     
     let searchByIngredientsLength = searchByIngredients.value.length;
     let searchByIngredientsValue = searchByIngredients.value;
-    //listsUpdate(ingredientsToDisplay,appliancesToDisplay)
 
     if(searchByIngredientsLength > 0 && searchInput.value.length > 0){
         
         let filteredList = [];
-        //ingredientsToDisplay = Ingredients.getIngredientsFromRecipes()
 
         for(let i = 0 ; i < ingredientsToDisplay.length ; i++){
 
@@ -97,8 +95,7 @@ function displaySearchByIngredientsResults(){
         
 
     }else if(searchByIngredientsLength === 0){
-        console.log(recipesToDisplay)
-        ingredientsDisplay(recipes);
+        ingredientsDisplay(displaySearchByInputResults());
 
     }else if(searchByIngredientsLength > 0 && searchInput.value.length == 0){
         let filteredList = [];
@@ -116,7 +113,9 @@ function displaySearchByIngredientsResults(){
         }
         
         Ingredients.ingredientsListener(ingredientsBox)
-    }
+    }/*else if(searchByIngredientsLength == 0 && searchInput.value.length > 0){
+        
+    }*/
     
     
 }

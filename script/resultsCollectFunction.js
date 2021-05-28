@@ -7,7 +7,7 @@ export function collectResults(recipesToDisplay, recipesArray, search){
 }
 
 
-export function displayRecipesWithNameResults(recipesToDisplay, recipesArray, search){
+function displayRecipesWithNameResults(recipesToDisplay, recipesArray, search){
     for(let i = 0 ; i < recipesArray.length ; i++){
         if(cleanWord(recipesArray[i].name.toLowerCase().trim()).includes(search)){
             if(!(recipesToDisplay.includes(recipesArray[i]))){
@@ -17,7 +17,7 @@ export function displayRecipesWithNameResults(recipesToDisplay, recipesArray, se
     }
 }
 
-export function displayRecipesWithIngredientResults(recipesToDisplay, recipesArray, search){
+function displayRecipesWithIngredientResults(recipesToDisplay, recipesArray, search){
     for(let i = 0 ; i < recipesArray.length ; i++){
         for(let j = 0 ; j < recipesArray[i].ingredients.length ; j++){
             if ((cleanWord(recipesArray[i].ingredients[j].ingredient.toLowerCase().trim())).includes(search)){
