@@ -40,8 +40,13 @@
             <i class="fas fa-chevron-down text-white position-absolute chevrons" id="chevron-downIngredients"></i>
             <i class="fas fa-chevron-up text-white position-absolute chevrons d-none" id="chevron-upIngredients"></i>
             <div class="text-white mr-3 border-0 pl-3 pr-0 pt-4 pb-4 font-weight-bold inputSearch d-none" id="ingredientsList">
+                <div class="container d-none" id="noResultIngredientsBox">
+                    <div class="text-center">Aucune recette ne correspond à votre critère. Vous pouvez chercher "pomme", "fromage", etc...
+                    </div>
+                </div>
                 <ul class="pl-0 container row pr-0" id="ingredientsBox">
                 </ul>
+                
             </div>
         </div>
 
@@ -50,6 +55,10 @@
             <i class="fas fa-chevron-down text-white position-absolute chevrons" id="chevron-downAppareil"></i>
             <i class="fas fa-chevron-up text-white position-absolute chevrons d-none" id="chevron-upAppareil"></i>
             <div class="text-white mr-3 border-0 pl-3 pr-0 pt-4 pb-4 font-weight-bold inputSearch d-none" id="appareilsList">
+                <div class="container d-none" id="noResultAppareilsBox">
+                    <div class="text-center">Aucune recette ne correspond à votre critère. Vous pouvez chercher "blender", "saladier", etc...
+                    </div>
+                </div>
                 <ul class="pl-0 container row pr-0" id="appareilsBox">
                 </ul>
             </div>
@@ -60,6 +69,10 @@
             <i class="fas fa-chevron-down text-white position-absolute chevrons" id="chevron-downUstensiles"></i>
             <i class="fas fa-chevron-up text-white position-absolute chevrons d-none" id="chevron-upUstensiles"></i>
             <div class="text-white mr-3 border-0 pl-3 pr-0 pt-4 pb-4 font-weight-bold inputSearch d-none" id="ustensilesList">
+                <div class="container d-none" id="noResultUstensilsBox">
+                    <div class="text-center">Aucune recette ne correspond à votre critère. Vous pouvez chercher "verre", "passoire", etc...
+                    </div>
+                </div>
                 <ul class="pl-0 container row pr-0" id="ustensilesBox">
                 </ul>
             </div>
@@ -75,9 +88,11 @@
     </div>
         
 </div>
-<!--
-<button id="test">Cliquer</button>
--->
+
+<div class="noResultMessage container d-none" id="noResultMessageBox">
+    <div class="text-center">Aucune recette ne correspond à votre critère. Vous pouvez chercher "tarte aux pommes", "poisson", etc...
+    </div>
+</div>
 
 <script type="module" src=script/main.js></script>
 <script type="module" src=script/ingredientsDisplay.js></script>

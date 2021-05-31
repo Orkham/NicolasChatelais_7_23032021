@@ -4,6 +4,11 @@ export function collectResults(recipesToDisplay, recipesArray, search){
     displayRecipesWithNameResults(recipesToDisplay, recipesArray, search)
     displayRecipesWithIngredientResults(recipesToDisplay, recipesArray, search)
     displayRecipesWithDescriptionResults(recipesToDisplay, recipesArray, search)
+    if(recipesToDisplay.length == 0){
+        document.getElementById('noResultMessageBox').classList.remove('d-none')
+    }else{
+        document.getElementById('noResultMessageBox').classList.add('d-none')
+    }
 }
 
 

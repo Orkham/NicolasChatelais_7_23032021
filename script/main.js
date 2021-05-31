@@ -74,13 +74,20 @@ function displaySearchByIngredientsResults(){
             } 
         }
         clearListDisplay(ingredientsBox);
+        if(filteredList.length == 0){
+            document.getElementById('noResultIngredientsBox').classList.remove('d-none')
+        }else{
+            document.getElementById('noResultIngredientsBox').classList.add('d-none')
+        }
         for(let j = 0 ; j < filteredList.length ; j++){
             Ingredients.displayIngredient(filteredList[j])
+            
         }
         Ingredients.ingredientsListener(ingredientsBox)
         
     }else if(searchByIngredientsLength === 0){
         ingredientsDisplay(displaySearchByInputResults());
+        
     }/*else if(searchByIngredientsLength > 0 && searchInput.value.length == 0){
         let filteredList = [];
         let initialIngredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipes);
@@ -127,16 +134,18 @@ function displaySearchByUstensilesResults(){
 searchInput.addEventListener('input', displaySearchByInputResults);
 searchByIngredients.addEventListener('input', displaySearchByIngredientsResults);
 searchByIngredients.addEventListener('click', IngredientsSelectDisplay.displayCatchphrase);
-//searchByIngredients.addEventListener('focusout', IngredientsSelectDisplay.focusLost)
-//searchByIngredients.onblur = IngredientsSelectDisplay.focusLost
+searchByIngredients.addEventListener('click', AppliancesSelectDisplay.focusLost);
+searchByIngredients.addEventListener('click', UstensilsSelectDisplay.focusLost);
 
 searchByAppareil.addEventListener('input', displaySearchByAppareilResults);
 searchByAppareil.addEventListener('click', AppliancesSelectDisplay.displayCatchphrase)
-searchByAppareil.onblur = AppliancesSelectDisplay.focusLost
+searchByAppareil.addEventListener('click', IngredientsSelectDisplay.focusLost)
+searchByAppareil.addEventListener('click', UstensilsSelectDisplay.focusLost)
 
 searchByUstensiles.addEventListener('input', displaySearchByUstensilesResults);
 searchByUstensiles.addEventListener('click', UstensilsSelectDisplay.displayCatchphrase)
-searchByUstensiles.onblur = UstensilsSelectDisplay.focusLost 
+searchByUstensiles.addEventListener('click', IngredientsSelectDisplay.focusLost)
+searchByUstensiles.addEventListener('click', AppliancesSelectDisplay.focusLost)
 
 window.addEventListener('click', IngredientsSelectDisplay.focusLost)
 window.addEventListener('click', AppliancesSelectDisplay.focusLost)

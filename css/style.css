@@ -10084,3 +10084,6 @@ body{
 .width-xl{
   width: 667px;
 }
+.noResultMessage{
+  /*display: none;*/
+}
