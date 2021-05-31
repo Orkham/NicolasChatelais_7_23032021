@@ -45,3 +45,9 @@ export function pushRecipeInArray(newRecipesToDisplayList, recipe){
         newRecipesToDisplayList.push(recipe)
     }
 }
+
+export function isInputLongEnough(input){
+    if(input>2){
+        return true
+    }
+}

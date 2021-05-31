@@ -9988,6 +9988,7 @@ body{
 #inputAppareil:focus::placeholder,
 #inputUstensiles:focus::placeholder{
   opacity: 0.5;
+  outline: none;
 }
 #ingredientsList, #appareilsList, #ustensilesList{
   border-radius: 0 0 5px 5px;

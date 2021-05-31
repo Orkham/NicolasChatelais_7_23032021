@@ -1,8 +1,12 @@
-import { recipesToDisplay, tagsListBox, tagsListArray, recipesBoxContainer,displaySearchByInputResults } from './main.js'
+import { displaySearchByInputResults } from './main.js'
 import { recipes } from './recipes.js';
 import { Recipe } from './Recipe.js';
 
-
+/**
+ * fonction filtrant les recettes par rapport aux tags sélectionnés
+ * @param { array } tagsListArray liste des tags sélectionnés
+ * @returns array des recettes à afficher
+ */
 export function getRecipesFromTags(tagsListArray){
     
     let searchInput = document.getElementById('formGroupExampleInput');
@@ -10,17 +14,13 @@ export function getRecipesFromTags(tagsListArray){
     let recipesFromSearch = displaySearchByInputResults()
 
     if(tagsListArray.length > 0){
-        
         let newRecipesToDisplayList = []
         let temp = []
         if(searchInputLength === 0){
             recipesFromSearch = recipes
         }
-        
         for(let i = 0 ; i < tagsListArray.length ; i++){
-            
             if(i == 0){
-                //console.log('init')
                 switch(tagsListArray[i].type){
                     case 'ingredient':
                         for(let recipe of recipesFromSearch){
@@ -34,47 +34,40 @@ export function getRecipesFromTags(tagsListArray){
                         break
                     case 'ustensil':
                         console.log('coucou ustensile')
-                }
-                    
+                }        
             }else if(i > 0){
                 temp = []
-                console.log(newRecipesToDisplayList)
                 for(let recipe of newRecipesToDisplayList){
-                    //console.log(recipe)
                     filterByTag(tagsListArray[i], recipe, temp)
                 }
-                //console.log(temp)
-                //console.log(newRecipesToDisplayList)
                 newRecipesToDisplayList = temp
-                console.log(newRecipesToDisplayList)
             }
         }
-      
-        
         return newRecipesToDisplayList
-
     }else if(searchInputLength > 0 && tagsListArray.length == 0){
         return recipesFromSearch
     }else if (searchInputLength == 0 && tagsListArray.length == 0){
         recipesFromSearch = recipes        
         return recipesFromSearch
     }
-    
 }
 
-
+/**
+ * 
+ * @param { Tag } tag objet de class Tag
+ * @param { Recipe } recipe objet de class Recipe
+ * @param { array } newRecipesToDisplayList tableau recevant les recettes filtrées
+ * @returns array des recettes filtrées
+ */
 function filterByTag(tag, recipe, newRecipesToDisplayList){
-    //console.log(tag.type)
     switch(tag.type){
         case 'ingredient':
             let ingredientsList = Recipe.getIngredientsFromRecipe(recipe)
-            //console.log('test')
             if(ingredientsList.includes(tag.name)){
                 newRecipesToDisplayList.push(recipe)
             }
             return newRecipesToDisplayList
         case 'appliance':
-            //console.log('filtre par appareil')
             let appliance = Recipe.getApplianceFromRecipe(recipe)
             if(appliance == tag.name){
                 newRecipesToDisplayList.push(recipe)

@@ -4,11 +4,11 @@ import { getRecipesFromTags }  from './filterByTags.js'
 import { Tag } from './Tag.js'
 import { listsUpdate } from './listsUpdate.js';
 import { Appliance } from './Appliance.js'
-import { clearListDisplay } from './utils.js'
 
 let searchInput = document.getElementById('formGroupExampleInput');
-
-
+/**
+ * Class pour gérer les ingrédients (affichage, écouteurs et méthodes)
+ */
 export class Ingredients {
     constructor(){
         this.ingredientToDisplay = function (ingredient, ingredientsList){
@@ -16,9 +16,10 @@ export class Ingredients {
                 ingredientsList.push(ingredient)
             }
         };
-        
     }
-    
+    /**
+     * Affichage d'un ingrédient dans la select box
+     */
     static displayIngredient(ingredient){
         let ingredientToDisplay = document.createElement("li");
         ingredientToDisplay.appendChild(document.createTextNode(ingredient));
@@ -26,22 +27,20 @@ export class Ingredients {
         ingredientToDisplay.className = "col-4";
         ingredientToDisplay.dataset.type = "ingredient"
     }
-
+    /**
+     * Pose des écouteurs sur chaque ingrédients de la select box
+     * @param { HTMLElement } ingredientsBox ul contenant les différents ingrédients
+     */
     static ingredientsListener(ingredientsBox){
-        
         let listOfIngredientsName = []
         for(let tag of tagsListArray){
             listOfIngredientsName.push(tag.name)
         }
         
         for(let i = 0 ; i < ingredientsBox.childElementCount ; i++){
-            
             ingredientsBox.children[i].addEventListener('click',  (e)=>{
-                
                 let newTag = new Tag(e)
-                
                 if(!(listOfIngredientsName.includes(newTag.name))){    
-                    
                     newTag.displayTag()
                     tagsListArray.push(newTag)
                     let recipesListToDisplay = getRecipesFromTags(tagsListArray)
@@ -50,15 +49,16 @@ export class Ingredients {
                     let aplliancesList = Appliance.getAppliancesFromRecipes(recipesListToDisplay)
                     listsUpdate(ingredientsList,aplliancesList)
                     document.getElementById('inputIngredients').value = ""
-                    
                 }
-                
             })
         }
     }
-
+    /**
+     * méthode pour lister et renvoyer les ingrédients à afficher dans la select box
+     * @param { array } recipesList tableau des recettes affichées
+     * @returns array des ingrédients à afficher
+     */
     static getIngredientsFromRecipes(recipesList){
-        //console.log(recipesList)
         let ingredientsListToDisplay = [];
         for(let i = 0 ; i < recipesList.length ; i++){
             for(let j = 0 ; j < recipesList[i].ingredients.length ; j++){
