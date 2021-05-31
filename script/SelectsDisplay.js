@@ -7,6 +7,7 @@ let searchByUstensiles = document.getElementById('inputUstensiles');
 export class IngredientsSelectDisplay {
     
     displayIngredientsList() {
+        event.stopPropagation()
         document.getElementById('ingredientsList').classList.toggle('d-none');
         document.getElementById('ingredientsList').classList.toggle('width-xl');
         searchByIngredients.classList.toggle('width-xl');
@@ -38,6 +39,7 @@ export class IngredientsSelectDisplay {
 export class AppliancesSelectDisplay {
     
     displayAppliancesList() {
+        event.stopPropagation()
         document.getElementById('appareilsList').classList.toggle('d-none');
         document.getElementById('appareilsList').classList.toggle('width-xl');
         searchByAppareil.classList.toggle('width-xl');
@@ -68,6 +70,7 @@ export class AppliancesSelectDisplay {
 export class UstensilsSelectDisplay {
     
     displayUstensilesList() {
+        event.stopPropagation()
         document.getElementById('ustensilesList').classList.toggle('d-none');
         document.getElementById('ustensilesList').classList.toggle('width-xl');
         searchByUstensiles.classList.toggle('width-xl');

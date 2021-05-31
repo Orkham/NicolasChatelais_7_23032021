@@ -70,10 +70,10 @@ function displaySearchByIngredientsResults(){
         let filteredList = [];
         for(let i = 0 ; i < ingredientsToDisplay.length ; i++){
             if((cleanWord(ingredientsToDisplay[i]).toLowerCase().trim()).includes(cleanWord(searchByIngredientsValue.toLowerCase().trim()))){
-                clearListDisplay(ingredientsBox);
                 filteredList.push(ingredientsToDisplay[i])
             } 
         }
+        clearListDisplay(ingredientsBox);
         for(let j = 0 ; j < filteredList.length ; j++){
             Ingredients.displayIngredient(filteredList[j])
         }
@@ -127,7 +127,8 @@ function displaySearchByUstensilesResults(){
 searchInput.addEventListener('input', displaySearchByInputResults);
 searchByIngredients.addEventListener('input', displaySearchByIngredientsResults);
 searchByIngredients.addEventListener('click', IngredientsSelectDisplay.displayCatchphrase);
-searchByIngredients.onblur = IngredientsSelectDisplay.focusLost
+//searchByIngredients.addEventListener('focusout', IngredientsSelectDisplay.focusLost)
+//searchByIngredients.onblur = IngredientsSelectDisplay.focusLost
 
 searchByAppareil.addEventListener('input', displaySearchByAppareilResults);
 searchByAppareil.addEventListener('click', AppliancesSelectDisplay.displayCatchphrase)
@@ -137,7 +138,9 @@ searchByUstensiles.addEventListener('input', displaySearchByUstensilesResults);
 searchByUstensiles.addEventListener('click', UstensilsSelectDisplay.displayCatchphrase)
 searchByUstensiles.onblur = UstensilsSelectDisplay.focusLost 
 
-
+window.addEventListener('click', IngredientsSelectDisplay.focusLost)
+window.addEventListener('click', AppliancesSelectDisplay.focusLost)
+window.addEventListener('click', UstensilsSelectDisplay.focusLost)
 /**
  * Affichage initial des recettes
  */
