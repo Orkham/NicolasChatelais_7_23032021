@@ -9,10 +9,10 @@ import { Ustensils } from './Ustensils.js';
  * @param { array } appliancesToDisplay 
  * @param { array } ustensilsToDisplay
  */
-export function listsUpdate(ingredientsToDisplay,appliancesToDisplay/*,ustensilsToDisplay*/){
+export function listsUpdate(ingredientsToDisplay, appliancesToDisplay, ustensilsToDisplay){
     ingredientsListUpdate(ingredientsToDisplay)
     appliancesListUpdate(appliancesToDisplay)
-    //ustensilsListUpdate(ustensilsToDisplay)
+    ustensilsListUpdate(ustensilsToDisplay)
 }
 /**
  * Mise à jour du select Ingredient et pose des écouteurs

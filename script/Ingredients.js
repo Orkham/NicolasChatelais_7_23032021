@@ -4,6 +4,7 @@ import { getRecipesFromTags }  from './filterByTags.js'
 import { Tag } from './Tag.js'
 import { listsUpdate } from './listsUpdate.js';
 import { Appliance } from './Appliance.js'
+import { Ustensils } from './Ustensils.js'
 
 let searchInput = document.getElementById('formGroupExampleInput');
 /**
@@ -46,8 +47,9 @@ export class Ingredients {
                     let recipesListToDisplay = getRecipesFromTags(tagsListArray)
                     Recipe.displayRecipes(recipesListToDisplay)
                     let ingredientsList = Ingredients.getIngredientsFromRecipes(recipesListToDisplay)
-                    let aplliancesList = Appliance.getAppliancesFromRecipes(recipesListToDisplay)
-                    listsUpdate(ingredientsList,aplliancesList)
+                    let appliancesList = Appliance.getAppliancesFromRecipes(recipesListToDisplay)
+                    let ustensilsList = Ustensils.getUstensilsFromRecipes(recipesListToDisplay)
+                    listsUpdate(ingredientsList, appliancesList, ustensilsList)
                     document.getElementById('inputIngredients').value = ""
                 }
             })

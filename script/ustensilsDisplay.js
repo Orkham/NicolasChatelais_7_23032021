@@ -1,34 +1,19 @@
-import {recipes} from './recipes.js'
-import {Ustensils} from './Ustensils.js'
-import {UstensilsSelectDisplay} from './SelectsDisplay.js'
-import {firstLetterUppercase} from './utils.js'
+import { Ustensils } from './Ustensils.js'
+import { UstensilsSelectDisplay } from './SelectsDisplay.js'
 import { clearListDisplay } from './utils.js'
 
-/*** Parcourir les recettes et extraire les ustensiles***/
-
-let ustensilesListToDisplay = [];
-
-for(let i = 0 ; i < recipes.length ; i++){
-    for(let j = 0 ; j < recipes[i].ustensils.length ; j++){
-        let ustensil = new Ustensils;
-        ustensil.ustensilToDisplay(recipes[i].ustensils[j], ustensilesListToDisplay)
-    }
-}
-
-/*** Affichage initial des ustensiles ***/
-export function initialUstensilsDisplay() {
+let searchByUstensils = document.getElementById('inputUstensiles');
+let selectUstensilsDisplay = new UstensilsSelectDisplay;
+searchByUstensils.addEventListener('click', selectUstensilsDisplay.displayUstensilesList);
+/**
+ * Affichage des ustensiles en fonction des recettes affichées
+ * @param { array } recipesList liste des recettes affichées
+ */
+ export function ustensilsDisplay(recipesList){
     clearListDisplay(document.getElementById('ustensilesBox'))
-    for(let ustensil of ustensilesListToDisplay){
-        Ustensils.displayUstensil(ustensil)
+    let ustensilsListToDisplay = Ustensils.getUstensilsFromRecipes(recipesList)
+    for(let i = 0 ; i < ustensilsListToDisplay.length ; i++){
+        Ustensils.displayUstensil(ustensilsListToDisplay[i])
     }
     Ustensils.ustensilsListener(ustensilesBox);
 }
-
-
-
-/*****Selects*****/
-
-/*Ustensiles*/
-let selectUstensilsDisplay = new UstensilsSelectDisplay;
-let searchByUstensiles = document.getElementById('inputUstensiles')
-searchByUstensiles.addEventListener('click', selectUstensilsDisplay.displayUstensilesList);

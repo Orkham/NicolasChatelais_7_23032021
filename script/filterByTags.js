@@ -21,6 +21,10 @@ export function getRecipesFromTags(tagsListArray){
         }
         for(let i = 0 ; i < tagsListArray.length ; i++){
             if(i == 0){
+                for(let recipe of recipesFromSearch){
+                    filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
+                }
+                /*
                 switch(tagsListArray[i].type){
                     case 'ingredient':
                         for(let recipe of recipesFromSearch){
@@ -33,8 +37,11 @@ export function getRecipesFromTags(tagsListArray){
                         }
                         break
                     case 'ustensil':
-                        console.log('coucou ustensile')
-                }        
+                        for(let recipe of recipesFromSearch){
+                            filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
+                        }
+                }  
+                */      
             }else if(i > 0){
                 temp = []
                 for(let recipe of newRecipesToDisplayList){
@@ -74,7 +81,10 @@ function filterByTag(tag, recipe, newRecipesToDisplayList){
             }
             break;
         case 'ustensil':
-            console.log('filtre par ustensile')
+            let ustensilsList = Recipe.getUstensilsFromRecipe(recipe)
+            if(ustensilsList.includes(tag.name)){
+                newRecipesToDisplayList.push(recipe)
+            }
             break;
     }
     

@@ -8,7 +8,7 @@ import { clearListDisplay, cleanWord, isInputLongEnough } from './utils.js'
 import { listsUpdate } from './listsUpdate.js'
 import { ingredientsDisplay } from './ingredientsDisplay.js'
 import { appliancesDisplay } from './appliancesDisplay.js'
-import { initialUstensilsDisplay } from './ustensilsDisplay.js'
+import { ustensilsDisplay } from './ustensilsDisplay.js'
 import { collectResults } from './resultsCollectFunction.js'
 
 
@@ -30,8 +30,8 @@ let searchByUstensiles = document.getElementById('inputUstensiles')
 
 
 let ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipes);
-let appliancesToDisplay = Appliance.getAppliancesFromRecipes(recipes); /**/
-//let ustensilsToDisplay = Ustensils.getUstensilsFromRecipes(recipes); /**/
+let appliancesToDisplay = Appliance.getAppliancesFromRecipes(recipes); 
+let ustensilsToDisplay = Ustensils.getUstensilsFromRecipes(recipes);
 
 
 /**
@@ -51,8 +51,8 @@ export function displaySearchByInputResults(){
         Recipe.displayRecipes(recipesToDisplay, recipesToDisplay.length)
         ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipesToDisplay)
         appliancesToDisplay = Appliance.getAppliancesFromRecipes(recipesToDisplay)
-        //ustensilsToDisplay =  Ustensils.getUstensilsFromRecipes(recipesToDisplay);
-        listsUpdate(ingredientsToDisplay,appliancesToDisplay/*,ustensilsToDisplay*/)
+        ustensilsToDisplay =  Ustensils.getUstensilsFromRecipes(recipesToDisplay);
+        listsUpdate(ingredientsToDisplay, appliancesToDisplay, ustensilsToDisplay)
         return recipesToDisplay;
     }
 }
@@ -65,7 +65,7 @@ function displaySearchByIngredientsResults(){
     let searchByIngredientsLength = searchByIngredients.value.length;
     let searchByIngredientsValue = searchByIngredients.value;
 
-    if(searchByIngredientsLength > 0/* && searchInput.value.length > 0*/){
+    if(searchByIngredientsLength > 0){
         
         let filteredList = [];
         for(let i = 0 ; i < ingredientsToDisplay.length ; i++){
@@ -81,27 +81,12 @@ function displaySearchByIngredientsResults(){
         }
         for(let j = 0 ; j < filteredList.length ; j++){
             Ingredients.displayIngredient(filteredList[j])
-            
         }
         Ingredients.ingredientsListener(ingredientsBox)
         
     }else if(searchByIngredientsLength === 0){
         ingredientsDisplay(displaySearchByInputResults());
-        
-    }/*else if(searchByIngredientsLength > 0 && searchInput.value.length == 0){
-        let filteredList = [];
-        let initialIngredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipes);
-        for(let i = 0 ; i < initialIngredientsToDisplay.length ; i++){
-            if((cleanWord(initialIngredientsToDisplay[i]).toLowerCase().trim()).includes(cleanWord(searchByIngredientsValue.toLowerCase().trim()))){
-                clearListDisplay(ingredientsBox);
-                filteredList.push(initialIngredientsToDisplay[i])
-            }
-        }
-        for(let j = 0 ; j < filteredList.length ; j++){
-            Ingredients.displayIngredient(filteredList[j])
-        }
-        Ingredients.ingredientsListener(ingredientsBox)
-    }*/
+    }
 }
 /**
  * Filtre et affiche les résultats de la recherche par appareil
@@ -111,10 +96,28 @@ function displaySearchByAppareilResults(){
     let searchByAppareilLength = searchByAppareil.value.length;
     let searchByAppareilValue = searchByAppareil.value;
     
-    /* Implémenter même méthode que pour les ingrédients */
-    if(isInputLongEnough(searchByAppareilLength)){
-        console.log(searchByAppareilValue)
+    if(searchByAppareilLength > 0){
+
+        let filteredList = []
+        for(let i = 0 ; i < appliancesToDisplay.length ; i++){
+            if((cleanWord(appliancesToDisplay[i]).toLowerCase().trim()).includes(cleanWord(searchByAppareilValue.toLowerCase().trim()))){
+                filteredList.push(appliancesToDisplay[i])
+            } 
+        }
+        clearListDisplay(appareilsBox);
+        if(filteredList.length == 0){
+            document.getElementById('noResultAppareilsBox').classList.remove('d-none')
+        }else{
+            document.getElementById('noResultAppareilsBox').classList.add('d-none')
+        }
+        for(let j = 0 ; j < filteredList.length ; j++){
+            Appliance.displayAppliance(filteredList[j])
+        }
+        Appliance.appliancesListener(appareilsBox)
+    }else if(searchByAppareilLength === 0){
+        appliancesDisplay(displaySearchByInputResults())
     }
+    
     
 }
 /**
@@ -124,9 +127,27 @@ function displaySearchByUstensilesResults(){
     
     let searchByUstensilesLength = searchByUstensiles.value.length;
     let searchByUstensilesValue = searchByUstensiles.value;
-    /* Implémenter même méthode que pour les ingrédients */
-    if(isInputLongEnough(searchByUstensilesLength)){
-        console.log(searchByUstensilesValue)
+    
+    if(searchByUstensilesLength > 0){
+
+        let filteredList = []
+        for(let i = 0 ; i < ustensilsToDisplay.length ; i++){
+            if((cleanWord(ustensilsToDisplay[i]).toLowerCase().trim()).includes(cleanWord(searchByUstensilesValue.toLowerCase().trim()))){
+                filteredList.push(ustensilsToDisplay[i])
+            } 
+        }
+        clearListDisplay(ustensilesBox);
+        if(filteredList.length == 0){
+            document.getElementById('noResultUstensilsBox').classList.remove('d-none')
+        }else{
+            document.getElementById('noResultUstensilsBox').classList.add('d-none')
+        }
+        for(let j = 0 ; j < filteredList.length ; j++){
+            Ustensils.displayUstensil(filteredList[j])
+        }
+        Ustensils.ustensilsListener(ustensilesBox)
+    }else if(searchByUstensilesLength === 0){
+        ustensilsDisplay(displaySearchByInputResults())
     }
 }
 
@@ -150,15 +171,13 @@ searchByUstensiles.addEventListener('click', AppliancesSelectDisplay.focusLost)
 window.addEventListener('click', IngredientsSelectDisplay.focusLost)
 window.addEventListener('click', AppliancesSelectDisplay.focusLost)
 window.addEventListener('click', UstensilsSelectDisplay.focusLost)
+
 /**
  * Affichage initial des recettes
  */
 function initialize(){
     searchInput.value = ""
-    //ajouter clean des recherches par appareils et par ustensiles
     let recipesToDisplay = Recipe.displayRecipes(recipes, 6);
-    ingredientsDisplay(recipes);
-    appliancesDisplay(recipes);
-    initialUstensilsDisplay();/*changer en ustensilsDisplay(recipes)*/
+    listsUpdate(Ingredients.getIngredientsFromRecipes(recipes), Appliance.getAppliancesFromRecipes(recipes), Ustensils.getUstensilsFromRecipes(recipes))
 }
 window.addEventListener('DOMContentLoaded', initialize)

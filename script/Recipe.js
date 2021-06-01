@@ -131,4 +131,13 @@ export class Recipe {
     static getApplianceFromRecipe(recipe){
         return recipe.appliance
     }
+
+    static getUstensilsFromRecipe(recipe){
+        let recipeUstensilsList = []
+
+        for(let ustensil of recipe.ustensils){
+            recipeUstensilsList.push(ustensil)
+        }
+        return recipeUstensilsList
+    }
 }

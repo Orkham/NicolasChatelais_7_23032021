@@ -4,6 +4,7 @@ import { getRecipesFromTags }  from './filterByTags.js'
 import { Tag } from './Tag.js'
 import { listsUpdate } from './listsUpdate.js';
 import { Ingredients } from './Ingredients.js'
+import { Ustensils } from './Ustensils.js'
 
 let searchInput = document.getElementById('formGroupExampleInput');
 
@@ -41,8 +42,10 @@ export class Appliance {
                     tagsListArray.push(newTag)
                     let recipesListToDisplay = getRecipesFromTags(tagsListArray)
                     Recipe.displayRecipes(recipesListToDisplay)
+                    let ingredientsList = Ingredients.getIngredientsFromRecipes(recipesListToDisplay)
                     let appliancesList = Appliance.getAppliancesFromRecipes(recipesListToDisplay)
-                    listsUpdate(Ingredients.getIngredientsFromRecipes(recipesListToDisplay),appliancesList)
+                    let ustensilsList = Ustensils.getUstensilsFromRecipes(recipesListToDisplay)
+                    listsUpdate(ingredientsList, appliancesList, ustensilsList)
                     document.getElementById('inputAppareil').value = ""
                 }
             })
@@ -55,7 +58,6 @@ export class Appliance {
             let appliance = new Appliance;
             appliance.applianceToDisplay(recipesList[i].appliance, appliancesListToDisplay)
         }
-        //console.log(appliancesListToDisplay)
         return appliancesListToDisplay;
     }
 

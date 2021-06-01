@@ -6,6 +6,7 @@ import { getRecipesFromTags }  from './filterByTags.js'
 import { listsUpdate } from './listsUpdate.js'
 import { Ingredients } from './Ingredients.js'
 import { Appliance } from './Appliance.js'
+import { Ustensils } from './Ustensils.js'
 
 export class Tag {
     constructor(e){
@@ -35,7 +36,7 @@ export class Tag {
             //console.log(recipesToDisplay)
             Recipe.displayRecipes(getRecipesFromTags(tagsListArray))
             listsUpdate(Ingredients.getIngredientsFromRecipes(recipesToDisplay),
-            Appliance.getAppliancesFromRecipes(recipesToDisplay))
+            Appliance.getAppliancesFromRecipes(recipesToDisplay), Ustensils.getUstensilsFromRecipes(recipesToDisplay))
         })
     }
     
