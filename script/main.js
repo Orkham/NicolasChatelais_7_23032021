@@ -40,19 +40,26 @@ let ustensilsToDisplay = Ustensils.getUstensilsFromRecipes(recipes);
  */
 export function displaySearchByInputResults(){
     let searchInputLength = searchInput.value.length;
+    /*si la recherche est remise à zéro par l'utilisateur, retour à l'affichage initial*/
     if (searchInputLength == 0){
         clearListDisplay(recipesBoxContainer)
         initialize()
         return recipes
     }else if(isInputLongEnough(searchInputLength)){
+        /*transformer la recherche pour avoir un mot sans majuscule, accent ni espaces en début et fin*/
         let searchKeyWord = cleanWord(searchInput.value.toLowerCase().trim());
+        /*remise à zéro du tableau des recette à afficher*/
         recipesToDisplay = [];
+        /*récupération des résultats des recherches dans name, ingrédients et description des recettes*/
         collectResults(recipesToDisplay, recipes, searchKeyWord)
+        /*affichage des recettes correspondantes aux résultats*/
         Recipe.displayRecipes(recipesToDisplay, recipesToDisplay.length)
+        /*mise à jour des menus selects (ingrédients, appareil et ustensiles)*/
         ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipesToDisplay)
         appliancesToDisplay = Appliance.getAppliancesFromRecipes(recipesToDisplay)
         ustensilsToDisplay =  Ustensils.getUstensilsFromRecipes(recipesToDisplay);
         listsUpdate(ingredientsToDisplay, appliancesToDisplay, ustensilsToDisplay)
+        /*renvoie du tableau des recettes à afficher*/
         return recipesToDisplay;
     }
 }
