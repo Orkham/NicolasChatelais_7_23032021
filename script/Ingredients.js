@@ -61,7 +61,6 @@ export class Ingredients {
      * @returns array des ingrédients à afficher
      */
     static getIngredientsFromRecipes(recipesList){
-        console.log(recipesList)
         let ingredientsListToDisplay = [];
         for(let recipe of recipesList){
             for(let j = 0 ; j < recipe.ingredients.length ; j++){
