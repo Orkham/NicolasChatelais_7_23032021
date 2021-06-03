@@ -81,11 +81,8 @@ export class Recipe {
             
             flexDiv.appendChild(newInstructions);
             
-            
-
             recipesBoxContainer.appendChild(newCard)
 
-            
         }
 
         this.getIngredients = function(){
@@ -110,7 +107,7 @@ export class Recipe {
             let newRecipeToDisplay = new Recipe(recipesArray[i])
             newRecipeToDisplay.createRecipeDisplay()
         }
-        
+
     }
 
     static getRecipesByDataName(name){

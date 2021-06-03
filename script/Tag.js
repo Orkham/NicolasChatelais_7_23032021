@@ -1,6 +1,5 @@
-import { recipesToDisplay, tagsListBox, tagsListArray, recipesBoxContainer,displaySearchByInputResults } from './main.js'
-import {CancelCross} from './CancelCross.js'
-import { recipes } from './recipes.js';
+import { tagsListBox, tagsListArray, displaySearchByInputResults } from './main.js'
+import { CancelCross } from './CancelCross.js'
 import { Recipe } from './Recipe.js';
 import { getRecipesFromTags }  from './filterByTags.js'
 import { listsUpdate } from './listsUpdate.js'

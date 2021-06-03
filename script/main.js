@@ -30,7 +30,7 @@ let searchByIngredients = document.getElementById('inputIngredients');
 let searchByAppareil = document.getElementById('inputAppareil');
 let searchByUstensiles = document.getElementById('inputUstensiles')
 
-export let recipesToDisplay = displaySearchByInputResults();
+//export let recipesToDisplay = displaySearchByInputResults();
 
 
 let ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipesSet);
@@ -53,7 +53,7 @@ export function displaySearchByInputResults(){
         /*transformer la recherche pour avoir un mot sans majuscule, accent ni espaces en début et fin*/
         let searchKeyWord = cleanWord(searchInput.value.toLowerCase().trim());
         /*récupération des résultats des recherches dans name, ingrédients et description des recettes*/
-        let recipesToDisplay = collectResults(recipes, searchKeyWord)
+        let recipesToDisplay = collectResults(recipesSet, searchKeyWord)
         /*affichage des recettes correspondantes aux résultats*/
         Recipe.displayRecipes(recipesToDisplay)
         /*mise à jour des menus selects (ingrédients, appareil et ustensiles)*/
@@ -189,6 +189,6 @@ window.addEventListener('click', UstensilsSelectDisplay.focusLost)
 function initialize(){
     searchInput.value = ""
     Recipe.displayRecipes(recipesSet);
-    listsUpdate(Ingredients.getIngredientsFromRecipes(recipes), Appliance.getAppliancesFromRecipes(recipes), Ustensils.getUstensilsFromRecipes(recipes))
+    listsUpdate(Ingredients.getIngredientsFromRecipes(recipesSet), Appliance.getAppliancesFromRecipes(recipesSet), Ustensils.getUstensilsFromRecipes(recipesSet))
 }
 
