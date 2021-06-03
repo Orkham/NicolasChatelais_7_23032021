@@ -5,6 +5,7 @@ import { clearListDisplay } from './utils.js'
 let searchByUstensils = document.getElementById('inputUstensiles');
 let selectUstensilsDisplay = new UstensilsSelectDisplay;
 searchByUstensils.addEventListener('click', selectUstensilsDisplay.displayUstensilesList);
+
 /**
  * Affichage des ustensiles en fonction des recettes affichées
  * @param { array } recipesList liste des recettes affichées

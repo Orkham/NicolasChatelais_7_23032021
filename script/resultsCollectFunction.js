@@ -1,45 +1,24 @@
 import { cleanWord } from './utils.js'
 
-export function collectResults(recipesToDisplay, recipesArray, search){
-    displayRecipesWithNameResults(recipesToDisplay, recipesArray, search)
-    displayRecipesWithIngredientResults(recipesToDisplay, recipesArray, search)
-    displayRecipesWithDescriptionResults(recipesToDisplay, recipesArray, search)
-    if(recipesToDisplay.length == 0){
+export function collectResults(recipesSet, input){
+    
+    let results = new Set()
+    recipesSet.forEach(recipe => {
+        if(cleanWord(recipe.name).toLowerCase().trim().includes(input) /*||
+        cleanWord(recipe.ingredients).toLowerCase().trim().includes(input)*/ ||
+        cleanWord(recipe.description).toLowerCase().trim().includes(input)){
+            //console.log('trouvé')
+            results.add(recipe)
+        }
+    });
+    
+    if(results.length == 0){
         document.getElementById('noResultMessageBox').classList.remove('d-none')
     }else{
         document.getElementById('noResultMessageBox').classList.add('d-none')
     }
+
+   return results
 }
 
 
-function displayRecipesWithNameResults(recipesToDisplay, recipesArray, search){
-    for(let i = 0 ; i < recipesArray.length ; i++){
-        if(cleanWord(recipesArray[i].name.toLowerCase().trim()).includes(search)){
-            if(!(recipesToDisplay.includes(recipesArray[i]))){
-                recipesToDisplay.push(recipesArray[i])
-            }
-        }
-    }
-}
-
-function displayRecipesWithIngredientResults(recipesToDisplay, recipesArray, search){
-    for(let i = 0 ; i < recipesArray.length ; i++){
-        for(let j = 0 ; j < recipesArray[i].ingredients.length ; j++){
-            if ((cleanWord(recipesArray[i].ingredients[j].ingredient.toLowerCase().trim())).includes(search)){
-                if(!(recipesToDisplay.includes(recipesArray[i]))){
-                    recipesToDisplay.push(recipesArray[i])
-                }
-            }
-        }
-    }
-}
-
-function displayRecipesWithDescriptionResults(recipesToDisplay, recipesArray, search){
-    for(let i = 0 ; i < recipesArray.length ; i++){
-        if(cleanWord(recipesArray[i].description.toLowerCase().trim()).includes(search)){
-            if(!(recipesToDisplay.includes(recipesArray[i]))){
-                recipesToDisplay.push(recipesArray[i])
-            }
-        }
-    }
-}

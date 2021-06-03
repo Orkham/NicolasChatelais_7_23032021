@@ -5,6 +5,7 @@ import { Tag } from './Tag.js'
 import { listsUpdate } from './listsUpdate.js';
 import { Appliance } from './Appliance.js'
 import { Ingredients } from './Ingredients.js'
+import { firstLetterUppercase } from './utils.js'
 
 /**
  * Class pour gérer les ustensiles (affichage, éccouteurs et méthodes)
@@ -23,7 +24,7 @@ export class Ustensils {
      */
     static displayUstensil(ustensil){
         let ustensilToDisplay = document.createElement("li");
-        ustensilToDisplay.appendChild(document.createTextNode((ustensil)));
+        ustensilToDisplay.appendChild(document.createTextNode((firstLetterUppercase(ustensil))));
         ustensilesBox.appendChild(ustensilToDisplay);
         ustensilToDisplay.className = "col-4";
         ustensilToDisplay.dataset.type = "ustensil"

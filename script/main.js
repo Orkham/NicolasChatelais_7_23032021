@@ -11,6 +11,9 @@ import { appliancesDisplay } from './appliancesDisplay.js'
 import { ustensilsDisplay } from './ustensilsDisplay.js'
 import { collectResults } from './resultsCollectFunction.js'
 
+window.addEventListener('DOMContentLoaded', initialize)
+
+let recipesSet = new Set(recipes)
 
 /***DECLARATIONS***/
 const ingredientsBox = document.getElementById('ingredientsBox');
@@ -19,7 +22,6 @@ const ustensilesBox = document.getElementById('ustensilesBox');
 export const recipesBoxContainer = document.getElementById('recipesBoxContainer');
 export const tagsListBox = document.getElementById('tagsList');
 export let tagsListArray = []
-export let recipesToDisplay = [];
 
 /***Fonctionnalités d'affichage***/
 let searchButton = document.getElementById('searchIcon');
@@ -28,10 +30,12 @@ let searchByIngredients = document.getElementById('inputIngredients');
 let searchByAppareil = document.getElementById('inputAppareil');
 let searchByUstensiles = document.getElementById('inputUstensiles')
 
+export let recipesToDisplay = displaySearchByInputResults();
 
-let ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipes);
-let appliancesToDisplay = Appliance.getAppliancesFromRecipes(recipes); 
-let ustensilsToDisplay = Ustensils.getUstensilsFromRecipes(recipes);
+
+let ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipesSet);
+let appliancesToDisplay = Appliance.getAppliancesFromRecipes(recipesSet); 
+let ustensilsToDisplay = Ustensils.getUstensilsFromRecipes(recipesSet);
 
 
 /**
@@ -44,21 +48,21 @@ export function displaySearchByInputResults(){
     if (searchInputLength == 0){
         clearListDisplay(recipesBoxContainer)
         initialize()
-        return recipes
+        return recipesSet
     }else if(isInputLongEnough(searchInputLength)){
         /*transformer la recherche pour avoir un mot sans majuscule, accent ni espaces en début et fin*/
         let searchKeyWord = cleanWord(searchInput.value.toLowerCase().trim());
-        /*remise à zéro du tableau des recette à afficher*/
-        recipesToDisplay = [];
         /*récupération des résultats des recherches dans name, ingrédients et description des recettes*/
-        collectResults(recipesToDisplay, recipes, searchKeyWord)
+        let recipesToDisplay = collectResults(recipes, searchKeyWord)
         /*affichage des recettes correspondantes aux résultats*/
-        Recipe.displayRecipes(recipesToDisplay, recipesToDisplay.length)
+        Recipe.displayRecipes(recipesToDisplay)
         /*mise à jour des menus selects (ingrédients, appareil et ustensiles)*/
+        console.log(recipesToDisplay)
         ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipesToDisplay)
         appliancesToDisplay = Appliance.getAppliancesFromRecipes(recipesToDisplay)
         ustensilsToDisplay =  Ustensils.getUstensilsFromRecipes(recipesToDisplay);
         listsUpdate(ingredientsToDisplay, appliancesToDisplay, ustensilsToDisplay)
+        
         /*renvoie du tableau des recettes à afficher*/
         return recipesToDisplay;
     }
@@ -184,7 +188,7 @@ window.addEventListener('click', UstensilsSelectDisplay.focusLost)
  */
 function initialize(){
     searchInput.value = ""
-    let recipesToDisplay = Recipe.displayRecipes(recipes, 6);
+    Recipe.displayRecipes(recipesSet);
     listsUpdate(Ingredients.getIngredientsFromRecipes(recipes), Appliance.getAppliancesFromRecipes(recipes), Ustensils.getUstensilsFromRecipes(recipes))
 }
-window.addEventListener('DOMContentLoaded', initialize)
+

@@ -98,17 +98,19 @@ export class Recipe {
 
     }
     
-    static displayRecipes(recipesArray){
+    static displayRecipes(recipesSet){
+        
+        let recipesArray = Array.from(recipesSet)
         clearListDisplay(recipesBoxContainer)
         let numberToDisplay = 6;
         if(recipesArray.length <= 12){
             numberToDisplay = recipesArray.length
         }
-        
         for(let i = 0 ; i < numberToDisplay ; i++){
-            let recipeToDisplay = new Recipe(recipesArray[i])
-            recipeToDisplay.createRecipeDisplay()
+            let newRecipeToDisplay = new Recipe(recipesArray[i])
+            newRecipeToDisplay.createRecipeDisplay()
         }
+        
     }
 
     static getRecipesByDataName(name){

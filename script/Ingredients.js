@@ -57,15 +57,16 @@ export class Ingredients {
     }
     /**
      * méthode pour lister et renvoyer les ingrédients à afficher dans la select box
-     * @param { array } recipesList tableau des recettes affichées
+     * @param { Set } recipesList set des recettes affichées
      * @returns array des ingrédients à afficher
      */
     static getIngredientsFromRecipes(recipesList){
+        console.log(recipesList)
         let ingredientsListToDisplay = [];
-        for(let i = 0 ; i < recipesList.length ; i++){
-            for(let j = 0 ; j < recipesList[i].ingredients.length ; j++){
+        for(let recipe of recipesList){
+            for(let j = 0 ; j < recipe.ingredients.length ; j++){
                 let ingredient = new Ingredients;
-                ingredient.ingredientToDisplay(recipesList[i].ingredients[j].ingredient, ingredientsListToDisplay)
+                ingredient.ingredientToDisplay(recipe.ingredients[j].ingredient, ingredientsListToDisplay)
             }
         }
         return ingredientsListToDisplay;
