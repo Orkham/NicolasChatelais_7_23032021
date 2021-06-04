@@ -57,7 +57,6 @@ export function displaySearchByInputResults(){
         /*affichage des recettes correspondantes aux résultats*/
         Recipe.displayRecipes(recipesToDisplay)
         /*mise à jour des menus selects (ingrédients, appareil et ustensiles)*/
-        console.log(recipesToDisplay)
         ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipesToDisplay)
         appliancesToDisplay = Appliance.getAppliancesFromRecipes(recipesToDisplay)
         ustensilsToDisplay =  Ustensils.getUstensilsFromRecipes(recipesToDisplay);

@@ -4,15 +4,16 @@ export function collectResults(recipesSet, input){
     
     let results = new Set()
     recipesSet.forEach(recipe => {
+        /*Récupération de la liste des ingrédients pour chaque recette*/
         let ingredientsFromRecipe = new Set()
         for(let ingredient of recipe.ingredients){
             ingredientsFromRecipe.add(cleanWord(ingredient.ingredient))
         }
-        console.log(ingredientsFromRecipe)
-        if(cleanWord(recipe.name).toLowerCase().trim().includes(input) /*||
-        cleanWord(recipe.ingredients).toLowerCase().trim().includes(input)*/ ||
+        let ingredientsFromRecipeArray = Array.from(ingredientsFromRecipe).join(' ').toLocaleLowerCase()
+
+        if(cleanWord(recipe.name).toLowerCase().trim().includes(input) ||
+        ingredientsFromRecipeArray.trim().includes(input) ||
         cleanWord(recipe.description).toLowerCase().trim().includes(input)){
-            //console.log('trouvé')
             results.add(recipe)
         }
     });

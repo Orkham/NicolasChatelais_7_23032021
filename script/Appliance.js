@@ -54,9 +54,9 @@ export class Appliance {
 
     static getAppliancesFromRecipes(recipesList){
         let appliancesListToDisplay = []
-        for(let i = 0 ; i < recipesList.length ; i++){
+        for(let recipe of recipesList){
             let appliance = new Appliance;
-            appliance.applianceToDisplay(recipesList[i].appliance, appliancesListToDisplay)
+            appliance.applianceToDisplay(recipe.appliance, appliancesListToDisplay)
         }
         return appliancesListToDisplay;
     }

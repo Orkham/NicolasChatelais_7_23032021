@@ -58,15 +58,15 @@ export class Ustensils {
     }
     /**
      * méthode pour lister et renvoyer les ustensiles à afficher dans la select box
-     * @param { array } recipesList tableau des recettes affichées
+     * @param { set } recipesList tableau des recettes affichées
      * @returns array des ustensiles à afficher
      */
      static getUstensilsFromRecipes(recipesList){
         let ustensilsListToDisplay = [];
-        for(let i = 0 ; i < recipesList.length ; i++){
-            for(let j = 0 ; j < recipesList[i].ustensils.length ; j++){
+        for(let recipe of recipesList){
+            for(let j = 0 ; j < recipe.ustensils.length ; j++){
                 let ustensil = new Ustensils;
-                ustensil.ustensilToDisplay(recipesList[i].ustensils[j], ustensilsListToDisplay)
+                ustensil.ustensilToDisplay(recipe.ustensils[j], ustensilsListToDisplay)
             }
         }
         return ustensilsListToDisplay;

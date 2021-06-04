@@ -1,6 +1,7 @@
 import { displaySearchByInputResults } from './main.js'
 import { recipes } from './recipes.js';
 import { Recipe } from './Recipe.js';
+import { cleanWord } from './utils.js'
 
 /**
  * fonction filtrant les recettes par rapport aux tags sélectionnés
@@ -24,24 +25,6 @@ export function getRecipesFromTags(tagsListArray){
                 for(let recipe of recipesFromSearch){
                     filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
                 }
-                /*
-                switch(tagsListArray[i].type){
-                    case 'ingredient':
-                        for(let recipe of recipesFromSearch){
-                            filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
-                        }
-                        break;
-                    case 'appliance':
-                        for(let recipe of recipesFromSearch){
-                            filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
-                        }
-                        break
-                    case 'ustensil':
-                        for(let recipe of recipesFromSearch){
-                            filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
-                        }
-                }  
-                */      
             }else if(i > 0){
                 temp = []
                 for(let recipe of newRecipesToDisplayList){
@@ -82,7 +65,9 @@ function filterByTag(tag, recipe, newRecipesToDisplayList){
             break;
         case 'ustensil':
             let ustensilsList = Recipe.getUstensilsFromRecipe(recipe)
-            if(ustensilsList.includes(tag.name)){
+            let cleanTag = cleanWord(tag.name).toLowerCase().trim()
+            let ustensilsMap = ustensilsList.map(ustensil => cleanWord(ustensil).toLowerCase().trim())
+            if(ustensilsMap.includes(cleanTag)){
                 newRecipesToDisplayList.push(recipe)
             }
             break;
