@@ -184,6 +184,9 @@ window.addEventListener('click', UstensilsSelectDisplay.focusLost)
  */
 function initialize(){
     searchInput.value = ""
+    searchByIngredients.value = ""
+    searchByAppareil.value = ""
+    searchByUstensiles.value = ""
     let recipesToDisplay = Recipe.displayRecipes(recipes, 6);
     listsUpdate(Ingredients.getIngredientsFromRecipes(recipes), Appliance.getAppliancesFromRecipes(recipes), Ustensils.getUstensilsFromRecipes(recipes))
 }
