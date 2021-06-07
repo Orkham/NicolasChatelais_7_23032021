@@ -7,7 +7,9 @@ import { Ingredients } from './Ingredients.js'
 import { Ustensils } from './Ustensils.js'
 
 let searchInput = document.getElementById('formGroupExampleInput');
-
+/**
+ * Class pour gérant les appareils (affichage, écouteurs et méthodes)
+ */
 export class Appliance {
     constructor(){
         this.applianceToDisplay = function (appliance, appliancesList){
@@ -16,6 +18,9 @@ export class Appliance {
             }
         };
     }
+    /**
+     * Affichage d'un appareil dans la select box
+     */
     static displayAppliance(appliance){
         let applianceToDisplay = document.createElement("li");
         applianceToDisplay.appendChild(document.createTextNode(appliance));
@@ -23,7 +28,10 @@ export class Appliance {
         applianceToDisplay.className = "col-4";
         applianceToDisplay.dataset.type = "appliance"
     }
-
+    /**
+     * Pose des écouteurs sur chaque appareil de la select box
+     * @param { HTMLElement } appliancesBox ul contenant les différents ingrédients
+     */
     static appliancesListener(appliancesBox){
 
         let listOfAppliancesName = []
@@ -51,7 +59,11 @@ export class Appliance {
             })
         }
     }
-
+    /**
+     * méthode pour lister et renvoyer les appareils à afficher dans la select box
+     * @param { array } recipesList tableau des recettes affichées
+     * @returns array des appareils à afficher
+     */
     static getAppliancesFromRecipes(recipesList){
         let appliancesListToDisplay = []
         for(let i = 0 ; i < recipesList.length ; i++){

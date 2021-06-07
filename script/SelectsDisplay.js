@@ -1,11 +1,15 @@
-//import { Ingredients } from "./Ingredients";
-
 let searchByIngredients = document.getElementById('inputIngredients');
 let searchByAppareil = document.getElementById('inputAppareil');
 let searchByUstensiles = document.getElementById('inputUstensiles');
 
+/**
+ * Class gérant le menu déroulant des ingrédients
+ */
 export class IngredientsSelectDisplay {
     
+    /**
+     * Affichage HTML d'une box pour recevoir les ingrédients
+     */
     displayIngredientsList() {
         event.stopPropagation()
         document.getElementById('ingredientsList').classList.toggle('d-none');
@@ -15,7 +19,9 @@ export class IngredientsSelectDisplay {
         document.getElementById('chevron-downIngredients').classList.toggle('d-none');
         document.getElementById('chevron-upIngredients').classList.toggle('d-none');
     }
-
+    /**
+     * Affichage du placeholder
+     */
     static displayCatchphrase() {
         if((searchByIngredients.classList.contains("width-xl"))){
             searchByIngredients.placeholder = 'Rechercher un ingrédient'
@@ -24,6 +30,9 @@ export class IngredientsSelectDisplay {
         }
     }
 
+    /**
+     * Gestion de l'affichage du menu déroulant
+     */
     static focusLost(){
         document.getElementById('ingredientsSearchbarContainer').classList.remove('width-xl');
         document.getElementById('inputIngredients').classList.remove('width-xl');
@@ -38,6 +47,9 @@ export class IngredientsSelectDisplay {
 
 export class AppliancesSelectDisplay {
     
+    /**
+     * Affichage HTML d'une box pour recevoir les appareils
+     */
     displayAppliancesList() {
         event.stopPropagation()
         document.getElementById('appareilsList').classList.toggle('d-none');
@@ -48,6 +60,9 @@ export class AppliancesSelectDisplay {
         document.getElementById('chevron-upAppareil').classList.toggle('d-none');    
     }
 
+    /**
+     * Affichage du placeholder
+     */
     static displayCatchphrase() {
         if((searchByAppareil.classList.contains("width-xl"))){
             searchByAppareil.placeholder = 'Rechercher un appareil'
@@ -56,6 +71,9 @@ export class AppliancesSelectDisplay {
         }
     }
 
+    /**
+     * Gestion de l'affichage du menu déroulant
+     */
     static focusLost(){
         document.getElementById('appareilsSearchbarContainer').classList.remove('width-xl');
         document.getElementById('inputAppareil').classList.remove('width-xl');
@@ -79,6 +97,9 @@ export class UstensilsSelectDisplay {
         document.getElementById('chevron-upUstensiles').classList.toggle('d-none');    
     }
 
+    /**
+     * Affichage du placeholder
+     */
     static displayCatchphrase(){
         if((searchByUstensiles.classList.contains('width-xl'))){
             searchByUstensiles.placeholder = 'Rechercher un ustensile'
@@ -87,6 +108,9 @@ export class UstensilsSelectDisplay {
         }
     }
 
+    /**
+     * Gestion de l'affichage du menu déroulant
+     */
     static focusLost(){
         document.getElementById('ustensilesSearchbarContainer').classList.remove('width-xl');
         document.getElementById('inputUstensiles').classList.remove('width-xl');

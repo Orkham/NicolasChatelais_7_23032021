@@ -8,7 +8,7 @@ import { Ustensils } from './Ustensils.js'
 
 let searchInput = document.getElementById('formGroupExampleInput');
 /**
- * Class pour gérer les ingrédients (affichage, écouteurs et méthodes)
+ * Class pour gérant les ingrédients (affichage, écouteurs et méthodes)
  */
 export class Ingredients {
     constructor(){
@@ -29,7 +29,7 @@ export class Ingredients {
         ingredientToDisplay.dataset.type = "ingredient"
     }
     /**
-     * Pose des écouteurs sur chaque ingrédients de la select box
+     * Pose des écouteurs sur chaque ingrédient de la select box
      * @param { HTMLElement } ingredientsBox ul contenant les différents ingrédients
      */
     static ingredientsListener(ingredientsBox){

@@ -2,6 +2,9 @@ import { recipes } from './recipes.js';
 import { displayUnit } from './utils.js'
 import { clearListDisplay } from './utils.js'
 
+/**
+ * Class gérant les recettes (affichage et méthodes)
+ */
 export class Recipe {
     constructor(recipe){
         this.name = recipe.name;
@@ -80,28 +83,22 @@ export class Recipe {
             newInstructions.appendChild(document.createTextNode(textDescription))
             
             flexDiv.appendChild(newInstructions);
-            
-            
 
             recipesBoxContainer.appendChild(newCard)
 
-            
-        }
-
-        this.getIngredients = function(){
-            let  recipeIngredientsList = []
-            for(let ingredientsList of this.ingredients){
-                recipeIngredientsList.push(ingredientsList.ingredient)
-            }
-            return recipeIngredientsList;
         }
 
     }
     
+    /**
+     * méthode d'affichage des recettes
+     * @param { array } recipesArray tableau des recettes à afficher
+     */
     static displayRecipes(recipesArray){
         clearListDisplay(recipesBoxContainer)
+        /*Affichage des 6 premières recettes en cas d'affichage initial*/
         let numberToDisplay = 6;
-        if(recipesArray.length <= 12){
+        if(recipesArray.length <= 15){
             numberToDisplay = recipesArray.length
         }
         
@@ -110,7 +107,11 @@ export class Recipe {
             recipeToDisplay.createRecipeDisplay()
         }
     }
-
+    /**
+     * renvoie d'une recette par nom
+     * @param { string } name nom d'une recette
+     * @returns Object Recipe
+     */
     static getRecipesByDataName(name){
         for(let recipe of recipes){
             if(name == recipe.name){
@@ -118,7 +119,11 @@ export class Recipe {
             }
         }
     }
-
+    /**
+     * renvoie d'une liste d'ingrédients en fonction d'une recette
+     * @param { Object } Recipe 
+     * @returns liste d'ingrédients en array
+     */
     static getIngredientsFromRecipe(recipe){
         let  recipeIngredientsList = []
         
@@ -128,10 +133,20 @@ export class Recipe {
         return recipeIngredientsList;
     }
 
+    /**
+     * renvoie d'un appareil en fonction d'une recette
+     * @param { Object } Recipe 
+     * @returns string du nom de l'appareil
+     */
     static getApplianceFromRecipe(recipe){
         return recipe.appliance
     }
 
+    /**
+     * renvoie d'une liste d'ustensiles en fonction d'une recette
+     * @param { Object } Recipe 
+     * @returns liste d'ustensiles en array
+     */
     static getUstensilsFromRecipe(recipe){
         let recipeUstensilsList = []
 

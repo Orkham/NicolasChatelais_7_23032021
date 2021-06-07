@@ -1,9 +1,15 @@
 import {Appliance} from './Appliance.js';
-import {recipes} from './recipes.js';
 import {AppliancesSelectDisplay} from './SelectsDisplay.js';
 import { clearListDisplay } from './utils.js'
 
-/*** Affichage des appareils ***/
+let searchByAppareil = document.getElementById('inputAppareil');
+let selectAppareilsDisplay = new AppliancesSelectDisplay;
+searchByAppareil.addEventListener('click', selectAppareilsDisplay.displayAppliancesList);
+
+/**
+ * Affichage des appareils en fonction des recettes affichées
+ * @param { array } recipesList liste des recettes affichées
+ */
 export function appliancesDisplay(recipesList){
     clearListDisplay(document.getElementById('appareilsBox'))
 
@@ -14,10 +20,3 @@ export function appliancesDisplay(recipesList){
     }
     Appliance.appliancesListener(appareilsBox)
 }
-
-
-/*****Selects*****/
-/*Appareil*/
-let searchByAppareil = document.getElementById('inputAppareil');
-let selectAppareilsDisplay = new AppliancesSelectDisplay;
-searchByAppareil.addEventListener('click', selectAppareilsDisplay.displayAppliancesList);

@@ -187,7 +187,7 @@ function initialize(){
     searchByIngredients.value = ""
     searchByAppareil.value = ""
     searchByUstensiles.value = ""
-    let recipesToDisplay = Recipe.displayRecipes(recipes, 6);
+    /*let recipesToDisplay = */Recipe.displayRecipes(recipes, 6);
     listsUpdate(Ingredients.getIngredientsFromRecipes(recipes), Appliance.getAppliancesFromRecipes(recipes), Ustensils.getUstensilsFromRecipes(recipes))
 }
 window.addEventListener('DOMContentLoaded', initialize)

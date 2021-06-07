@@ -1,3 +1,5 @@
+/* TABLEAU LISTANT L'ENSEMBLE DES RECETTES DE LA BASE DE DONNEES */
+
 export const recipes = [
     {
         "id": 1,

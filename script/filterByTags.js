@@ -24,24 +24,6 @@ export function getRecipesFromTags(tagsListArray){
                 for(let recipe of recipesFromSearch){
                     filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
                 }
-                /*
-                switch(tagsListArray[i].type){
-                    case 'ingredient':
-                        for(let recipe of recipesFromSearch){
-                            filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
-                        }
-                        break;
-                    case 'appliance':
-                        for(let recipe of recipesFromSearch){
-                            filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
-                        }
-                        break
-                    case 'ustensil':
-                        for(let recipe of recipesFromSearch){
-                            filterByTag(tagsListArray[i], recipe, newRecipesToDisplayList)
-                        }
-                }  
-                */      
             }else if(i > 0){
                 temp = []
                 for(let recipe of newRecipesToDisplayList){
@@ -87,6 +69,5 @@ function filterByTag(tag, recipe, newRecipesToDisplayList){
             }
             break;
     }
-    
 }
 
