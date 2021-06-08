@@ -7,7 +7,7 @@ let selectIngredientsDisplay = new IngredientsSelectDisplay;
 searchByIngredients.addEventListener('click', selectIngredientsDisplay.displayIngredientsList);
 
 /**
- * Affichage des ingrédients en fonction des recettes affichées
+ * Affichage des ingrédients dans le menu select en fonction des recettes affichées
  * @param { array } recipesList liste des recettes affichées
  */
 export function ingredientsDisplay(recipesList){

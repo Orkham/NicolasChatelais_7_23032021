@@ -1,4 +1,8 @@
-
+/**
+ * Fonction pour afficher les unités de mesure des recettes
+ * @param { string } unit unité de mesure dans la recette en base
+ * @returns string à afficher dans le HTLM
+ */
 export function displayUnit(unit){
     if(unit === "grammes"){
         return 'g'
@@ -9,12 +13,21 @@ export function displayUnit(unit){
     }
 }
 
+/**
+ * Transforme un texte pour avoir sa première lettre en majuscule
+ * @param { string } text texte à transformer
+ * @returns le texte transformé
+ */
 export function firstLetterUppercase(text){
     let lowerText = text.toLowerCase()
     let cleanText = lowerText.charAt(0).toUpperCase() + lowerText.substring(1)
     return cleanText
 }
 
+/**
+ * Supprime le contenu d'un affichage HTML
+ * @param { HTMLCollection } listToClean contenu de la liste à vider
+ */
 export function clearListDisplay(listToClean){
     
     while(listToClean.childNodes.length !== 1){
@@ -23,6 +36,11 @@ export function clearListDisplay(listToClean){
 
 }
 
+/**
+ * Retire les caractères spéciaux d'un terme
+ * @param { string } str texte à transformer
+ * @returns le string transformé (sans accent)
+ */
 export function cleanWord(str) {
     const map = {
       'a' : 'á|à|ã|â|ä|À|Á|Ã|Â|Ä',
@@ -40,12 +58,22 @@ export function cleanWord(str) {
     return str;
 }
 
+/**
+ * Fonction intégrant une recette dans un tableau si celle-ci n'y est pas déjà
+ * @param { array} newRecipesToDisplayList tableau accueillant les recettes à afficher
+ * @param { Object } recipe recette à pusher dans le tableau
+ */
 export function pushRecipeInArray(newRecipesToDisplayList, recipe){
     if(!newRecipesToDisplayList.includes(recipe)){
         newRecipesToDisplayList.push(recipe)
     }
 }
 
+/**
+ * Vérification de la longueur d'un input 
+ * @param { string } input 
+ * @returns true si l'input est assez long
+ */
 export function isInputLongEnough(input){
     if(input>2){
         return true

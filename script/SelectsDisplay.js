@@ -85,6 +85,9 @@ export class AppliancesSelectDisplay {
     }
 }
 
+/**
+ * Class gérant le menu déroulant des ustensiles
+ */
 export class UstensilsSelectDisplay {
     
     displayUstensilesList() {
