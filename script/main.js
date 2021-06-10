@@ -48,7 +48,7 @@ export function displaySearchByInputResults(){
     }else if(isInputLongEnough(searchInputLength)){
         /*transformer la recherche pour avoir un mot sans majuscule, accent ni espaces en début et fin*/
         let searchKeyWord = cleanWord(searchInput.value.toLowerCase().trim());
-        /*remise à zéro du tableau des recette à afficher*/
+        /*remise à zéro du tableau des recettes à afficher*/
         recipesToDisplay = [];
         /*récupération des résultats des recherches dans name, ingrédients et description des recettes*/
         collectResults(recipesToDisplay, recipes, searchKeyWord)
@@ -187,6 +187,7 @@ function initialize(){
     searchByIngredients.value = ""
     searchByAppareil.value = ""
     searchByUstensiles.value = ""
+    document.getElementById('noResultMessageBox').classList.add('d-none')
     Recipe.displayRecipes(recipes, 6);
     listsUpdate(Ingredients.getIngredientsFromRecipes(recipes), Appliance.getAppliancesFromRecipes(recipes), Ustensils.getUstensilsFromRecipes(recipes))
     ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipes);

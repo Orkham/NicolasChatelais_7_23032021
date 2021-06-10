@@ -3,7 +3,7 @@ import { displayUnit } from './utils.js'
 import { clearListDisplay } from './utils.js'
 
 /**
- * Class gérant les recettes (affichage et méthodes)
+ * Classe gérant les recettes (affichage et méthodes)
  */
 export class Recipe {
     constructor(recipe){
