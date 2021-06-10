@@ -79,3 +79,64 @@ export function isInputLongEnough(input){
         return true
     }
 }
+
+
+
+
+/*** TEST SUR LES BOUCLES ***/
+/*
+let arr = [];
+let max = 100000000
+for(let i = 0 ; i < max ; i++){
+	arr.push(i)
+}
+
+let timerprime;
+let timerfor;
+let timerforof;
+let timerforEach;
+let timerWhile;
+let arrLength = arr.length;
+let smthg
+console.time(timerprime)
+console.timeEnd(timerprime)
+
+console.time(timerfor)
+let i = 0;
+for( ; i < arrLength ; i++){
+	smthg = i;
+	if(i == (max - 1)){
+		console.log("boucle for")
+	}
+}
+console.timeEnd(timerfor)
+
+console.time(timerforof)
+for(let el of arr){
+  smthg = el;
+  if(el == (max - 1)){
+		console.log("boucle for of")
+	}
+}
+console.timeEnd(timerforof)
+
+console.time(timerforEach)
+arr.forEach((element) => {
+	smthg = element;
+	if(element == (max - 1)){
+		console.log("boucle forEach")
+	}
+});
+console.timeEnd(timerforEach)
+
+console.time(timerWhile)
+let j = 0;
+while(j < arrLength){
+	smthg = j;
+	j++;
+	if(j == (max - 1)){
+		console.log("boucle while")
+	}
+}
+console.timeEnd(timerWhile)
+*/

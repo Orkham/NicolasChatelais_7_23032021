@@ -36,6 +36,16 @@ function displayRecipesWithNameResults(recipesToDisplay, recipesArray, search){
             }
         }
     }
+    /*
+    recipesArray.forEach((recipe)=>{
+        let cleanName = cleanWord(recipe.name.toLowerCase().trim())
+        if(cleanName.includes(search)){
+            if(!(recipesToDisplay.includes(recipe))){
+                recipesToDisplay.push(recipe)
+            }
+        }
+    })
+    */
 }
 
 /**
