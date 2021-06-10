@@ -187,7 +187,10 @@ function initialize(){
     searchByIngredients.value = ""
     searchByAppareil.value = ""
     searchByUstensiles.value = ""
-    /*let recipesToDisplay = */Recipe.displayRecipes(recipes, 6);
+    Recipe.displayRecipes(recipes, 6);
     listsUpdate(Ingredients.getIngredientsFromRecipes(recipes), Appliance.getAppliancesFromRecipes(recipes), Ustensils.getUstensilsFromRecipes(recipes))
+    ingredientsToDisplay = Ingredients.getIngredientsFromRecipes(recipes);
+    appliancesToDisplay = Appliance.getAppliancesFromRecipes(recipes); 
+    ustensilsToDisplay = Ustensils.getUstensilsFromRecipes(recipes);
 }
 window.addEventListener('DOMContentLoaded', initialize)

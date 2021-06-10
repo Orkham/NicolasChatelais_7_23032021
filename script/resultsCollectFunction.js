@@ -26,8 +26,11 @@ export function collectResults(recipesToDisplay, recipesArray, search){
  * @param { string } search input de l'utilisateur
  */
 function displayRecipesWithNameResults(recipesToDisplay, recipesArray, search){
-    for(let i = 0 ; i < recipesArray.length ; i++){
-        if(cleanWord(recipesArray[i].name.toLowerCase().trim()).includes(search)){
+    let recipesArrayLength = recipesArray.length;
+    let i = 0;
+    for( ; i < recipesArrayLength ; i++){
+        let cleanName = cleanWord(recipesArray[i].name.toLowerCase().trim())
+        if(cleanName.includes(search)){
             if(!(recipesToDisplay.includes(recipesArray[i]))){
                 recipesToDisplay.push(recipesArray[i])
             }
