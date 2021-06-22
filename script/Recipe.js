@@ -77,7 +77,7 @@ export class Recipe {
             }
 
             let newInstructions = document.createElement("p");
-            newInstructions.className = "instructions w-50"
+            newInstructions.className = "instructions w-50 overflow-scroll"
             
             let textDescription = this.description.substring(0,2000)
             newInstructions.appendChild(document.createTextNode(textDescription))

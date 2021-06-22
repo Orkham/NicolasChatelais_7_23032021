@@ -10035,21 +10035,32 @@ body{
 .resultDisplay{
   background-color: #3282F7;
 }
-.recipes div:nth-child(3n+1){
-  padding-right:2rem;
-  border:none;
-  box-shadow: none;
+@media (min-width:1200px){
+  .recipes div:nth-child(3n+1){
+    padding-right:2rem;
+    border:none;
+    box-shadow: none;
+  }
+  .recipes div:nth-child(3n+2){
+    padding-right:1rem;
+    padding-left:1rem;
+    border:none;
+    box-shadow: none;
+  }
+  .recipes div:nth-child(3n){
+    padding-left:2rem;
+    border:none;
+    box-shadow: none;
+  }
+  .card:nth-child(3n){
+    padding-right:0rem !important;
+  }
 }
-.recipes div:nth-child(3n+2){
-  padding-right:1rem;
-  padding-left:1rem;
-  border:none;
-  box-shadow: none;
-}
-.recipes div:nth-child(3n){
-  padding-left:2rem;
-  border:none;
-  box-shadow: none;
+@media (min-width:992px){
+  .card:nth-child(2n+1){
+    padding-right:1rem;
+    border:none;
+  }
 }
 .description{
   background: #E7E7E7;
@@ -10057,6 +10068,7 @@ body{
 .card-title{
   font-size: 18px;
 }
+
 .timing__duration{
   font-weight: 700;
 }
